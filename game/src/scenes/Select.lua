@@ -34,12 +34,12 @@ function Select:draw(state)
 end
 
 -- キー入力
-function Select:keypressed(key, scancode, isrepeat)
+function Select:keypressed(state, key, scancode, isrepeat)
     self:nextState()
 end
 
 -- マウス入力
-function Select:mousepressed(x, y, button, istouch, presses)
+function Select:mousepressed(state, x, y, button, istouch, presses)
     self:keypressed('return')
 end
 

@@ -31,11 +31,11 @@ function Game:draw(state)
 end
 
 -- キー入力
-function Game:keypressed(key, scancode, isrepeat)
+function Game:keypressed(state, key, scancode, isrepeat)
 end
 
 -- マウス入力
-function Game:mousepressed(x, y, button, istouch, presses)
+function Game:mousepressed(state, x, y, button, istouch, presses)
 end
 
 return Game

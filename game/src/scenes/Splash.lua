@@ -38,12 +38,12 @@ function Splash:draw(state)
 end
 
 -- キー入力
-function Splash:keypressed(key, scancode, isrepeat)
+function Splash:keypressed(state, key, scancode, isrepeat)
     self.state.splash:skip()
 end
 
 -- マウス入力
-function Splash:mousepressed(x, y, button, istouch, presses)
+function Splash:mousepressed(state, x, y, button, istouch, presses)
     self.state.splash:skip()
 end
 
