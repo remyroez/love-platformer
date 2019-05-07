@@ -1,11 +1,12 @@
 
-local Scene = require 'Scene'
+local folderOfThisFile = (...):match("(.-)[^%/%.]+$")
+local Base = require(folderOfThisFile .. 'Base')
+
+-- レベル選択
+local Select = Base:newState 'select'
 
 -- エイリアス
 local lg = love.graphics
-
--- レベル選択
-local Select = Scene:newState 'select'
 
 -- 次のステートへ
 function Select:nextState(...)
@@ -13,25 +14,23 @@ function Select:nextState(...)
 end
 
 -- 読み込み
-function Select:load()
+function Select:load(state, ...)
 end
 
 -- ステート開始
-function Select:enteredState(width, height, pieceTypes, ...)
-    -- 親
-    Scene.enteredState(self, ...)
+function Select:entered(state, ...)
 end
 
 -- ステート終了
-function Select:exitedState(...)
+function Select:exited(state, ...)
 end
 
 -- 更新
-function Select:update(dt)
+function Select:update(state, dt)
 end
 
 -- 描画
-function Select:draw()
+function Select:draw(state)
 end
 
 -- キー入力

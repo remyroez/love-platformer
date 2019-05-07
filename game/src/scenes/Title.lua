@@ -1,11 +1,12 @@
 
-local Scene = require 'Scene'
+local folderOfThisFile = (...):match("(.-)[^%/%.]+$")
+local Base = require(folderOfThisFile .. 'Base')
+
+-- タイトル
+local Title = Base:newState 'title'
 
 -- エイリアス
 local lg = love.graphics
-
--- タイトル
-local Title = Scene:newState 'title'
 
 -- 次のステートへ
 function Title:nextState(...)
@@ -13,25 +14,23 @@ function Title:nextState(...)
 end
 
 -- 読み込み
-function Title:load()
+function Title:load(state, ...)
 end
 
 -- ステート開始
-function Title:enteredState(...)
-    -- 親
-    Scene.enteredState(self, ...)
+function Title:entered(state, ...)
 end
 
 -- ステート終了
-function Title:exitedState(...)
+function Title:exited(state, ...)
 end
 
 -- 更新
-function Title:update(dt)
+function Title:update(state, dt)
 end
 
 -- 描画
-function Title:draw()
+function Title:draw(state)
 end
 
 -- キー入力

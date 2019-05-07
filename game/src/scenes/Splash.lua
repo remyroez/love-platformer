@@ -1,5 +1,9 @@
 
-local Scene = require 'Scene'
+local folderOfThisFile = (...):match("(.-)[^%/%.]+$")
+local Base = require(folderOfThisFile .. 'Base')
+
+-- スプラッシュスクリーン
+local Splash = Base:newState 'splash'
 
 -- クラス
 local o_ten_one = require 'o-ten-one'
@@ -7,29 +11,29 @@ local o_ten_one = require 'o-ten-one'
 -- エイリアス
 local lg = love.graphics
 
--- スプラッシュスクリーン
-local Splash = Scene:newState 'splash'
-
 -- 次のステートへ
 function Splash:nextState(...)
     self:gotoState('title', ...)
 end
 
 -- 読み込み
-function Splash:load()
-    self.state.splash = o_ten_one{ base_folder = 'lib' }
+function Splash:load(state, ...)
+    local config = { ... }
+    config.base_folder = 'lib'
+
+    self.state.splash = o_ten_one(config)
     self.state.splash.onDone = function ()
         self:nextState()
     end
 end
 
 -- 更新
-function Splash:update(dt)
+function Splash:update(state, dt)
     self.state.splash:update(dt)
 end
 
 -- 描画
-function Splash:draw()
+function Splash:draw(state)
     self.state.splash:draw()
 end
 

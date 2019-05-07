@@ -8,18 +8,15 @@ local lume = require 'lume'
 local lurker = require 'lurker'
 
 -- シーンステート
-local scenes = require 'scenes'
-
--- クラス
-local Scene = require 'Scene'
+local Scenes = require 'scenes'
 
 -- シーン
-local scene = Scene()
+local scene = Scenes()
 scene:gotoState 'boot'
 
 -- ホットスワップ後の対応
 lurker.postswap = function (f)
-    if lume.find(scenes, f:match('%/([^%/%.]+).lua$')) then
+    if lume.find(Scenes.static.scenes, f:match('%/([^%/%.]+).lua$')) then
         -- シーンステートなら main もホットスワップ
         lurker.hotswapfile('main.lua')
     elseif f:match('^assets%/') then
@@ -43,7 +40,7 @@ end
 -- 更新
 function love.update(dt)
     -- シーンの更新
-    scene:update(dt)
+    scene:updateState(dt)
 end
 
 -- 描画
@@ -52,7 +49,7 @@ function love.draw()
     love.graphics.reset()
 
     -- シーンの描画
-    scene:draw()
+    scene:drawState()
 
     -- ステートの描画
     if debugMode then
@@ -83,12 +80,12 @@ function love.keypressed(key, scancode, isrepeat)
         scene:setDebugMode(debugMode)
     else
         -- シーンに処理を渡す
-        scene:keypressed(key, scancode, isrepeat)
+        scene:keypressedState(key, scancode, isrepeat)
     end
 end
 
 -- マウス入力
 function love.mousepressed(...)
     -- シーンに処理を渡す
-    scene:mousepressed(...)
+    scene:mousepressedState(...)
 end
