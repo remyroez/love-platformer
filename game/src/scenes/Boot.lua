@@ -1,12 +1,13 @@
 
-local Scene = require 'Scene'
+local folderOfThisFile = (...):match("(.-)[^%/%.]+$")
+local Base = require(folderOfThisFile .. 'Base')
+
+-- ブート
+local Boot = Base:newState 'boot'
 
 -- エイリアス
 local lg = love.graphics
 local la = love.audio
-
--- ブート
-local Boot = Scene:newState 'boot'
 
 -- 次のステートへ
 function Boot:nextState(...)
@@ -14,7 +15,7 @@ function Boot:nextState(...)
 end
 
 -- 読み込み
-function Boot:load()
+function Boot:load(state, ...)
     -- 画面のサイズ
     local width, height = lg.getDimensions()
     self.width = width
@@ -25,7 +26,7 @@ function Boot:load()
 end
 
 -- 更新
-function Boot:update()
+function Boot:update(state, dt, ...)
     self:nextState()
 end
 

@@ -1,9 +1,9 @@
 
 local folderOfThisFile = (...):gsub("%.init$", "") .. "."
 
-local scenes = {}
+local Base = require(folderOfThisFile .. 'Base')
 
-local states = {
+Base.static.scenes = {
     "Boot",
     "Splash",
     "Title",
@@ -11,8 +11,8 @@ local states = {
     "Game"
 }
 
-for _, name in ipairs(states) do
-    scenes[name] = require(folderOfThisFile .. name)
+for _, name in ipairs(Base.static.scenes) do
+    require(folderOfThisFile .. name)
 end
 
-return states
+return Base
