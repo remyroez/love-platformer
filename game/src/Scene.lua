@@ -2,6 +2,10 @@
 local class = require 'middleclass'
 local stateful = require 'stateful'
 
+-- シーン
+local Scene = class 'Scene'
+Scene:include(stateful)
+
 -- 現在のステートを返す
 local function _getCurrentState(self)
     return self.__stateStack[#self.__stateStack]
@@ -19,10 +23,6 @@ local function _getCurrentStateName(self)
     return _getStateName(self, _getCurrentState(self))
 end
 
--- シーン
-local Scene = class 'Scene'
-Scene:include(stateful)
-
 -- 新規ステート
 function Scene.static:newState(name, base)
     if Scene.static.states[name] then Scene.static.states[name] = nil end
@@ -35,22 +35,60 @@ function Scene:initialize()
     self.debugMode = false
 end
 
--- 更新
+-- ステート開始
+function Scene:enteredState(...)
+    -- 現在のステート用テーブルを準備
+    self:getState(nil, ...)
+
+    -- コールバック
+    self:entered(self.state, ...)
+end
+
+-- ステート終了
+function Scene:exitedState(...)
+    -- コールバック
+    self:exited(self.state, ...)
+
+    -- ガーベージコレクション
+    collectgarbage('collect')
+end
+
+-- ステートプッシュ
+function Scene:pushedState(...)
+    self:pushed(self.state, ...)
+end
+
+-- ステートポップ
+function Scene:poppedState(...)
+    self:popped(self.state, ...)
+end
+
+-- ステート停止
+function Scene:pausedState(...)
+    self:paused(self.state, ...)
+end
+
+-- ステート再開
+function Scene:continuedState(...)
+    self:continued(self.state, ...)
+end
+
+-- ステート更新
 function Scene:updateState(dt, ...)
     self:update(self.state, dt, ...)
 end
 
--- 描画
+-- ステート描画
 function Scene:drawState(...)
     self:draw(self.state, ...)
 end
 
--- キー入力
+-- ステートキー入力
 function Scene:keypressedState(...)
     self:keypressed(self.state, ...)
 end
 
--- マウス入力
+-- ステートマウス入力
 function Scene:mousepressedState(...)
     self:mousepressed(self.state, ...)
 end
@@ -92,50 +130,12 @@ function Scene:getState(name, ...)
     return self._stateObjects[name]
 end
 
--- ステート開始
-function Scene:enteredState(...)
-    -- 現在のステート用テーブルを準備
-    self:getState(nil, ...)
-
-    -- コールバック
-    self:entered(self.state, ...)
-end
-
--- ステート終了
-function Scene:exitedState(...)
-    self:exited(self.state, ...)
-end
-
--- ステートプッシュ
-function Scene:pushedState(...)
-    self:pushed(self.state, ...)
-end
-
--- ステートポップ
-function Scene:poppedState(...)
-    self:popped(self.state, ...)
-end
-
--- ステート停止
-function Scene:pausedState(...)
-    self:paused(self.state, ...)
-end
-
--- ステート再開
-function Scene:continuedState(...)
-    self:continued(self.state, ...)
+-- 次のステートへ
+function Scene:nextState(...)
 end
 
 -- 読み込み
 function Scene:load(state, ...)
-end
-
--- 更新
-function Scene:update(state, dt, ...)
-end
-
--- 描画
-function Scene:draw(state, ...)
 end
 
 -- 開始
@@ -162,8 +162,12 @@ end
 function Scene:continued(state, ...)
 end
 
--- 次のステートへ
-function Scene:nextState(...)
+-- 更新
+function Scene:update(state, dt, ...)
+end
+
+-- 描画
+function Scene:draw(state, ...)
 end
 
 -- キー入力
