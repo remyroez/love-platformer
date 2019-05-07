@@ -17,11 +17,11 @@ end
 function Select:load(state, ...)
 end
 
--- ステート開始
+-- 開始
 function Select:entered(state, ...)
 end
 
--- ステート終了
+-- 終了
 function Select:exited(state, ...)
 end
 

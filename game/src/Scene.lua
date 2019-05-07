@@ -130,6 +130,13 @@ function Scene:getState(name, ...)
     return self._stateObjects[name]
 end
 
+-- ステートオブジェクトのクリア
+function Scene:clearState()
+    for name, v in pairs(self.state) do
+        self.state[name] = nil
+    end
+end
+
 -- 次のステートへ
 function Scene:nextState(...)
 end

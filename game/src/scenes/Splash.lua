@@ -16,35 +16,42 @@ function Splash:nextState(...)
     self:gotoState('title', ...)
 end
 
--- 読み込み
-function Splash:load(state, ...)
-    local config = { ... }
-    config.base_folder = 'lib'
+-- 開始
+function Splash:entered(state, args)
+    -- スプラッシュスクリーンの設定
+    local config = args or {}
+    config.base_folder = config.base_folder or 'lib'
 
-    self.state.splash = o_ten_one(config)
-    self.state.splash.onDone = function ()
+    -- スプラッシュスクリーン
+    state.splash = o_ten_one(config)
+    state.splash.onDone = function ()
         self:nextState()
     end
 end
 
+-- 終了
+function Splash:exited(state, ...)
+    self:clearState()
+end
+
 -- 更新
 function Splash:update(state, dt)
-    self.state.splash:update(dt)
+    state.splash:update(dt)
 end
 
 -- 描画
 function Splash:draw(state)
-    self.state.splash:draw()
+    state.splash:draw()
 end
 
 -- キー入力
 function Splash:keypressed(state, key, scancode, isrepeat)
-    self.state.splash:skip()
+    state.splash:skip()
 end
 
 -- マウス入力
 function Splash:mousepressed(state, x, y, button, istouch, presses)
-    self.state.splash:skip()
+    state.splash:skip()
 end
 
 return Splash
