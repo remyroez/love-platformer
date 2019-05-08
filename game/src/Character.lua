@@ -57,6 +57,8 @@ end
 function Character:update(dt)
     self:applyPositionFromCollider()
     self.y = self.y + self.offsetY
+
+    self:awakeCollider()
 end
 
 -- 描画

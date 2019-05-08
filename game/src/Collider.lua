@@ -23,7 +23,7 @@ function Collider:destroyCollider()
     end
 end
 
--- コライダー座標の更新
+-- コライダー速度の設定
 function Collider:setColliderVelocity(x, y, speed)
     if self.collider == nil then
         -- no collider
@@ -31,6 +31,16 @@ function Collider:setColliderVelocity(x, y, speed)
         self.collider:setLinearVelocity(0, 0)
     else
         self.collider:setLinearVelocity(lume.vector(lume.angle(self.x, self.y, self.x + x, self.y + y), speed))
+    end
+end
+
+-- コライダー速度を返す
+function Collider:getColliderVelocity()
+    if self.collider == nil then
+        -- no collider
+        return 0, 0
+    else
+        return self.collider:getLinearVelocity()
     end
 end
 
@@ -45,6 +55,13 @@ end
 function Collider:applyPositionFromCollider()
     if self.collider then
         self.x, self.y = self.collider:getPosition()
+    end
+end
+
+-- コライダーのスリープ状態設定
+function Collider:awakeCollider(awake)
+    if self.collider then
+        self.collider:setAwake(awake == nil and true or awake)
     end
 end
 
