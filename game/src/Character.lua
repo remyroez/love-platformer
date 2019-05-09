@@ -16,6 +16,7 @@ function Character:initialize(args)
     self.spriteName = self:getCurrentSpriteName()
     self.color = args.color or { 1, 1, 1, 1 }
     self.offsetY = args.offsetY or 0
+    self.world = args.world or {}
 
     -- SpriteRenderer 初期化
     self:initializeSpriteRenderer(args.spriteSheet)
@@ -46,6 +47,10 @@ function Character:initialize(args)
     if args.collisionClass then
         self.collider:setCollisionClass(args.collisionClass)
     end
+    self.collider:setSleepingAllowed(false)
+
+    self.grounded = false
+    self.groundedTime = 0
 end
 
 -- 破棄
@@ -55,10 +60,24 @@ end
 
 -- 更新
 function Character:update(dt)
+    -- コライダーの位置を取得して適用
     self:applyPositionFromCollider()
+
+    -- 足元を起点にしたいのでズラす
     self.y = self.y + self.offsetY
 
-    self:awakeCollider()
+    -- 着地判定
+    local grounded = false
+    local colliders = self.world:queryLine(self.x, self.y, self.x, self.y + 20, { 'platform' })
+    for _, collider in ipairs(colliders) do
+        grounded = true
+    end
+    if grounded ~= self.grounded then
+        self.grounded = grounded
+        self.groundedTime = dt
+    elseif self.grounded then
+        self.groundedTime = self.groundedTime + dt
+    end
 end
 
 -- 描画
@@ -67,11 +86,19 @@ function Character:draw()
     love.graphics.setColor(self.color)
     self:drawSprite(self.spriteName)
     self:popTransform()
+
+    love.graphics.print('grounded: ' .. tostring(self:isGrounded()), self.x, self.y)
+    love.graphics.line(self.x, self.y, self.x, self.y + 20)
 end
 
 -- 描画
 function Character:getCurrentSpriteName()
     return self.spriteType .. '_stand.png'
+end
+
+-- 着地しているかどうか返す
+function Character:isGrounded()
+    return self.grounded -- and self.groundedTime > 0.1
 end
 
 -- ジャンプ

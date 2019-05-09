@@ -34,16 +34,6 @@ function Collider:setColliderVelocity(x, y, speed)
     end
 end
 
--- コライダー速度を返す
-function Collider:getColliderVelocity()
-    if self.collider == nil then
-        -- no collider
-        return 0, 0
-    else
-        return self.collider:getLinearVelocity()
-    end
-end
-
 -- コライダーへ座標を適用
 function Collider:applyPositionToCollider()
     if self.collider then
@@ -55,6 +45,30 @@ end
 function Collider:applyPositionFromCollider()
     if self.collider then
         self.x, self.y = self.collider:getPosition()
+    end
+end
+
+-- setLinearVelocity
+function Collider:setLinearVelocity(x, y)
+    if self.collider then
+        self.collider:setLinearVelocity(x, y)
+    end
+end
+
+-- getLinearVelocity
+function Collider:getLinearVelocity()
+    if self.collider == nil then
+        -- no collider
+        return 0, 0
+    else
+        return self.collider:getLinearVelocity()
+    end
+end
+
+-- applyLinearImpulse
+function Collider:applyLinearImpulse(x, y)
+    if self.collider then
+        self.collider:applyLinearImpulse(x, y)
     end
 end
 

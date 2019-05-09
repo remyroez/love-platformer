@@ -26,8 +26,9 @@ end
 -- ステート開始
 function Game:entered(state, ...)
     -- ワールド
-    state.world = wf.newWorld(0, 0, true)
-    state.world:setGravity(0, 512)
+    state.world = wf.newWorld(0, 1000, true)
+    state.world:addCollisionClass('platform')
+    state.world:addCollisionClass('player')
 
     -- キャラクター
     state.player = Character {
@@ -37,6 +38,8 @@ function Game:entered(state, ...)
         y = 100,
         offsetY = 16,
         collider = state.world:newRectangleCollider(0, 0, 24, 32),
+        collisionClass = 'player',
+        world = state.world,
         h_align = 'center',
         v_align = 'bottom',
     }
@@ -45,13 +48,25 @@ function Game:entered(state, ...)
 
     state.block = state.world:newRectangleCollider(0, 500, 800, 50)
     state.block:setType('static')
+    state.block:setCollisionClass('platform')
 
     state.block2 = state.world:newRectangleCollider(0, 400, 300, 10)
     state.block2:setType('static')
     state.block2:setAngle(math.pi * 0.25)
+    state.block2:setCollisionClass('platform')
 
-    state.input:bind('left', 'left')
-    state.input:bind('right', 'right')
+    -- 操作設定
+    local binds = {
+        left = { 'left', 'a' },
+        right = { 'right', 'd' },
+        jump = { 'up', 'w', 'space' },
+        crouch = { 'down', 's', 'lctrl' },
+    }
+    for name, keys in pairs(binds) do
+        for _, key in ipairs(keys) do
+            state.input:bind(key, name)
+        end
+    end
 end
 
 -- ステート終了
@@ -83,24 +98,49 @@ end
 
 -- プレイヤー操作
 function Game:controlPlayer(state)
-    local vx, vy = state.player:getColliderVelocity()
+    local vx, vy = state.player:getLinearVelocity()
 
     local speed = 100
+    local jumpPower = -1000
+
+    -- 移動判定
     local x, y = 0, 0
     if state.input:down('left') then
         x = -1
     elseif state.input:down('right') then
         x = 1
+    else
+    end
+    -- 減速
+    state.player:setLinearVelocity(vx * 0.9, vy)
+
+    -- ジャンプ判定
+    local jump = false
+    if not state.player:isGrounded() then
+        -- 着地していない
+    elseif state.input:pressed('jump') then
+        jump = true
     end
 
-    state.player.collider:setLinearVelocity(vx * 0.8, vy)
+    -- 地面にいる
+    if state.player:isGrounded() then
+        -- 地面に押し付ける
+        state.player:applyLinearImpulse(0, 20)
+    end
 
+    -- 移動処理
     local mx, my = 0, 0
     if (x ~= 0 or y ~= 0) and speed ~= 0 then
         mx, my = lume.vector(lume.angle(state.player.x, state.player.y, state.player.x + x, state.player.y + y), speed)
-        state.player.collider:applyLinearImpulse(mx, my)
+        state.player:applyLinearImpulse(mx, my)
     end
-    state.player.collider:applyLinearImpulse(0, 20)
+
+    -- ジャンプ処理
+    if jump then
+        --state.player:setLinearVelocity(0, vy)
+        state.player:applyLinearImpulse(0, jumpPower)
+    else
+    end
 
     --state.player:setColliderVelocity(x, y, speed)
 end
