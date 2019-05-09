@@ -8,15 +8,23 @@ Character:include(require 'Rectangle')
 Character:include(require 'SpriteRenderer')
 Character:include(require 'Transform')
 Character:include(require 'Collider')
+Character:include(require 'Animation')
 
 -- 初期化
 function Character:initialize(args)
+    -- Animation 初期化
+    self:initializeAnimation()
+
     -- 初期設定
     self.spriteType = args.spriteType or 'playerRed'
+    self:gotoState 'stand'
+
     self.spriteName = self:getCurrentSpriteName()
     self.color = args.color or { 1, 1, 1, 1 }
     self.offsetY = args.offsetY or 0
     self.world = args.world or {}
+    self.speed = args.speed or 100
+    self.jumpPower = args.jumpPower or 1000
 
     -- SpriteRenderer 初期化
     self:initializeSpriteRenderer(args.spriteSheet)
@@ -66,25 +74,18 @@ function Character:update(dt)
     -- 足元を起点にしたいのでズラす
     self.y = self.y + self.offsetY
 
+    -- アニメーション更新
+    self:updateAnimation(dt)
+
     -- 着地判定
-    local grounded = false
-    local colliders = self.world:queryLine(self.x, self.y, self.x, self.y + 20, { 'platform' })
-    for _, collider in ipairs(colliders) do
-        grounded = true
-    end
-    if grounded ~= self.grounded then
-        self.grounded = grounded
-        self.groundedTime = dt
-    elseif self.grounded then
-        self.groundedTime = self.groundedTime + dt
-    end
+    self:updateGrounded()
 end
 
 -- 描画
 function Character:draw()
     self:pushTransform(self:left(), self:top())
     love.graphics.setColor(self.color)
-    self:drawSprite(self.spriteName)
+    self:drawSprite(self:getCurrentSpriteName())
     self:popTransform()
 
     love.graphics.print('grounded: ' .. tostring(self:isGrounded()), self.x, self.y)
@@ -93,7 +94,26 @@ end
 
 -- 描画
 function Character:getCurrentSpriteName()
-    return self.spriteType .. '_stand.png'
+    return self:getCurrentAnimation()
+end
+
+-- 着地しているかどうか更新
+function Character:updateGrounded()
+    local vx, vy = self:getLinearVelocity()
+    --print(vx, vy)
+
+    local grounded = false
+    if vy >= 0 and not self.grounded then
+        local colliders = self.world:queryLine(self.x, self.y, self.x, self.y + 20, { 'platform' })
+        for _, collider in ipairs(colliders) do
+            grounded = true
+        end
+    else
+        grounded = self.grounded
+    end
+    if grounded ~= self.grounded then
+        self.grounded = grounded
+    end
 end
 
 -- 着地しているかどうか返す
@@ -101,9 +121,104 @@ function Character:isGrounded()
     return self.grounded -- and self.groundedTime > 0.1
 end
 
+-- 立つ
+function Character:stand()
+    self:gotoState('stand')
+end
+
+-- 歩く
+function Character:walk(direction)
+    self:gotoState('walk', direction)
+end
+
 -- ジャンプ
 function Character:jump()
+    self:gotoState 'jump'
+end
 
+-- 立ちステート
+local Stand = Character:addState 'stand'
+
+-- 立ち: ステート開始
+function Stand:enteredState()
+    self:resetAnimations(
+        { self.spriteType .. '_stand.png' }
+    )
+end
+
+-- 立ち: ジャンプ
+function Stand:jump()
+    if self:isGrounded() then
+        self:gotoState 'jump'
+    end
+end
+
+-- 歩きステート
+local Walk = Character:addState 'walk'
+
+-- 歩き: ステート開始
+function Walk:enteredState(direction)
+    self:resetAnimations(
+        { self.spriteType .. '_walk1.png', self.spriteType .. '_walk2.png' },
+        0.1
+    )
+    self._walk = {}
+    self._walk.direction = direction or 'right'
+end
+
+-- 歩き: 更新
+function Walk:update(dt)
+    -- 移動
+    self:applyLinearImpulse(self._walk.direction == 'right' and self.speed or -self.speed, 0)
+
+    Character.update(self, dt)
+end
+
+-- 歩き: 歩く
+function Walk:walk(direction)
+    if direction ~= self._walk.direction then
+        self:gotoState('walk', direction)
+    end
+end
+
+-- ジャンプステート
+local Jump = Character:addState 'jump'
+
+-- ジャンプ: ステート開始
+function Jump:enteredState()
+    self:resetAnimations(
+        { self.spriteType .. '_up1.png', self.spriteType .. '_up2.png' },
+        0.1,
+        1,
+        false
+    )
+
+    -- ジャンプ
+    self:applyLinearImpulse(0, -self.jumpPower)
+
+    self.grounded = false
+end
+
+-- 更新
+function Jump:update(dt)
+    Character.update(self, dt)
+
+    -- 着地したら立つ
+    if self:isGrounded() then
+        self:gotoState 'stand'
+    end
+end
+
+-- ジャンプ: 立つ
+function Jump:stand(...)
+end
+
+-- ジャンプ: 歩く
+function Jump:walk(...)
+end
+
+-- ジャンプ: ジャンプ
+function Jump:jump()
 end
 
 return Character

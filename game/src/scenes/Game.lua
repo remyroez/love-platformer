@@ -100,49 +100,27 @@ end
 function Game:controlPlayer(state)
     local vx, vy = state.player:getLinearVelocity()
 
-    local speed = 100
-    local jumpPower = -1000
-
     -- 移動判定
-    local x, y = 0, 0
     if state.input:down('left') then
-        x = -1
+        state.player:walk('left')
     elseif state.input:down('right') then
-        x = 1
+        state.player:walk('right')
     else
+        state.player:stand()
     end
     -- 減速
     state.player:setLinearVelocity(vx * 0.9, vy)
 
     -- ジャンプ判定
-    local jump = false
-    if not state.player:isGrounded() then
-        -- 着地していない
-    elseif state.input:pressed('jump') then
-        jump = true
+    if state.input:pressed('jump') then
+        state.player:jump()
     end
 
     -- 地面にいる
     if state.player:isGrounded() then
         -- 地面に押し付ける
-        state.player:applyLinearImpulse(0, 20)
+        --state.player:applyLinearImpulse(0, 20)
     end
-
-    -- 移動処理
-    local mx, my = 0, 0
-    if (x ~= 0 or y ~= 0) and speed ~= 0 then
-        mx, my = lume.vector(lume.angle(state.player.x, state.player.y, state.player.x + x, state.player.y + y), speed)
-        state.player:applyLinearImpulse(mx, my)
-    end
-
-    -- ジャンプ処理
-    if jump then
-        --state.player:setLinearVelocity(0, vy)
-        state.player:applyLinearImpulse(0, jumpPower)
-    else
-    end
-
-    --state.player:setColliderVelocity(x, y, speed)
 end
 
 return Game
