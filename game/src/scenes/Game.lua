@@ -32,6 +32,7 @@ function Game:entered(state, ...)
     state.world = wf.newWorld(0, 1000, true)
     state.world:addCollisionClass('platform')
     state.world:addCollisionClass('player')
+    state.world:addCollisionClass('damage')
 
     -- キャラクター
     state.player = Character {
@@ -57,6 +58,11 @@ function Game:entered(state, ...)
     state.block2:setType('static')
     state.block2:setAngle(math.pi * 0.25)
     state.block2:setCollisionClass('platform')
+
+    state.block3 = state.world:newRectangleCollider(500, 490, 10, 20)
+    state.block3:setType('kinematic')
+    --state.block3:setAngle(math.pi * 0.25)
+    state.block3:setCollisionClass('damage')
 
     -- 操作設定
     local binds = {
@@ -154,6 +160,11 @@ function Game:controlPlayer(state)
     -- 地面にいる
     if state.player:isGrounded() then
     else
+    end
+
+    -- ダメージ判定
+    if state.player:enterCollider('damage') then
+        state.player:damage()
     end
 
     -- 死亡

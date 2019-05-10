@@ -79,4 +79,22 @@ function Collider:awakeCollider(awake)
     end
 end
 
+-- コライダーの接触判定
+function Collider:enterCollider(collisionClass)
+    if self.collider then
+        return self.collider:enter(collisionClass)
+    else
+        return false
+    end
+end
+
+-- コライダーの接触情報取得
+function Collider:getEnterCollisionData(collisionClass)
+    if self.collider then
+        return self.collider:getEnterCollisionData(collisionClass)
+    else
+        return nil
+    end
+end
+
 return Collider

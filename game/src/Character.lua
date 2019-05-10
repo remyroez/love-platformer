@@ -25,6 +25,7 @@ function Character:initialize(args)
     self.world = args.world or {}
     self.speed = args.speed or 100
     self.jumpPower = args.jumpPower or 1500
+    self.life = args.life or 1
     self.alive = true
 
     -- SpriteRenderer 初期化
@@ -91,7 +92,8 @@ function Character:draw()
     self:popTransform()
 
     love.graphics.print('x = ' .. self.x .. ', y = ' .. self.y, self.x, self.y)
-    love.graphics.print('grounded: ' .. tostring(self:isGrounded()), self.x, self.y + 12)
+    love.graphics.print('alive: ' .. tostring(self.alive), self.x, self.y + 12)
+    love.graphics.print('grounded: ' .. tostring(self:isGrounded()), self.x, self.y + 24)
     love.graphics.line(self.x, self.y, self.x, self.y + 20)
 end
 
@@ -136,6 +138,12 @@ end
 -- ジャンプ
 function Character:jump()
     self:gotoState 'jump'
+end
+
+-- ダメージ
+function Character:damage()
+    print('Character:damage')
+    self:gotoState('damage')
 end
 
 -- 死ぬ
@@ -256,6 +264,53 @@ end
 
 -- 死亡: 死ぬ
 function Dead:die()
+end
+
+-- ダメージステート
+local Damage = Character:addState 'damage'
+
+-- ダメージ: ステート開始
+function Damage:enteredState()
+    self:resetAnimations(
+        { self.spriteType .. '_dead.png' }
+    )
+    self.life = self.life - (damage or 1)
+
+    -- ジャンプ
+    self:applyLinearImpulse(0, -self.jumpPower * 0.75)
+    self.grounded = false
+
+    print('Damage')
+end
+
+-- ダメージ: 更新
+function Damage:update(dt)
+    Character.update(self, dt)
+
+    -- 着地したら次へ
+    if not self:isGrounded() then
+        -- 空中
+    elseif self.life <= 0 then
+        self:die()
+    else
+        self:gotoState 'stand'
+    end
+end
+
+-- ダメージ: 立つ
+function Damage:stand()
+end
+
+-- ダメージ: 歩く
+function Damage:walk()
+end
+
+-- ダメージ: ジャンプ
+function Damage:jump()
+end
+
+-- ダメージ: ダメージ
+function Damage:damage()
 end
 
 
