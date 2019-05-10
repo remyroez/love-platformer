@@ -12,6 +12,7 @@ local lume = require 'lume'
 -- クラス
 local Character = require 'Character'
 local Input = require 'Input'
+local Camera = require 'Camera'
 
 -- エイリアス
 local lg = love.graphics
@@ -21,6 +22,8 @@ local lm = love.mouse
 -- 読み込み
 function Game:load(state, ...)
     state.input = Input()
+    state.camera = Camera()
+    state.camera:setFollowStyle('PLATFORMER')
 end
 
 -- ステート開始
@@ -80,12 +83,21 @@ function Game:update(state, dt)
 
     state.world:update(dt)
     state.player:update(dt)
+    state.camera:update(dt)
+    state.camera:follow(state.player:getPosition())
 end
 
 -- 描画
 function Game:draw(state)
-    state.player:draw()
-    state.world:draw()
+    -- カメラ内で描画
+    state.camera:attach()
+    do
+        state.player:draw()
+        state.world:draw()
+    end
+    state.camera:detach()
+
+    state.camera:draw()
 end
 
 -- キー入力
