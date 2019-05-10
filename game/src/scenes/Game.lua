@@ -100,16 +100,27 @@ end
 function Game:controlPlayer(state)
     local vx, vy = state.player:getLinearVelocity()
 
+    -- 減速
+    state.player:setLinearVelocity(vx * 0.9, vy)
+
+    -- 地面に押し付ける
+    state.player:applyLinearImpulse(0, 20)
+
+    local direction
+
     -- 移動判定
     if state.input:down('left') then
-        state.player:walk('left')
+        direction = 'left'
     elseif state.input:down('right') then
-        state.player:walk('right')
+        direction = 'right'
+    end
+
+    -- 移動
+    if direction then
+        state.player:walk(direction)
     else
         state.player:stand()
     end
-    -- 減速
-    state.player:setLinearVelocity(vx * 0.9, vy)
 
     -- ジャンプ判定
     if state.input:pressed('jump') then
@@ -118,8 +129,7 @@ function Game:controlPlayer(state)
 
     -- 地面にいる
     if state.player:isGrounded() then
-        -- 地面に押し付ける
-        --state.player:applyLinearImpulse(0, 20)
+    else
     end
 end
 

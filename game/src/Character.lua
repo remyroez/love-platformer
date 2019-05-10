@@ -24,7 +24,7 @@ function Character:initialize(args)
     self.offsetY = args.offsetY or 0
     self.world = args.world or {}
     self.speed = args.speed or 100
-    self.jumpPower = args.jumpPower or 1000
+    self.jumpPower = args.jumpPower or 1500
 
     -- SpriteRenderer 初期化
     self:initializeSpriteRenderer(args.spriteSheet)
@@ -102,14 +102,13 @@ function Character:updateGrounded()
     local vx, vy = self:getLinearVelocity()
     --print(vx, vy)
 
-    local grounded = false
-    if vy >= 0 and not self.grounded then
+    local grounded = self.grounded
+    if vy >= 0 then
+        grounded = false
         local colliders = self.world:queryLine(self.x, self.y, self.x, self.y + 20, { 'platform' })
         for _, collider in ipairs(colliders) do
             grounded = true
         end
-    else
-        grounded = self.grounded
     end
     if grounded ~= self.grounded then
         self.grounded = grounded
@@ -214,7 +213,10 @@ function Jump:stand(...)
 end
 
 -- ジャンプ: 歩く
-function Jump:walk(...)
+function Jump:walk(direction)
+    if direction then
+        self:applyLinearImpulse(direction == 'right' and self.speed or -self.speed, 0)
+    end
 end
 
 -- ジャンプ: ジャンプ
