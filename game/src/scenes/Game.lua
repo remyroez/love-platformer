@@ -79,12 +79,24 @@ end
 
 -- 更新
 function Game:update(state, dt)
-    self:controlPlayer(state)
+    -- プレイヤー操作
+    if state.player.alive then
+        self:controlPlayer(state)
+    end
 
+    -- ワールド更新
     state.world:update(dt)
+
+    -- キャラクター更新
     state.player:update(dt)
+
+    -- カメラ更新
     state.camera:update(dt)
-    state.camera:follow(state.player:getPosition())
+
+    -- キャラクター追従
+    if state.player.alive then
+        state.camera:follow(state.player:getPosition())
+    end
 end
 
 -- 描画
@@ -142,6 +154,12 @@ function Game:controlPlayer(state)
     -- 地面にいる
     if state.player:isGrounded() then
     else
+    end
+
+    -- 死亡
+    local bx, by = state.block:getPosition()
+    if state.player.y > by + 100 then
+        state.player:die()
     end
 end
 

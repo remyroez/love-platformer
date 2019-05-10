@@ -25,6 +25,7 @@ function Character:initialize(args)
     self.world = args.world or {}
     self.speed = args.speed or 100
     self.jumpPower = args.jumpPower or 1500
+    self.alive = true
 
     -- SpriteRenderer 初期化
     self:initializeSpriteRenderer(args.spriteSheet)
@@ -63,6 +64,7 @@ end
 
 -- 破棄
 function Character:destroy()
+    self:gotoState(nil)
     self:destroyCollider()
 end
 
@@ -88,7 +90,8 @@ function Character:draw()
     self:drawSprite(self:getCurrentSpriteName())
     self:popTransform()
 
-    love.graphics.print('grounded: ' .. tostring(self:isGrounded()), self.x, self.y)
+    love.graphics.print('x = ' .. self.x .. ', y = ' .. self.y, self.x, self.y)
+    love.graphics.print('grounded: ' .. tostring(self:isGrounded()), self.x, self.y + 12)
     love.graphics.line(self.x, self.y, self.x, self.y + 20)
 end
 
@@ -133,6 +136,11 @@ end
 -- ジャンプ
 function Character:jump()
     self:gotoState 'jump'
+end
+
+-- 死ぬ
+function Character:die()
+    self:gotoState 'dead'
 end
 
 -- 立ちステート
@@ -222,5 +230,33 @@ end
 -- ジャンプ: ジャンプ
 function Jump:jump()
 end
+
+-- 死亡ステート
+local Dead = Character:addState 'dead'
+
+-- 死亡: ステート開始
+function Dead:enteredState()
+    self:resetAnimations(
+        { self.spriteType .. '_dead.png' }
+    )
+    self.alive = false
+end
+
+-- 死亡: 立つ
+function Dead:stand()
+end
+
+-- 死亡: 歩く
+function Dead:walk()
+end
+
+-- 死亡: ジャンプ
+function Dead:jump()
+end
+
+-- 死亡: 死ぬ
+function Dead:die()
+end
+
 
 return Character
