@@ -70,24 +70,28 @@ return {
         {
           id = 5,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 6,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 7,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 8,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
@@ -268,12 +272,14 @@ return {
         {
           id = 29,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 30,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
@@ -322,12 +328,14 @@ return {
         {
           id = 51,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 52,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
@@ -1066,10 +1074,10 @@ return {
           data = {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 11, 0, 34, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 6, 7, 8, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 6, 7, 8, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 6, 7, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0,
@@ -1159,8 +1167,8 @@ return {
           name = "player",
           type = "player",
           shape = "point",
-          x = 225.333,
-          y = 697.333,
+          x = 226.333,
+          y = 443.333,
           width = 0,
           height = 0,
           rotation = 0,
