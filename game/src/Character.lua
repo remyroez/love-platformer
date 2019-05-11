@@ -48,6 +48,7 @@ function Character:initialize(args)
     self:initializeCollider(args.collider)
 
     -- Collider 初期設定
+    self.collider:setFixedRotation(true)
     --self.collider:setMass(args.mass or 10)
     local mx, my, mass, inertia = self.collider:getMassData()
     local newMass = args.mass or mass
@@ -118,7 +119,6 @@ end
 -- 着地しているかどうか更新
 function Character:updateGrounded()
     local vx, vy = self:getLinearVelocity()
-    --print(vx, vy)
 
     local grounded = self.grounded
     if vy >= 0 then
@@ -131,6 +131,9 @@ function Character:updateGrounded()
     if grounded ~= self.grounded then
         self.grounded = grounded
     end
+
+    -- 空中なら摩擦０
+    self.collider:setFriction(self.grounded and 1 or 0)
 end
 
 -- 着地しているかどうか返す

@@ -48,8 +48,6 @@ function Game:entered(state, ...)
         h_align = 'center',
         v_align = 'bottom',
     }
-    state.player.collider:setFixedRotation(true)
-    state.player.collider:setFriction(1)
 
     -- カメラ初期設定
     state.camera:follow(state.player:getPosition())
