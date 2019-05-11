@@ -55,13 +55,13 @@ return {
 				collider:setType('kinematic')
 			end
 
-			collider:setFriction(userdata.properties.friction or objprop.friction or baseobjprop.friction or 0.2)
+			collider:setFriction(userdata.properties.friction or objprop.friction or baseobjprop.friction or collider:getFriction())
 			collider:setRestitution(userdata.properties.restitution or objprop.restitution or baseobjprop.restitution or 0.0)
 			collider:setLinearDamping(userdata.properties.linearDamping or objprop.linearDamping or baseobjprop.linearDamping or 0.0)
 			collider:setAngularDamping(userdata.properties.angularDamping or objprop.angularDamping or baseobjprop.angularDamping or 0.0)
 			--collider:setSensor(userdata.properties.sensor           or false)
 			--collider:setMass(userdata.properties.mass or objprop.mass or baseobjprop.mass or collider:getMass())
-			collider:setCollisionClass(userdata.properties.class or objprop.class or baseobjprop.class or 'object')
+			collider:setCollisionClass(userdata.properties.class or objprop.class or baseobjprop.class or collider.collision_class)
 
 			local obj = {
 				object   = object,
