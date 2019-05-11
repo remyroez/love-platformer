@@ -42,7 +42,8 @@ return {
 				if #vertices == 4 then
 					collider = world:newLineCollider(unpack(vertices))
 				else
-					collider = world:newChainCollider(vertices, false)
+					collider = world:newPolygonCollider(vertices)
+					--collider = world:newChainCollider(vertices, false)
 				end
 			else
 				collider = world:newPolygonCollider(vertices)
@@ -295,7 +296,42 @@ return {
 					end
 				end
 			elseif o.shape == "polyline" then
-				local vertices = getPolygonVertices(o)
+				local polygon = {}
+				for _, vertex in ipairs(o.polygon) do
+					table.insert(polygon, { x = vertex.x, y = vertex.y } )
+				end
+				-- Recalculate collision polygons inside tiles
+				if tile then
+					-- local coords
+					local o_x = o.x
+					local o_y = o.y
+					local o_r = o.r
+					local ofs = 0
+					if o.sub and not o.t and tile then
+						local baseX, baseY, baseR = object.x, object.y, object.rotation
+						o_x, o_y, o_r = tile.x, tile.y, tile.rotation
+						oy = tile.height
+						ofs = -tile.height
+						local bcos = math.cos(math.rad(baseR))
+						local bsin = math.sin(math.rad(baseR))
+						for _, vertex in ipairs(polygon) do
+							vertex.x, vertex.y = utils.rotate_vertex(map, vertex, 0, 0, bcos, bsin)
+							vertex.x = vertex.x + baseX
+							vertex.y = vertex.y + baseY
+						end
+					end
+					local cos = math.cos(math.rad(o_r))
+					local sin = math.sin(math.rad(o_r))
+					for _, vertex in ipairs(polygon) do
+						vertex.y = vertex.y + ofs
+						vertex.x, vertex.y = utils.rotate_vertex(map, vertex, 0, 0, cos, sin, oy)
+						vertex.x = vertex.x + o_x
+						vertex.y = vertex.y + o_y - ofs
+					end
+				end
+
+				local vertices  = getPolygonVertices({ polygon = polygon })
+				--local vertices = getPolygonVertices(o)
 				addedObj = addObjectToWorld(o.shape, vertices, userdata, tile or object, baseTile)
 			end
 
