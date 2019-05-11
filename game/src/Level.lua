@@ -105,6 +105,7 @@ function Level:initialize(path)
                 frame:setCollisionClass('frame')
                 frame:setType('static')
             end
+            frame:setFriction(0)
             table.insert(self.frames, frame)
         end
     end
@@ -128,6 +129,7 @@ function Level:initialize(path)
         elseif collision.baseObj and collision.baseObj.layer and collision.baseObj.layer.type == 'tilelayer' then
             collision.collider:setCollisionClass('platform')
         end
+        collision.collider:setFriction(0)
     end
 
     -- エンティティ

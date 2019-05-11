@@ -23,8 +23,8 @@ function Character:initialize(args)
     self.color = args.color or { 1, 1, 1, 1 }
     self.offsetY = args.offsetY or 0
     self.world = args.world or {}
-    self.speed = args.speed or 100
-    self.jumpPower = args.jumpPower or 1500
+    self.speed = args.speed or 50
+    self.jumpPower = args.jumpPower or 1000
     self.life = args.life or 1
     self.alive = true
 
