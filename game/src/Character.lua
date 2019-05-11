@@ -100,7 +100,7 @@ function Character:draw()
     love.graphics.print('x = ' .. self.x .. ', y = ' .. self.y, self.x, self.y)
     love.graphics.print('alive: ' .. tostring(self.alive), self.x, self.y + 12)
     love.graphics.print('grounded: ' .. tostring(self:isGrounded()), self.x, self.y + 24)
-    love.graphics.line(self.x, self.y, self.x, self.y + 20)
+    love.graphics.line(self.x, self.y, self.x, self.y + 10)
 end
 
 -- 描画
@@ -125,7 +125,7 @@ function Character:updateGrounded()
     local grounded = self.grounded
     if vy >= 0 then
         grounded = false
-        local colliders = self.world:queryLine(self.x, self.y, self.x, self.y + 20, { 'platform' })
+        local colliders = self.world:queryLine(self.x, self.y, self.x, self.y + 10, { 'platform' })
         for _, collider in ipairs(colliders) do
             grounded = true
         end

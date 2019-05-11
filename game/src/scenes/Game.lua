@@ -50,12 +50,14 @@ function Game:entered(state, ...)
     }
 
     -- カメラ初期設定
+    state.camera:setFollowStyle('NO_DEADZONE')
     state.camera:follow(state.player:getPosition())
     state.camera:update()
     state.camera:setFollowLerp(0.1)
     state.camera:setFollowLead(2)
     state.camera:setFollowStyle('PLATFORMER')
     state.camera:setBounds(state.level.left, state.level.top, state.level.width, state.level.height)
+    --state.camera.scale = 0.5
 
     -- 操作設定
     local binds = {
