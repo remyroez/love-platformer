@@ -42,6 +42,8 @@ function Character:initialize(args)
     -- Transform 初期化
     self:initializeTransform(self.x, self.y, args.rotation, w / spriteWidth, h / spriteHeight)
 
+    self.baseScaleX, self.baseScaleY = self.scaleX, self.scaleY
+
     local x, y = args.collider:getPosition()
 
     -- Collider 初期化
@@ -194,6 +196,12 @@ function Walk:enteredState(direction)
     )
     self._walk = {}
     self._walk.direction = direction or 'right'
+    self.scaleX = direction == 'left' and -self.baseScaleX or self.baseScaleX
+end
+
+-- 歩き: ステート終了
+function Walk:exitedState()
+    self.scaleX = self.baseScaleX
 end
 
 -- 歩き: 更新
