@@ -59,7 +59,10 @@ return {
 			collider:setRestitution(userdata.properties.restitution or objprop.restitution or baseobjprop.restitution or 0.0)
 			collider:setLinearDamping(userdata.properties.linearDamping or objprop.linearDamping or baseobjprop.linearDamping or 0.0)
 			collider:setAngularDamping(userdata.properties.angularDamping or objprop.angularDamping or baseobjprop.angularDamping or 0.0)
-			--collider:setSensor(userdata.properties.sensor           or false)
+			local sensor = userdata.properties.sensor or objprop.sensor or baseobjprop.sensor
+			if sensor ~= nil then
+				collider:setSensor(userdata.properties.sensor or objprop.sensor or baseobjprop.sensor)
+			end
 			--collider:setMass(userdata.properties.mass or objprop.mass or baseobjprop.mass or collider:getMass())
 			collider:setCollisionClass(userdata.properties.class or objprop.class or baseobjprop.class or collider.collision_class)
 
