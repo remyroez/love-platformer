@@ -55,12 +55,25 @@ function Character:initialize(args)
     local mx, my, mass, inertia = self.collider:getMassData()
     local newMass = args.mass or mass
     self.collider:setMassData(mx, my, newMass, inertia * (newMass / mass))
-    --self.collider:setLinearDamping(args.linearDamping or 10)
-    --self.collider:setAngularDamping(args.angularDamping or 10)
     if args.collisionClass then
         self.collider:setCollisionClass(args.collisionClass)
     end
     self.collider:setSleepingAllowed(false)
+    self.collider:setPreSolve(
+        function(collider_1, collider_2, contact)
+            if collider_1.collision_class == self.collider.collision_class and collider_2.collision_class == 'one_way' then
+                local px, py = collider_1:getPosition()
+                local pw, ph = 16, 16
+                local tx, ty = collider_2:getPosition()
+                local collision = collider_2:getObject()
+                tx, ty = tx + collision.object.x, ty + collision.object.y
+                if py + ph/2 > ty then
+                    print(py + ph/2, ty)
+                    contact:setEnabled(false)
+                end
+            end
+        end
+    )
 
     self.grounded = false
     self.groundedTime = 0
@@ -125,7 +138,7 @@ function Character:updateGrounded()
     local grounded = self.grounded
     if vy >= 0 then
         grounded = false
-        local colliders = self.world:queryLine(self.x, self.y, self.x, self.y + 10, { 'platform' })
+        local colliders = self.world:queryLine(self.x, self.y, self.x, self.y + 10, { 'platform', 'one_way' })
         for _, collider in ipairs(colliders) do
             grounded = true
         end

@@ -12,21 +12,28 @@ local Character = require 'Character'
 
 -- コリジョンクラス
 local collisionClasses = {
+    -- 名前
     'frame',
     'player',
     'enemy',
     'friend',
     'damage',
     'object',
+    'ladder',
     'platform',
+    'one_way',
     'deadline',
+
+    -- オプション
     frame = {},
     player = {},
     enemy = { ignores = { 'frame' } },
     friend = { ignores = { 'frame' } },
     damage = {},
     object = {},
+    ladder = {},
     platform = {},
+    one_way = {},
     deadline = {},
 }
 
@@ -40,8 +47,7 @@ function Level:initialize(path)
 
     -- コリジョンクラスの追加
     for index, name in ipairs(collisionClasses) do
-        local klass = collisionClasses[name]
-        self.world:addCollisionClass(name, klass)
+        self.world:addCollisionClass(name, collisionClasses[name] or {})
         self.characters[name] = {}
     end
 
@@ -90,10 +96,10 @@ function Level:initialize(path)
     self.frames = {}
     do
         local rects = {
-            { self.left - 8, self.top - 8, 8, self.height + 16, dir = 'left' },
+            { self.left - 8, self.top - 8, 8, self.height + 16 + 100, dir = 'left' },
             { self.left - 8, self.top - 8, self.width + 16, 8, dir = 'up' },
-            { self.right, self.top - 8, 8, self.height + 16, dir = 'right' },
-            { self.left - 8, self.bottom, self.width + 16, 8, dir = 'down' },
+            { self.right, self.top - 8, 8, self.height + 16 + 100, dir = 'right' },
+            { self.left - 8, self.bottom + 100, self.width + 16, 8, dir = 'down' },
         }
         for _, rect in ipairs(rects) do
             local r = rect
@@ -124,7 +130,9 @@ function Level:initialize(path)
 
     -- タイルレイヤーのコリジョンをすべてプラットフォームに
     for _, collision in ipairs(self.map.windfield_collision) do
-        if collision.object.layer and collision.object.layer.type == 'tilelayer' then
+        if collision.collider.collision_class ~= 'Default' then
+            -- 設定済み
+        elseif collision.object.layer and collision.object.layer.type == 'tilelayer' then
             collision.collider:setCollisionClass('platform')
         elseif collision.baseObj and collision.baseObj.layer and collision.baseObj.layer.type == 'tilelayer' then
             collision.collider:setCollisionClass('platform')
