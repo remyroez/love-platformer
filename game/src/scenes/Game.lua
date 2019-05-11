@@ -13,6 +13,7 @@ local lume = require 'lume'
 local Character = require 'Character'
 local Input = require 'Input'
 local Camera = require 'Camera'
+local Level = require 'Level'
 
 -- エイリアス
 local lg = love.graphics
@@ -23,19 +24,19 @@ local lm = love.mouse
 function Game:load(state, ...)
     state.input = Input()
     state.camera = Camera()
-    state.camera:setFollowStyle('PLATFORMER')
 end
 
 -- ステート開始
 function Game:entered(state, ...)
+    -- レベル
+    state.level = Level('assets/prototype.lua')
+    state.level:setupCharacters(self.spriteSheet)
+
     -- ワールド
-    state.world = wf.newWorld(0, 1000, true)
-    state.world:addCollisionClass('platform')
-    state.world:addCollisionClass('player')
-    state.world:addCollisionClass('damage')
+    state.world = state.level.world
 
     -- キャラクター
-    state.player = Character {
+    state.player = state.level:getPlayer() or Character {
         spriteType = 'playerRed',
         spriteSheet = self.spriteSheet,
         x = 100,
@@ -50,19 +51,13 @@ function Game:entered(state, ...)
     state.player.collider:setFixedRotation(true)
     state.player.collider:setFriction(1)
 
-    state.block = state.world:newRectangleCollider(0, 500, 2000, 50)
-    state.block:setType('static')
-    state.block:setCollisionClass('platform')
-
-    state.block2 = state.world:newRectangleCollider(0, 400, 300, 10)
-    state.block2:setType('static')
-    state.block2:setAngle(math.pi * 0.25)
-    state.block2:setCollisionClass('platform')
-
-    state.block3 = state.world:newRectangleCollider(500, 490, 100, 20)
-    state.block3:setType('kinematic')
-    --state.block3:setAngle(math.pi * 0.25)
-    state.block3:setCollisionClass('damage')
+    -- カメラ初期設定
+    state.camera:follow(state.player:getPosition())
+    state.camera:update()
+    state.camera:setFollowLerp(0.1)
+    state.camera:setFollowLead(2)
+    state.camera:setFollowStyle('PLATFORMER')
+    state.camera:setBounds(state.level.left, state.level.top, state.level.width, state.level.height)
 
     -- 操作設定
     local binds = {
@@ -80,7 +75,8 @@ end
 
 -- ステート終了
 function Game:exited(state, ...)
-    state.player:destroy()
+    state.input:unbindAll()
+    state.level:destroy()
 end
 
 -- 更新
@@ -90,11 +86,8 @@ function Game:update(state, dt)
         self:controlPlayer(state)
     end
 
-    -- ワールド更新
-    state.world:update(dt)
-
-    -- キャラクター更新
-    state.player:update(dt)
+    -- レベル更新
+    state.level:update(dt)
 
     -- カメラ更新
     state.camera:update(dt)
@@ -110,11 +103,15 @@ function Game:draw(state)
     -- カメラ内で描画
     state.camera:attach()
     do
-        state.player:draw()
-        state.world:draw()
+        -- レベル描画
+        state.level:draw(
+            state.camera.w / 2 - state.camera.x,
+            state.camera.h / 2 - state.camera.y,
+            state.camera.scale)
     end
     state.camera:detach()
 
+    -- カメラ演出描画
     state.camera:draw()
 end
 
@@ -161,8 +158,7 @@ function Game:controlPlayer(state)
     end
 
     -- 強制死亡
-    local bx, by = state.block:getPosition()
-    if state.player.y > by + 100 then
+    if state.player:enterCollider('deadline') then
         state.player:die()
     end
 end
