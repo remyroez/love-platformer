@@ -96,6 +96,20 @@ return {
           }
         },
         {
+          id = 19,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 20,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
           id = 22,
           properties = {
             ["collidable"] = false
