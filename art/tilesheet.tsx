@@ -55,21 +55,53 @@
   <properties>
    <property name="collidable" type="bool" value="true"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="64" y="0">
+    <properties>
+     <property name="collidable" type="bool" value="true"/>
+    </properties>
+    <polyline points="0,0 -64,64 0,64 0,0"/>
+   </object>
+  </objectgroup>
  </tile>
  <tile id="24">
   <properties>
    <property name="collidable" type="bool" value="true"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0">
+    <properties>
+     <property name="collidable" type="bool" value="true"/>
+    </properties>
+    <polyline points="0,0 0,64 64,64 0,0"/>
+   </object>
+  </objectgroup>
  </tile>
  <tile id="25">
   <properties>
    <property name="collidable" type="bool" value="true"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="64" y="0">
+    <properties>
+     <property name="collidable" type="bool" value="true"/>
+    </properties>
+    <polyline points="0,0 -64,64 0,64 0,0"/>
+   </object>
+  </objectgroup>
  </tile>
  <tile id="26">
   <properties>
    <property name="collidable" type="bool" value="true"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0">
+    <properties>
+     <property name="collidable" type="bool" value="true"/>
+    </properties>
+    <polyline points="0,0 64,64 0,64 0,0"/>
+   </object>
+  </objectgroup>
  </tile>
  <tile id="27">
   <properties>

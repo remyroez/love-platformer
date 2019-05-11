@@ -101,24 +101,156 @@ return {
           id = 23,
           properties = {
             ["collidable"] = true
+          },
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "polyline",
+                x = 64,
+                y = 0,
+                width = 0,
+                height = 0,
+                rotation = 0,
+                visible = true,
+                polyline = {
+                  { x = 0, y = 0 },
+                  { x = -64, y = 64 },
+                  { x = 0, y = 64 },
+                  { x = 0, y = 0 }
+                },
+                properties = {
+                  ["collidable"] = true
+                }
+              }
+            }
           }
         },
         {
           id = 24,
           properties = {
             ["collidable"] = true
+          },
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "polyline",
+                x = 0,
+                y = 0,
+                width = 0,
+                height = 0,
+                rotation = 0,
+                visible = true,
+                polyline = {
+                  { x = 0, y = 0 },
+                  { x = 0, y = 64 },
+                  { x = 64, y = 64 },
+                  { x = 0, y = 0 }
+                },
+                properties = {
+                  ["collidable"] = true
+                }
+              }
+            }
           }
         },
         {
           id = 25,
           properties = {
             ["collidable"] = true
+          },
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "polyline",
+                x = 64,
+                y = 0,
+                width = 0,
+                height = 0,
+                rotation = 0,
+                visible = true,
+                polyline = {
+                  { x = 0, y = 0 },
+                  { x = -64, y = 64 },
+                  { x = 0, y = 64 },
+                  { x = 0, y = 0 }
+                },
+                properties = {
+                  ["collidable"] = true
+                }
+              }
+            }
           }
         },
         {
           id = 26,
           properties = {
             ["collidable"] = true
+          },
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "polyline",
+                x = 0,
+                y = 0,
+                width = 0,
+                height = 0,
+                rotation = 0,
+                visible = true,
+                polyline = {
+                  { x = 0, y = 0 },
+                  { x = 64, y = 64 },
+                  { x = 0, y = 64 },
+                  { x = 0, y = 0 }
+                },
+                properties = {
+                  ["collidable"] = true
+                }
+              }
+            }
           }
         },
         {
