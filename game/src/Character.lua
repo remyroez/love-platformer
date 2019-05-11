@@ -71,6 +71,9 @@ end
 
 -- 更新
 function Character:update(dt)
+    -- 特殊物理
+    self:updateAlternative()
+
     -- コライダーの位置を取得して適用
     self:applyPositionFromCollider()
 
@@ -100,6 +103,16 @@ end
 -- 描画
 function Character:getCurrentSpriteName()
     return self:getCurrentAnimation()
+end
+
+function Character:updateAlternative()
+    local vx, vy = self:getLinearVelocity()
+
+    -- 減速
+    self:setLinearVelocity(vx * 0.9, vy)
+
+    -- 地面に押し付ける
+    self:applyLinearImpulse(0, 20)
 end
 
 -- 着地しているかどうか更新
@@ -141,9 +154,8 @@ function Character:jump()
 end
 
 -- ダメージ
-function Character:damage()
-    print('Character:damage')
-    self:gotoState('damage')
+function Character:damage(damage, direction)
+    self:gotoState('damage', damage, direction)
 end
 
 -- 死ぬ
@@ -262,6 +274,10 @@ end
 function Dead:jump()
 end
 
+-- 死亡: ダメージ
+function Dead:damage()
+end
+
 -- 死亡: 死ぬ
 function Dead:die()
 end
@@ -270,21 +286,36 @@ end
 local Damage = Character:addState 'damage'
 
 -- ダメージ: ステート開始
-function Damage:enteredState()
+function Damage:enteredState(damage, direction)
     self:resetAnimations(
         { self.spriteType .. '_dead.png' }
     )
+
+    -- ダメージを受ける
     self.life = self.life - (damage or 1)
+
+    -- 飛ばされる方向
+    self._damage = {}
+    self._damage.direction = direction
 
     -- ジャンプ
     self:applyLinearImpulse(0, -self.jumpPower * 0.75)
     self.grounded = false
-
-    print('Damage')
 end
 
 -- ダメージ: 更新
 function Damage:update(dt)
+    -- 移動
+    local x = 0
+    if self._damage.direction == 'right' then
+        x = self.speed
+    elseif self._damage.direction == 'left' then
+        x = -self.speed
+    end
+    if x ~= 0 then
+        self:applyLinearImpulse(x, 0)
+    end
+
     Character.update(self, dt)
 
     -- 着地したら次へ

@@ -50,7 +50,7 @@ function Game:entered(state, ...)
     state.player.collider:setFixedRotation(true)
     state.player.collider:setFriction(1)
 
-    state.block = state.world:newRectangleCollider(0, 500, 800, 50)
+    state.block = state.world:newRectangleCollider(0, 500, 2000, 50)
     state.block:setType('static')
     state.block:setCollisionClass('platform')
 
@@ -59,7 +59,7 @@ function Game:entered(state, ...)
     state.block2:setAngle(math.pi * 0.25)
     state.block2:setCollisionClass('platform')
 
-    state.block3 = state.world:newRectangleCollider(500, 490, 10, 20)
+    state.block3 = state.world:newRectangleCollider(500, 490, 100, 20)
     state.block3:setType('kinematic')
     --state.block3:setAngle(math.pi * 0.25)
     state.block3:setCollisionClass('damage')
@@ -128,14 +128,6 @@ end
 
 -- プレイヤー操作
 function Game:controlPlayer(state)
-    local vx, vy = state.player:getLinearVelocity()
-
-    -- 減速
-    state.player:setLinearVelocity(vx * 0.9, vy)
-
-    -- 地面に押し付ける
-    state.player:applyLinearImpulse(0, 20)
-
     local direction
 
     -- 移動判定
@@ -164,10 +156,11 @@ function Game:controlPlayer(state)
 
     -- ダメージ判定
     if state.player:enterCollider('damage') then
-        state.player:damage()
+        local vx, vy = state.player:getLinearVelocity()
+        state.player:damage(1, vx > 0 and 'right' or vx < 0 and 'left' or nil)
     end
 
-    -- 死亡
+    -- 強制死亡
     local bx, by = state.block:getPosition()
     if state.player.y > by + 100 then
         state.player:die()
