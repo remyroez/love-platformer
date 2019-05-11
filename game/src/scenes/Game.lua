@@ -63,8 +63,11 @@ function Game:entered(state, ...)
     local binds = {
         left = { 'left', 'a' },
         right = { 'right', 'd' },
-        jump = { 'up', 'w', 'space' },
-        crouch = { 'down', 's', 'lctrl' },
+        up = { 'up', 'w' },
+        down = { 'down', 's' },
+        climb = { 'up', 'w' },
+        crouch = { 'lctrl' },
+        jump = { 'space' },
     }
     for name, keys in pairs(binds) do
         for _, key in ipairs(keys) do
@@ -126,12 +129,19 @@ end
 -- プレイヤー操作
 function Game:controlPlayer(state)
     local direction
+    local vdirection
 
     -- 移動判定
     if state.input:down('left') then
         direction = 'left'
     elseif state.input:down('right') then
         direction = 'right'
+    end
+
+    if state.input:down('up') then
+        vdirection = 'up'
+    elseif state.input:down('down') then
+        vdirection = 'down'
     end
 
     -- 移動
@@ -144,6 +154,8 @@ function Game:controlPlayer(state)
     -- ジャンプ判定
     if state.input:pressed('jump') then
         state.player:jump()
+    elseif vdirection then
+        state.player:climb(vdirection)
     end
 
     -- 地面にいる

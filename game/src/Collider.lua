@@ -97,4 +97,13 @@ function Collider:getEnterCollisionData(collisionClass)
     end
 end
 
+-- コリジョンイベントの取得
+function Collider:getCollisionEvents(collisionClass)
+    if self.collider then
+        return self.collider.collision_events[collisionClass]
+    else
+        return nil
+    end
+end
+
 return Collider
