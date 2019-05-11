@@ -11,7 +11,7 @@ local la = love.audio
 
 -- 次のステートへ
 function Boot:nextState(...)
-    self:gotoState('splash', ...)
+    self:gotoState('game', ...)
 end
 
 -- 読み込み
@@ -22,7 +22,7 @@ function Boot:load(state, ...)
     self.height = height
 
     -- スプライトシートの読み込み
-    --self.spriteSheet = sbss:new('assets/round_nodetailsOutline.xml')
+    self.spriteSheet = sbss:new('assets/spritesheet_players.xml')
 end
 
 -- 更新

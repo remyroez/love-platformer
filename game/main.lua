@@ -69,6 +69,9 @@ function love.keypressed(key, scancode, isrepeat)
     elseif key == 'f1' then
         -- スキャン
         lurker.scan()
+    elseif key == 'f2' then
+        -- ステートに入り直す
+        scene:resetState()
     elseif key == 'f5' then
         -- リスタート
         love.event.quit('restart')
