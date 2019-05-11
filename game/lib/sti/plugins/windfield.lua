@@ -313,10 +313,15 @@ return {
 					for _, instance in ipairs(tiles) do
 						if instance.layer == layer then
 							if layer_collidable or (tile.properties.collidable == true) then
+								local chunkX, chunkY = 0, 0
+								if instance.chunk then
+									chunkX = instance.chunk.x * tileset.tilewidth
+									chunkY = instance.chunk.y * tileset.tileheight
+								end
 								local object = {
 									shape      = "rectangle",
-									x          = instance.x,
-									y          = instance.y,
+									x          = instance.x + chunkX,
+									y          = instance.y + chunkY,
 									width      = tileset.tilewidth,
 									height     = tileset.tileheight,
 									properties = tile.properties,
