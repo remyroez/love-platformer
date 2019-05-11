@@ -216,7 +216,7 @@ function Level:spawnCharacter(object, spriteSheet)
             x = object.x,
             y = object.y,
             offsetY = 16,
-            collider = self.world:newRectangleCollider(0, 0, 24, 32),
+            collider = self.world:newCircleCollider(0, 0, 16),
             collisionClass = object.properties.collisionClass or default.collisionClass,
             world = self.world,
             h_align = 'center',
