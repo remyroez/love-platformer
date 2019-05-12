@@ -42,7 +42,8 @@ return {
 				if #vertices == 4 then
 					collider = world:newLineCollider(unpack(vertices))
 				else
-					collider = world:newChainCollider(vertices, false)
+					collider = world:newPolygonCollider(vertices)
+					--collider = world:newChainCollider(vertices, false)
 				end
 			else
 				collider = world:newPolygonCollider(vertices)
@@ -54,13 +55,16 @@ return {
 				collider:setType('kinematic')
 			end
 
-			collider:setFriction(userdata.properties.friction or objprop.friction or baseobjprop.friction or 0.2)
+			collider:setFriction(userdata.properties.friction or objprop.friction or baseobjprop.friction or collider:getFriction())
 			collider:setRestitution(userdata.properties.restitution or objprop.restitution or baseobjprop.restitution or 0.0)
 			collider:setLinearDamping(userdata.properties.linearDamping or objprop.linearDamping or baseobjprop.linearDamping or 0.0)
 			collider:setAngularDamping(userdata.properties.angularDamping or objprop.angularDamping or baseobjprop.angularDamping or 0.0)
-			--collider:setSensor(userdata.properties.sensor           or false)
+			local sensor = userdata.properties.sensor or objprop.sensor or baseobjprop.sensor
+			if sensor ~= nil then
+				collider:setSensor(userdata.properties.sensor or objprop.sensor or baseobjprop.sensor)
+			end
 			--collider:setMass(userdata.properties.mass or objprop.mass or baseobjprop.mass or collider:getMass())
-			collider:setCollisionClass(userdata.properties.class or objprop.class or baseobjprop.class or 'object')
+			collider:setCollisionClass(userdata.properties.class or objprop.class or baseobjprop.class or collider.collision_class)
 
 			local obj = {
 				object   = object,
@@ -295,7 +299,42 @@ return {
 					end
 				end
 			elseif o.shape == "polyline" then
-				local vertices = getPolygonVertices(o)
+				local polygon = {}
+				for _, vertex in ipairs(o.polygon) do
+					table.insert(polygon, { x = vertex.x, y = vertex.y } )
+				end
+				-- Recalculate collision polygons inside tiles
+				if tile then
+					-- local coords
+					local o_x = o.x
+					local o_y = o.y
+					local o_r = o.r
+					local ofs = 0
+					if o.sub and not o.t and tile then
+						local baseX, baseY, baseR = object.x, object.y, object.rotation
+						o_x, o_y, o_r = tile.x, tile.y, tile.rotation
+						oy = tile.height
+						ofs = -tile.height
+						local bcos = math.cos(math.rad(baseR))
+						local bsin = math.sin(math.rad(baseR))
+						for _, vertex in ipairs(polygon) do
+							vertex.x, vertex.y = utils.rotate_vertex(map, vertex, 0, 0, bcos, bsin)
+							vertex.x = vertex.x + baseX
+							vertex.y = vertex.y + baseY
+						end
+					end
+					local cos = math.cos(math.rad(o_r))
+					local sin = math.sin(math.rad(o_r))
+					for _, vertex in ipairs(polygon) do
+						vertex.y = vertex.y + ofs
+						vertex.x, vertex.y = utils.rotate_vertex(map, vertex, 0, 0, cos, sin, oy)
+						vertex.x = vertex.x + o_x
+						vertex.y = vertex.y + o_y - ofs
+					end
+				end
+
+				local vertices  = getPolygonVertices({ polygon = polygon })
+				--local vertices = getPolygonVertices(o)
 				addedObj = addObjectToWorld(o.shape, vertices, userdata, tile or object, baseTile)
 			end
 
@@ -313,10 +352,15 @@ return {
 					for _, instance in ipairs(tiles) do
 						if instance.layer == layer then
 							if layer_collidable or (tile.properties.collidable == true) then
+								local chunkX, chunkY = 0, 0
+								if instance.chunk then
+									chunkX = instance.chunk.x * tileset.tilewidth
+									chunkY = instance.chunk.y * tileset.tileheight
+								end
 								local object = {
 									shape      = "rectangle",
-									x          = instance.x,
-									y          = instance.y,
+									x          = instance.x + chunkX,
+									y          = instance.y + chunkY,
 									width      = tileset.tilewidth,
 									height     = tileset.tileheight,
 									properties = tile.properties,

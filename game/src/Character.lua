@@ -23,8 +23,8 @@ function Character:initialize(args)
     self.color = args.color or { 1, 1, 1, 1 }
     self.offsetY = args.offsetY or 0
     self.world = args.world or {}
-    self.speed = args.speed or 100
-    self.jumpPower = args.jumpPower or 1500
+    self.speed = args.speed or 50
+    self.jumpPower = args.jumpPower or 1000
     self.life = args.life or 1
     self.alive = true
 
@@ -42,25 +42,57 @@ function Character:initialize(args)
     -- Transform 初期化
     self:initializeTransform(self.x, self.y, args.rotation, w / spriteWidth, h / spriteHeight)
 
+    self.baseScaleX, self.baseScaleY = self.scaleX, self.scaleY
+
     local x, y = args.collider:getPosition()
 
     -- Collider 初期化
     self:initializeCollider(args.collider)
 
     -- Collider 初期設定
+    self.collider:setFixedRotation(true)
     --self.collider:setMass(args.mass or 10)
     local mx, my, mass, inertia = self.collider:getMassData()
     local newMass = args.mass or mass
     self.collider:setMassData(mx, my, newMass, inertia * (newMass / mass))
-    --self.collider:setLinearDamping(args.linearDamping or 10)
-    --self.collider:setAngularDamping(args.angularDamping or 10)
     if args.collisionClass then
         self.collider:setCollisionClass(args.collisionClass)
     end
     self.collider:setSleepingAllowed(false)
 
+    -- 接触先によって当たり判定を調整する
+    self.collider:setPreSolve(
+        function(collider_1, collider_2, contact)
+            if collider_1.collision_class ~= self.collider.collision_class then
+                -- 自分ではない？
+            elseif collider_2.collision_class == 'one_way' then
+                if self:isClimbing() then
+                    -- 登っている間は通り抜ける
+                    contact:setEnabled(false)
+                else
+                    -- 下からは通過する
+                    local px, py = collider_1:getPosition()
+                    local pw, ph = 16, 16
+                    local tx, ty = collider_2:getPosition()
+                    local collision = collider_2:getObject()
+                    tx, ty = tx + collision.object.x, ty + collision.object.y
+                    if py + ph/2 > ty then
+                        contact:setEnabled(false)
+                    end
+                end
+            elseif collider_2.collision_class == 'ladder' then
+                -- ハシゴは当たり判定なし
+                contact:setEnabled(false)
+            end
+        end
+    )
+
     self.grounded = false
     self.groundedTime = 0
+
+    self.inLadderCount = 0
+
+    self.animation = true
 end
 
 -- 破棄
@@ -72,7 +104,9 @@ end
 -- 更新
 function Character:update(dt)
     -- 特殊物理
-    self:updateAlternative()
+    self:reduceSpeed()
+    self:applyAlternativeGravity()
+    self:checkLadder()
 
     -- コライダーの位置を取得して適用
     self:applyPositionFromCollider()
@@ -81,7 +115,9 @@ function Character:update(dt)
     self.y = self.y + self.offsetY
 
     -- アニメーション更新
-    self:updateAnimation(dt)
+    if self.animation then
+        self:updateAnimation(dt)
+    end
 
     -- 着地判定
     self:updateGrounded()
@@ -97,7 +133,8 @@ function Character:draw()
     love.graphics.print('x = ' .. self.x .. ', y = ' .. self.y, self.x, self.y)
     love.graphics.print('alive: ' .. tostring(self.alive), self.x, self.y + 12)
     love.graphics.print('grounded: ' .. tostring(self:isGrounded()), self.x, self.y + 24)
-    love.graphics.line(self.x, self.y, self.x, self.y + 20)
+    love.graphics.print('ladder: ' .. tostring(self.inLadderCount), self.x, self.y + 36)
+    love.graphics.line(self.x, self.y, self.x, self.y + 10)
 end
 
 -- 描画
@@ -105,37 +142,67 @@ function Character:getCurrentSpriteName()
     return self:getCurrentAnimation()
 end
 
-function Character:updateAlternative()
+-- 減速
+function Character:reduceSpeed()
     local vx, vy = self:getLinearVelocity()
-
-    -- 減速
     self:setLinearVelocity(vx * 0.9, vy)
+end
 
-    -- 地面に押し付ける
+-- 地面に押し付ける
+function Character:applyAlternativeGravity()
     self:applyLinearImpulse(0, 20)
+end
+
+-- ハシゴの接触チェック
+function Character:checkLadder()
+    local events = self:getCollisionEvents('ladder')
+    if events and #events > 0  then
+        for _, e in ipairs(events) do
+            if e.collision_type == 'enter' then
+                self.inLadderCount = self.inLadderCount + 1
+            elseif e.collision_type == 'exit' then
+                self.inLadderCount = self.inLadderCount - 1
+            end
+        end
+    end
 end
 
 -- 着地しているかどうか更新
 function Character:updateGrounded()
-    local vx, vy = self:getLinearVelocity()
-    --print(vx, vy)
-
     local grounded = self.grounded
-    if vy >= 0 then
-        grounded = false
-        local colliders = self.world:queryLine(self.x, self.y, self.x, self.y + 20, { 'platform' })
-        for _, collider in ipairs(colliders) do
-            grounded = true
-        end
+
+    if self:isFalling() then
+        local colliders = self.world:queryLine(self.x, self.y, self.x, self.y + 10, { 'platform', 'one_way' })
+        grounded = #colliders > 0
     end
+
     if grounded ~= self.grounded then
         self.grounded = grounded
     end
+
+    -- 空中なら摩擦０
+    self.collider:setFriction(self.grounded and 1 or 0)
+end
+
+-- 落下しているかどうか返す
+function Character:isFalling()
+    local vx, vy = self:getLinearVelocity()
+    return vy >= 0
 end
 
 -- 着地しているかどうか返す
 function Character:isGrounded()
     return self.grounded -- and self.groundedTime > 0.1
+end
+
+-- ハシゴに接触しているかどうか返す
+function Character:inLadder()
+    return self.inLadderCount > 0
+end
+
+-- ハシゴを登っているかどうか
+function Character:isClimbing()
+    return false
 end
 
 -- 立つ
@@ -151,6 +218,31 @@ end
 -- ジャンプ
 function Character:jump()
     self:gotoState 'jump'
+end
+
+-- はしごを登る
+function Character:climb(direction)
+    -- はしごがあるかどうか
+    local onLadder = false
+    -- 下方向
+    do
+        local colliders = self.world:queryLine(self.x, self.y, self.x, self.y + 10, { 'ladder' })
+        if #colliders > 0 then
+            onLadder = direction == 'down'
+        end
+    end
+    -- 上方向
+    if not onLadder then
+        local colliders = self.world:queryLine(self.x, self.y, self.x, self.y - self.offsetY - 64, { 'ladder' })
+        if #colliders > 0 then
+            onLadder = direction == 'up'
+        end
+    end
+    if self:inLadder() and onLadder then
+        self:gotoState 'ladder'
+        return true
+    end
+    return false
 end
 
 -- ダメージ
@@ -191,6 +283,12 @@ function Walk:enteredState(direction)
     )
     self._walk = {}
     self._walk.direction = direction or 'right'
+    self.scaleX = direction == 'left' and -self.baseScaleX or self.baseScaleX
+end
+
+-- 歩き: ステート終了
+function Walk:exitedState()
+    self.scaleX = self.baseScaleX
 end
 
 -- 歩き: 更新
@@ -206,6 +304,103 @@ function Walk:walk(direction)
     if direction ~= self._walk.direction then
         self:gotoState('walk', direction)
     end
+end
+
+-- ハシゴステート
+local Ladder = Character:addState 'ladder'
+
+-- ハシゴ: ステート開始
+function Ladder:enteredState()
+    self:resetAnimations(
+        { self.spriteType .. '_swim1.png', self.spriteType .. '_swim2.png' },
+        0.1
+    )
+    self:setLinearVelocity(0, 0)
+    self.collider:setGravityScale(0)
+    self.animation = false
+end
+
+-- ハシゴ: ステート終了
+function Ladder:exitedState()
+    self.scaleX = self.baseScaleX
+    self.collider:setGravityScale(1)
+    self.animation = true
+end
+
+-- ハシゴ: 更新
+function Ladder:update(dt)
+    Character.update(self, dt)
+
+    self.animation = false
+
+    -- ハシゴから離れた
+    if not self:inLadder() then
+        self:gotoState 'stand'
+    end
+end
+
+-- 落下しているかどうか返す
+function Ladder:isFalling()
+    return true
+end
+
+-- ハシゴ: ハシゴを登っているかどうか
+function Ladder:isClimbing()
+    return true
+end
+
+-- ハシゴ: 減速
+function Ladder:reduceSpeed()
+    local vx, vy = self:getLinearVelocity()
+    self:setLinearVelocity(vx * 0.8, vy * 0.8)
+end
+
+-- ハシゴ: 地面に押し付ける
+function Ladder:applyAlternativeGravity()
+end
+
+-- ハシゴ: 立つ
+function Ladder:stand(...)
+end
+
+-- ハシゴ: 歩く
+function Ladder:walk(direction)
+    if direction then
+        self:applyLinearImpulse(
+            direction == 'right' and self.speed or direction == 'left' and -self.speed or 0,
+            0
+        )
+        self.scaleX = direction == 'left' and -self.baseScaleX or self.baseScaleX
+        self.animation = true
+    end
+end
+
+-- ハシゴ: 登る
+function Ladder:climb(direction)
+    -- 上方向
+    local onLadder = false
+    do
+        local colliders = self.world:queryLine(self.x - self.offsetY, self.y, self.x - self.offsetY, self.y - self.offsetY - 64, { 'ladder' })
+        onLadder =  #colliders > 0
+    end
+    if not onLadder then
+        local colliders = self.world:queryLine(self.x + self.offsetY, self.y, self.x + self.offsetY, self.y - self.offsetY - 64, { 'ladder' })
+        onLadder =  #colliders > 0
+    end
+
+    if not direction then
+        -- 方向なし
+    elseif direction == 'down' and self:isGrounded() and onLadder then
+        -- 着地中に下へ移動
+        self:gotoState 'stand'
+    else
+        self:applyLinearImpulse(
+            0,
+            direction == 'down' and self.speed or direction == 'up' and -self.speed or 0
+        )
+        self.animation = true
+    end
+    return true
 end
 
 -- ジャンプステート
