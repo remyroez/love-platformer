@@ -59,19 +59,29 @@ function Character:initialize(args)
         self.collider:setCollisionClass(args.collisionClass)
     end
     self.collider:setSleepingAllowed(false)
+
+    -- 接触先によって当たり判定を調整する
     self.collider:setPreSolve(
         function(collider_1, collider_2, contact)
             if collider_1.collision_class ~= self.collider.collision_class then
+                -- 自分ではない？
             elseif collider_2.collision_class == 'one_way' then
-                local px, py = collider_1:getPosition()
-                local pw, ph = 16, 16
-                local tx, ty = collider_2:getPosition()
-                local collision = collider_2:getObject()
-                tx, ty = tx + collision.object.x, ty + collision.object.y
-                if py + ph/2 > ty then
+                if self:isClimbing() then
+                    -- 登っている間は通り抜ける
                     contact:setEnabled(false)
+                else
+                    -- 下からは通過する
+                    local px, py = collider_1:getPosition()
+                    local pw, ph = 16, 16
+                    local tx, ty = collider_2:getPosition()
+                    local collision = collider_2:getObject()
+                    tx, ty = tx + collision.object.x, ty + collision.object.y
+                    if py + ph/2 > ty then
+                        contact:setEnabled(false)
+                    end
                 end
             elseif collider_2.collision_class == 'ladder' then
+                -- ハシゴは当たり判定なし
                 contact:setEnabled(false)
             end
         end
@@ -185,6 +195,11 @@ function Character:inLadder()
     return self.inLadderCount > 0
 end
 
+-- ハシゴを登っているかどうか
+function Character:isClimbing()
+    return false
+end
+
 -- 立つ
 function Character:stand()
     self:gotoState('stand')
@@ -202,9 +217,27 @@ end
 
 -- はしごを登る
 function Character:climb(direction)
-    if self:inLadder() and direction == 'up' then
-        self:gotoState 'ladder'
+    -- はしごがあるかどうか
+    local onLadder = false
+    -- 下方向
+    do
+        local colliders = self.world:queryLine(self.x, self.y, self.x, self.y + 10, { 'ladder' })
+        if #colliders > 0 then
+            onLadder = direction == 'down'
+        end
     end
+    -- 上方向
+    if not onLadder then
+        local colliders = self.world:queryLine(self.x, self.y, self.x, self.y - self.offsetY - 64, { 'ladder' })
+        if #colliders > 0 then
+            onLadder = direction == 'up'
+        end
+    end
+    if self:inLadder() and onLadder then
+        self:gotoState 'ladder'
+        return true
+    end
+    return false
 end
 
 -- ダメージ
@@ -301,6 +334,11 @@ function Ladder:update(dt)
     end
 end
 
+-- ハシゴ: ハシゴを登っているかどうか
+function Ladder:isClimbing()
+    return true
+end
+
 -- ハシゴ: 減速
 function Ladder:reduceSpeed()
     local vx, vy = self:getLinearVelocity()
@@ -336,6 +374,7 @@ function Ladder:climb(direction)
         )
         self.animation = true
     end
+    return true
 end
 
 -- ジャンプステート
