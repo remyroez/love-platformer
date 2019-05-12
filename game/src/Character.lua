@@ -169,20 +169,25 @@ end
 
 -- 着地しているかどうか更新
 function Character:updateGrounded()
-    local vx, vy = self:getLinearVelocity()
-
     local grounded = self.grounded
-    if vy >= 0 then
-        grounded = false
+
+    if self:isFalling() then
         local colliders = self.world:queryLine(self.x, self.y, self.x, self.y + 10, { 'platform', 'one_way' })
         grounded = #colliders > 0
     end
+
     if grounded ~= self.grounded then
         self.grounded = grounded
     end
 
     -- 空中なら摩擦０
     self.collider:setFriction(self.grounded and 1 or 0)
+end
+
+-- 落下しているかどうか返す
+function Character:isFalling()
+    local vx, vy = self:getLinearVelocity()
+    return vy >= 0
 end
 
 -- 着地しているかどうか返す
@@ -334,6 +339,11 @@ function Ladder:update(dt)
     end
 end
 
+-- 落下しているかどうか返す
+function Ladder:isFalling()
+    return true
+end
+
 -- ハシゴ: ハシゴを登っているかどうか
 function Ladder:isClimbing()
     return true
@@ -367,7 +377,23 @@ end
 
 -- ハシゴ: 登る
 function Ladder:climb(direction)
-    if direction then
+    -- 上方向
+    local onLadder = false
+    do
+        local colliders = self.world:queryLine(self.x - self.offsetY, self.y, self.x - self.offsetY, self.y - self.offsetY - 64, { 'ladder' })
+        onLadder =  #colliders > 0
+    end
+    if not onLadder then
+        local colliders = self.world:queryLine(self.x + self.offsetY, self.y, self.x + self.offsetY, self.y - self.offsetY - 64, { 'ladder' })
+        onLadder =  #colliders > 0
+    end
+
+    if not direction then
+        -- 方向なし
+    elseif direction == 'down' and self:isGrounded() and onLadder then
+        -- 着地中に下へ移動
+        self:gotoState 'stand'
+    else
         self:applyLinearImpulse(
             0,
             direction == 'down' and self.speed or direction == 'up' and -self.speed or 0
