@@ -22,7 +22,7 @@ function Boot:load(state, ...)
     self.height = height
 
     -- スプライトシートの読み込み
-    self.spriteSheet = sbss:new('assets/spritesheet_players.xml')
+    self.spriteSheet = sbss:new('assets/spritesheet.xml')
 end
 
 -- 更新
