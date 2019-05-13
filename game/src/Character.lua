@@ -15,10 +15,11 @@ function Character:initialize(args)
     -- Animation 初期化
     self:initializeAnimation()
 
-    -- 初期設定
+    -- スプライト及びステート
     self.spriteType = args.spriteType or 'playerRed'
-    self:gotoState 'stand'
+    self:gotoState(args.state or 'stand')
 
+    -- 初期設定
     self.spriteName = self:getCurrentSpriteName()
     self.color = args.color or { 1, 1, 1, 1 }
     self.offsetY = args.offsetY or 0
@@ -27,6 +28,7 @@ function Character:initialize(args)
     self.jumpPower = args.jumpPower or 1000
     self.life = args.life or 1
     self.alive = true
+    self.animation = true
 
     -- SpriteRenderer 初期化
     self:initializeSpriteRenderer(args.spriteSheet)
@@ -42,23 +44,21 @@ function Character:initialize(args)
     -- Transform 初期化
     self:initializeTransform(self.x, self.y, args.rotation, w / spriteWidth, h / spriteHeight)
 
+    -- ベーススケール
     self.baseScaleX, self.baseScaleY = self.scaleX, self.scaleY
-
-    local x, y = args.collider:getPosition()
 
     -- Collider 初期化
     self:initializeCollider(args.collider)
 
     -- Collider 初期設定
     self.collider:setFixedRotation(true)
-    --self.collider:setMass(args.mass or 10)
+    self.collider:setSleepingAllowed(false)
     local mx, my, mass, inertia = self.collider:getMassData()
     local newMass = args.mass or mass
     self.collider:setMassData(mx, my, newMass, inertia * (newMass / mass))
     if args.collisionClass then
         self.collider:setCollisionClass(args.collisionClass)
     end
-    self.collider:setSleepingAllowed(false)
 
     -- 接触先によって当たり判定を調整する
     self.collider:setPreSolve(
@@ -87,12 +87,14 @@ function Character:initialize(args)
         end
     )
 
+    -- 着地判定
     self.grounded = false
-    self.groundedTime = 0
 
+    -- ハシゴ判定
     self.inLadderCount = 0
 
-    self.animation = true
+    -- デバッグフラグ
+    self.debug = args.debug ~= nil and args.debug or false
 end
 
 -- 破棄
@@ -101,12 +103,17 @@ function Character:destroy()
     self:destroyCollider()
 end
 
--- 更新
-function Character:update(dt)
+-- 前更新
+function Character:preUpdate(dt)
     -- 特殊物理
     self:reduceSpeed()
     self:applyAlternativeGravity()
     self:checkLadder()
+end
+
+-- 更新
+function Character:update(dt)
+    self:preUpdate(dt)
 
     -- コライダーの位置を取得して適用
     self:applyPositionFromCollider()
@@ -119,6 +126,11 @@ function Character:update(dt)
         self:updateAnimation(dt)
     end
 
+    self:postUpdate(dt)
+end
+
+-- 後更新
+function Character:postUpdate(dt)
     -- 着地判定
     self:updateGrounded()
 end
@@ -130,6 +142,13 @@ function Character:draw()
     self:drawSprite(self:getCurrentSpriteName())
     self:popTransform()
 
+    if self.debug then
+        self:drawDebug()
+    end
+end
+
+-- デバッグ描画
+function Character:drawDebug()
     love.graphics.print('x = ' .. self.x .. ', y = ' .. self.y, self.x, self.y)
     love.graphics.print('alive: ' .. tostring(self.alive), self.x, self.y + 12)
     love.graphics.print('grounded: ' .. tostring(self:isGrounded()), self.x, self.y + 24)

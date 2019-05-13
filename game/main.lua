@@ -7,12 +7,19 @@ require 'sbss'
 local lume = require 'lume'
 local lurker = require 'lurker'
 
+-- デバッグモード
+local debugMode = true
+
+-- 画面のサイズ
+local width, height = 0, 0
+
 -- シーンステート
 local Scenes = require 'scenes'
 
 -- シーン
 local scene = Scenes()
 scene:gotoState 'boot'
+scene:setDebugMode(debugMode)
 
 -- ホットスワップ後の対応
 lurker.postswap = function (f)
@@ -24,12 +31,6 @@ lurker.postswap = function (f)
         scene:resetState()
     end
 end
-
--- デバッグモード
-local debugMode = false
-
--- 画面のサイズ
-local width, height = 0, 0
 
 -- 読み込み
 function love.load()

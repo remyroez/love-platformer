@@ -30,6 +30,7 @@ end
 function Game:entered(state, ...)
     -- レベル
     state.level = Level('assets/prototype.lua')
+    state.level:setDebug(self.debugMode)
     state.level:setupCharacters(self.spriteSheet)
 
     -- ワールド
@@ -124,6 +125,14 @@ end
 
 -- マウス入力
 function Game:mousepressed(state, x, y, button, istouch, presses)
+end
+
+-- デバッグモードの設定
+function Game:setDebugMode(mode)
+    Base.setDebugMode(self, mode)
+
+    -- レベル
+    self.state.level:setDebug(mode)
 end
 
 -- プレイヤー操作
