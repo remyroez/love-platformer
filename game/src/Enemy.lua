@@ -12,4 +12,14 @@ function Enemy:initialize(args)
     Character.initialize(self, args)
 end
 
+-- 立ちステート
+local Stand = Enemy:addState 'stand'
+
+-- 立ち: ステート開始
+function Stand:enteredState()
+    self:resetAnimations(
+        { 'enemyWalking_1.png' }
+    )
+end
+
 return Enemy
