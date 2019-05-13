@@ -9,6 +9,8 @@ local Level = class 'Level'
 
 -- クラス
 local Character = require 'Character'
+local Player = require 'Player'
+local Enemy = require 'Enemy'
 
 -- コリジョンクラス
 local collisionClasses = {
@@ -205,20 +207,26 @@ end
 
 -- キャラクターのスポーン
 function Level:spawnCharacter(object, spriteSheet)
+    -- デフォルトプロパティ
     local default = {}
-
     if object.type == 'player' then
+        -- プレイヤー
+        default.class = Player
         default.sprite = 'playerRed'
         default.collisionClass = 'player'
     elseif object.type == 'enemy' then
-        default.sprite = 'playerRed'
+        -- エネミー
+        default.class = Enemy
+        default.sprite = 'enemy'
         default.collisionClass = 'enemy'
     else
+        -- 一致しなかったのでキャンセル
+        return
     end
 
     -- キャラクターエンティティの登録
     local entity = self:registerEntity(
-        Character {
+        default.class {
             spriteType = object.properties.sprite or default.sprite,
             spriteSheet = spriteSheet,
             x = object.x,
