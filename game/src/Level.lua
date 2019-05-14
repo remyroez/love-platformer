@@ -144,6 +144,7 @@ function Level:initialize(path)
 
     -- エンティティ
     self.entities = {}
+    self.removes = {}
 
     -- デバッグモード
     self.debug = true
@@ -159,6 +160,7 @@ end
 function Level:update(dt)
     self.world:update(dt)
     self.map:update(dt)
+    self:removeEntities()
 end
 
 -- 描画
@@ -237,6 +239,7 @@ function Level:spawnCharacter(object, spriteSheet)
             world = self.world,
             h_align = 'center',
             v_align = 'bottom',
+            onDead = function (entity) table.insert(self.removes, entity) end,
             debug = self.debug,
         }
     )
@@ -265,6 +268,14 @@ function Level:deregisterEntity(entity)
     for type, list in pairs(self.characters) do
         lume.remove(list, entity)
     end
+end
+
+-- 削除リストにいるエンティティを全て削除
+function Level:removeEntities()
+    for _, entity in pairs(self.removes) do
+        self:deregisterEntity(entity)
+    end
+    lume.clear(self.removes)
 end
 
 -- 全エンティティの削除

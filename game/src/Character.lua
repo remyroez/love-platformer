@@ -26,10 +26,13 @@ function Character:initialize(args)
     self.world = args.world or {}
     self.speed = args.speed or 50
     self.jumpPower = args.jumpPower or 1000
+    self.attack = args.attack or 1
     self.life = args.life or 1
     self.alive = true
     self.animation = true
     self.grounded = false
+
+    self.onDead = args.onDead or function () end
 
     -- SpriteRenderer 初期化
     self:initializeSpriteRenderer(args.spriteSheet)
@@ -52,6 +55,7 @@ function Character:initialize(args)
     self:initializeCollider(args.collider)
 
     -- Collider 初期設定
+    self.collider:setObject(self)
     self.collider:setFixedRotation(true)
     self.collider:setSleepingAllowed(false)
     local mx, my, mass, inertia = self.collider:getMassData()
@@ -185,6 +189,25 @@ end
 -- 着地しているかどうか返す
 function Character:isGrounded()
     return self.grounded
+end
+
+-- ダメージ
+function Character:damage(damage, direction)
+    -- ライフが０以上ならダメージを受ける
+    if self.life > 0 then
+        self.life = self.life - (damage or 1)
+    end
+
+    -- ライフが０以下になったら死ぬ
+    if self.life <= 0 then
+        self:die()
+    end
+end
+
+-- 死ぬ
+function Character:die()
+    self.alive = false
+    self.onDead(self)
 end
 
 return Character

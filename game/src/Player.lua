@@ -1,5 +1,6 @@
 
 local class = require 'middleclass'
+local lume = require 'lume'
 
 -- クラス
 local Character = require 'Character'
@@ -9,6 +10,8 @@ local Player = class('Player', Character)
 
 -- 初期化
 function Player:initialize(args)
+    args.life = args.life or 3
+
     Character.initialize(self, args)
 
     -- 接触先によって当たり判定を調整する
@@ -44,10 +47,13 @@ end
 
 -- 前更新
 function Player:preUpdate(dt)
-    -- 特殊物理
     self:reduceSpeed()
     self:applyAlternativeGravity()
     self:checkLadder()
+
+    if self.alive then
+        self:checkEnemy()
+    end
 end
 
 -- デバッグ描画
@@ -68,6 +74,24 @@ function Player:checkLadder()
                 self.inLadderCount = self.inLadderCount + 1
             elseif e.collision_type == 'exit' then
                 self.inLadderCount = self.inLadderCount - 1
+            end
+        end
+    end
+end
+
+-- 敵の接触チェック
+function Player:checkEnemy()
+    if self:enterCollider('enemy') then
+        local data = self:getEnterCollisionData('enemy')
+        local enemy = data.collider:getObject()
+        if enemy and enemy.alive then
+            local vx, vy = lume.vector(lume.angle(self.x, self.y, enemy.x, enemy.y), 1)
+            local dot = vx * 0 + vy * 1
+            local dir = self.x > enemy.x and 'right' or self.x < enemy.x and 'left' or nil
+            if dot < 0.8 then
+                self:damage(enemy.attack, dir)
+            else
+                enemy:damage(self.attack, dir)
             end
         end
     end
@@ -333,6 +357,7 @@ function Dead:enteredState()
         { self.spriteType .. '_dead.png' }
     )
     self.alive = false
+    self.onDead(self)
 end
 
 -- 死亡: 立つ
@@ -401,6 +426,10 @@ function Damage:update(dt)
     end
 end
 
+-- ダメージ: 敵の接触チェック
+function Damage:checkEnemy()
+end
+
 -- ダメージ: 立つ
 function Damage:stand()
 end
@@ -416,6 +445,5 @@ end
 -- ダメージ: ダメージ
 function Damage:damage()
 end
-
 
 return Player
