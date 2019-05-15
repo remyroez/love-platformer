@@ -9,7 +9,7 @@ return {
   tilewidth = 64,
   tileheight = 64,
   nextlayerid = 4,
-  nextobjectid = 3,
+  nextobjectid = 5,
   properties = {},
   tilesets = {
     {
@@ -104,6 +104,13 @@ return {
         },
         {
           id = 20,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 21,
           properties = {
             ["class"] = "ladder",
             ["collidable"] = true
@@ -298,6 +305,13 @@ return {
           }
         },
         {
+          id = 43,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
           id = 44,
           properties = {
             ["collidable"] = false
@@ -350,6 +364,41 @@ return {
           id = 52,
           properties = {
             ["class"] = "one_way",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 61,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 62,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 63,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 64,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 65,
+          properties = {
+            ["class"] = "ladder",
             ["collidable"] = true
           }
         },
@@ -408,6 +457,41 @@ return {
           }
         },
         {
+          id = 83,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 84,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 85,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 86,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 87,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
           id = 88,
           properties = {
             ["collidable"] = false
@@ -458,6 +542,34 @@ return {
         {
           id = 96,
           properties = {
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 105,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 106,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 107,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 109,
+          properties = {
+            ["class"] = "ladder",
             ["collidable"] = true
           }
         },
@@ -1071,8 +1183,8 @@ return {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 193, 0, 0, 193, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 6, 7, 7, 8, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 10, 0, 0, 12, 11, 0, 0, 34, 0, 0, 0, 0, 10, 0,
@@ -1196,6 +1308,32 @@ return {
           shape = "point",
           x = 494,
           y = 650,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 3,
+          name = "enemy2",
+          type = "enemy",
+          shape = "point",
+          x = 1120,
+          y = 610,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 4,
+          name = "enemy",
+          type = "enemy",
+          shape = "point",
+          x = 448,
+          y = 403,
           width = 0,
           height = 0,
           rotation = 0,
