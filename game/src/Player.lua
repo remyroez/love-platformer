@@ -88,10 +88,12 @@ function Player:checkEnemy()
             local vx, vy = lume.vector(lume.angle(self.x, self.y, enemy.x, enemy.y), 1)
             local dot = vx * 0 + vy * 1
             local dir = self.x > enemy.x and 'right' or self.x < enemy.x and 'left' or nil
-            if dot < 0.8 then
+            if dot < 0.5 then
                 self:damage(enemy.attack, dir)
             else
+                data.contact:setEnabled(false)
                 enemy:damage(self.attack, dir)
+                self:gotoState 'jump'
             end
         end
     end
