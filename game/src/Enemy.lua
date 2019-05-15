@@ -9,17 +9,12 @@ local Enemy = class('Enemy', Character)
 
 -- 初期化
 function Enemy:initialize(args)
+    -- デフォルト値
+    args.spriteType = args.spriteType or 'enemy'
+    args.collisionClass = args.collisionClass or 'enemy'
+
+    -- 親クラス初期化
     Character.initialize(self, args)
-end
-
--- 立ちステート
-local Stand = Enemy:addState 'stand'
-
--- 立ち: ステート開始
-function Stand:enteredState()
-    self:resetAnimations(
-        { 'enemyWalking_1.png' }
-    )
 end
 
 return Enemy

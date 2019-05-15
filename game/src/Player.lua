@@ -10,8 +10,12 @@ local Player = class('Player', Character)
 
 -- 初期化
 function Player:initialize(args)
+    -- デフォルト値
+    args.spriteType = args.spriteType or 'playerRed'
+    args.collisionClass = args.collisionClass or 'player'
     args.life = args.life or 3
 
+    -- 親クラス初期化
     Character.initialize(self, args)
 
     -- 接触先によって当たり判定を調整する
