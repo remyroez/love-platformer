@@ -12,12 +12,18 @@ Character:include(require 'Animation')
 
 -- 初期化
 function Character:initialize(args)
+    self.initialized = false
+    self.postponeEnterState = false
+
+    -- オブジェクト
+    self.object = args.object
+
     -- Animation 初期化
     self:initializeAnimation()
 
     -- スプライト及びステート
     self.spriteType = args.spriteType or 'playerRed'
-    self:gotoState(args.state or 'stand')
+    self:gotoState(args.state or 'stand', unpack(args.stateArgs or {}))
 
     -- 初期設定
     self.spriteName = self:getCurrentSpriteName()
@@ -90,6 +96,15 @@ function Character:initialize(args)
 
     -- デバッグフラグ
     self.debug = args.debug ~= nil and args.debug or false
+
+    -- 初期化完了
+    self.initialized = true
+
+    -- ステート開始を延期していれば再開
+    if self.postponeEnterState then
+        self:gotoState(args.state or 'stand', unpack(args.stateArgs or {}))
+        self.postponeEnterState = false
+    end
 end
 
 -- 破棄
@@ -127,6 +142,11 @@ end
 function Character:postUpdate(dt)
     -- 着地判定
     self:checkGrounded()
+
+    -- 強制死亡判定
+    if self.alive then
+        self:checkDeadline()
+    end
 end
 
 -- 描画
@@ -178,6 +198,13 @@ function Character:checkGrounded()
 
     -- 空中なら摩擦０
     self.collider:setFriction(self.grounded and 1 or 0)
+end
+
+-- 死亡ラインを超えたかどうか判定
+function Character:checkDeadline()
+    if self:enterCollider('deadline') then
+        self:die()
+    end
 end
 
 -- 落下しているかどうか返す

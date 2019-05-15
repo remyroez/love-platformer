@@ -167,20 +167,10 @@ function Game:controlPlayer(state)
         state.player:climb(vdirection)
     end
 
-    -- 地面にいる
-    if state.player:isGrounded() then
-    else
-    end
-
     -- ダメージ判定
     if state.player:enterCollider('damage') then
         local vx, vy = state.player:getLinearVelocity()
         state.player:damage(1, vx > 0 and 'right' or vx < 0 and 'left' or nil)
-    end
-
-    -- 強制死亡
-    if state.player:enterCollider('deadline') then
-        state.player:die()
     end
 end
 

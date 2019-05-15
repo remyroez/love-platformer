@@ -232,6 +232,7 @@ function Level:spawnCharacter(object, spriteSheet)
     -- キャラクターエンティティの登録
     local entity = self:registerEntity(
         entityClass {
+            object = object,
             spriteType = object.properties.sprite,
             spriteSheet = spriteSheet,
             x = object.x,
@@ -239,6 +240,8 @@ function Level:spawnCharacter(object, spriteSheet)
             offsetY = 16,
             collider = self.world:newCircleCollider(0, 0, 16),
             collisionClass = object.properties.collisionClass,
+            speed = object.properties.speed,
+            jumpPower = object.properties.jumpPower,
             world = self.world,
             h_align = 'center',
             v_align = 'bottom',
