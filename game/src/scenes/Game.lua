@@ -42,7 +42,7 @@ function Game:entered(state, ...)
         spriteSheet = self.spriteSheet,
         x = 100,
         y = 100,
-        offsetY = 16,
+        radius = 16,
         collider = state.world:newRectangleCollider(0, 0, 24, 32),
         collisionClass = 'player',
         world = state.world,
@@ -165,12 +165,6 @@ function Game:controlPlayer(state)
         state.player:jump()
     elseif vdirection then
         state.player:climb(vdirection)
-    end
-
-    -- ダメージ判定
-    if state.player:enterCollider('damage') then
-        local vx, vy = state.player:getLinearVelocity()
-        state.player:damage(1, vx > 0 and 'right' or vx < 0 and 'left' or nil)
     end
 end
 

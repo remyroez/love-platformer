@@ -237,7 +237,7 @@ function Level:spawnCharacter(object, spriteSheet)
             spriteSheet = spriteSheet,
             x = object.x,
             y = object.y,
-            offsetY = 16,
+            radius = 16,
             collider = self.world:newCircleCollider(0, 0, 16),
             collisionClass = object.properties.collisionClass,
             speed = object.properties.speed,

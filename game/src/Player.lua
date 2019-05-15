@@ -57,6 +57,7 @@ function Player:preUpdate(dt)
 
     if self.alive then
         self:checkEnemy()
+        self:checkDamage()
     end
 end
 
@@ -103,6 +104,14 @@ function Player:checkEnemy()
     end
 end
 
+-- ダメージ床チェック
+function Player:checkDamage()
+    if self:enterCollider('damage') then
+        local vx, vy = state.player:getLinearVelocity()
+        self:damage(1, vx > 0 and 'right' or vx < 0 and 'left' or nil)
+    end
+end
+
 -- ハシゴに接触しているかどうか返す
 function Player:inLadder()
     return self.inLadderCount > 0
@@ -141,7 +150,7 @@ function Player:climb(direction)
     end
     -- 上方向
     if not onLadder then
-        local colliders = self.world:queryLine(self.x, self.y, self.x, self.y - self.offsetY - 64, { 'ladder' })
+        local colliders = self.world:queryLine(self.x, self.y, self.x, self.y - self.radius - 64, { 'ladder' })
         if #colliders > 0 then
             onLadder = direction == 'up'
         end
@@ -288,11 +297,11 @@ function Ladder:climb(direction)
     -- 上方向
     local onLadder = false
     do
-        local colliders = self.world:queryLine(self.x - self.offsetY, self.y, self.x - self.offsetY, self.y - self.offsetY - 64, { 'ladder' })
+        local colliders = self.world:queryLine(self.x - self.radius, self.y, self.x - self.radius, self.y - self.radius - 64, { 'ladder' })
         onLadder =  #colliders > 0
     end
     if not onLadder then
-        local colliders = self.world:queryLine(self.x + self.offsetY, self.y, self.x + self.offsetY, self.y - self.offsetY - 64, { 'ladder' })
+        local colliders = self.world:queryLine(self.x + self.radius, self.y, self.x + self.radius, self.y - self.radius - 64, { 'ladder' })
         onLadder =  #colliders > 0
     end
 

@@ -28,7 +28,7 @@ function Character:initialize(args)
     -- 初期設定
     self.spriteName = self:getCurrentSpriteName()
     self.color = args.color or { 1, 1, 1, 1 }
-    self.offsetY = args.offsetY or 0
+    self.radius = args.radius or 0
     self.world = args.world or {}
     self.speed = args.speed or 50
     self.jumpPower = args.jumpPower or 1000
@@ -77,18 +77,13 @@ function Character:initialize(args)
             if collider_1.collision_class ~= self.collider.collision_class then
                 -- 自分ではない？
             elseif collider_2.collision_class == 'one_way' then
-                if self:isClimbing() then
-                    -- 登っている間は通り抜ける
+                -- 下からは通過する
+                local px, py = collider_1:getPosition()
+                local tx, ty = collider_2:getPosition()
+                local collision = collider_2:getObject()
+                tx, ty = tx + collision.object.x, ty + collision.object.y
+                if py + self.radius/2 > ty then
                     contact:setEnabled(false)
-                else
-                    -- 下からは通過する
-                    local px, py = collider_1:getPosition()
-                    local tx, ty = collider_2:getPosition()
-                    local collision = collider_2:getObject()
-                    tx, ty = tx + collision.object.x, ty + collision.object.y
-                    if py + self.offsetY/2 > ty then
-                        contact:setEnabled(false)
-                    end
                 end
             end
         end
@@ -128,7 +123,7 @@ function Character:update(dt)
     self:applyPositionFromCollider()
 
     -- 足元を起点にしたいのでズラす
-    self.y = self.y + self.offsetY
+    self.y = self.y + self.radius
 
     -- アニメーション更新
     if self.animation then
