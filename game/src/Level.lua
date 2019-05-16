@@ -15,6 +15,7 @@ local Enemy = require 'Enemy'
 -- 敵クラス
 local enemyClasses = {
     walker = require 'Walker',
+    spikey = require 'Spikey',
 }
 
 -- コリジョンクラス

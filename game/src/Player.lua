@@ -102,11 +102,10 @@ function Player:checkEnemy()
             local dot = vx * 0 + vy * 1
             local dir = self.x > enemy.x and 'right' or self.x < enemy.x and 'left' or nil
             if dot < 0.5 then
-                self:damage(enemy.attack, dir)
+                self:damage(enemy.attack, dir, enemy)
             else
-                data.contact:setEnabled(false)
-                enemy:damage(self.attack, dir)
                 self:gotoState 'jump'
+                enemy:damage(self.attack, dir, self)
             end
         end
     end
