@@ -9,7 +9,7 @@ return {
   tilewidth = 64,
   tileheight = 64,
   nextlayerid = 4,
-  nextobjectid = 5,
+  nextobjectid = 6,
   properties = {},
   tilesets = {
     {
@@ -1312,7 +1312,9 @@ return {
           height = 0,
           rotation = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["race"] = "spikey"
+          }
         },
         {
           id = 3,
@@ -1339,6 +1341,22 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
+        },
+        {
+          id = 5,
+          name = "enemy",
+          type = "enemy",
+          shape = "point",
+          x = 560,
+          y = 616,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["long"] = true,
+            ["race"] = "spikey"
+          }
         }
       }
     }

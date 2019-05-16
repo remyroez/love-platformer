@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="64" tileheight="64" infinite="1" nextlayerid="4" nextobjectid="5">
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="64" tileheight="64" infinite="1" nextlayerid="4" nextobjectid="6">
  <tileset firstgid="1" source="tilesheet.tsx"/>
  <layer id="1" name="ground" width="16" height="16">
   <data encoding="csv">
@@ -86,12 +86,22 @@
    <point/>
   </object>
   <object id="2" name="enemy" type="enemy" x="494" y="650">
+   <properties>
+    <property name="race" value="spikey"/>
+   </properties>
    <point/>
   </object>
   <object id="3" name="enemy2" type="enemy" x="1120" y="610">
    <point/>
   </object>
   <object id="4" name="enemy" type="enemy" x="448" y="403">
+   <point/>
+  </object>
+  <object id="5" name="enemy" type="enemy" x="560" y="616">
+   <properties>
+    <property name="long" type="bool" value="true"/>
+    <property name="race" value="spikey"/>
+   </properties>
    <point/>
   </object>
  </objectgroup>
