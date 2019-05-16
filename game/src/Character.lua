@@ -32,7 +32,8 @@ function Character:initialize(args)
     -- 初期設定
     self.spriteName = self:getCurrentSpriteName()
     self.color = args.color or { 1, 1, 1, 1 }
-    self.radius = args.radius or 0
+    self.offsetY = args.offsetY or 16
+    self.radius = args.radius or 16
     self.world = args.world or {}
     self.speed = args.speed or 50
     self.jumpPower = args.jumpPower or 1000
@@ -65,7 +66,7 @@ function Character:initialize(args)
     self.baseScaleX, self.baseScaleY = self.scaleX, self.scaleY
 
     -- Collider 初期化
-    self:initializeCollider(args.collider)
+    self:initializeCollider(args.collider or self.world:newCircleCollider(0, 0, self.radius))
 
     -- Collider 初期設定
     self.collider:setObject(self)
@@ -92,7 +93,7 @@ function Character:initialize(args)
                 local tx, ty = collider_2:getPosition()
                 local collision = collider_2:getObject()
                 tx, ty = tx + collision.object.x, ty + collision.object.y
-                if py + self.radius/2 > ty then
+                if py + self.offsetY/2 > ty then
                     contact:setEnabled(false)
                 end
             end
@@ -133,7 +134,7 @@ function Character:update(dt)
     self:applyPositionFromCollider()
 
     -- 足元を起点にしたいのでズラす
-    self.y = self.y + self.radius
+    self.y = self.y + self.offsetY
 
     -- アニメーション更新
     if self.animation then
