@@ -43,6 +43,7 @@ function Character:initialize(args)
     self.animation = true
     self.grounded = false
     self.invincible = false
+    self.leave = false
 
     self.onDead = args.onDead or function () end
 
@@ -82,6 +83,9 @@ function Character:initialize(args)
         function(collider_1, collider_2, contact)
             if collider_1.collision_class ~= self.collider.collision_class then
                 -- 自分ではない？
+            elseif self.leave and collider_2.collision_class ~= 'deadline' then
+                -- 退場時はデッドライン以外はスルー
+                contact:setEnabled(false)
             elseif collider_2.collision_class == 'one_way' then
                 -- 下からは通過する
                 local px, py = collider_1:getPosition()
@@ -194,7 +198,9 @@ end
 function Character:checkGrounded()
     local grounded = self.grounded
 
-    if self:isFalling() then
+    if self.leave then
+        grounded = false
+    elseif self:isFalling() then
         local colliders = self.world:queryLine(self.x, self.y, self.x, self.y + 10, { 'platform', 'one_way' })
         grounded = #colliders > 0
     end

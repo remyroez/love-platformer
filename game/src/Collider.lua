@@ -23,6 +23,13 @@ function Collider:destroyCollider()
     end
 end
 
+-- コライダーの有効状態設定
+function Collider:setColliderActive(active)
+    if self.collider then
+        self.collider:setActive(active == nil and true or active)
+    end
+end
+
 -- コライダー速度の設定
 function Collider:setColliderVelocity(x, y, speed)
     if self.collider == nil then

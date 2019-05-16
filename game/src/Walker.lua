@@ -13,9 +13,15 @@ function Walker:initialize(args)
     args.state = args.state or 'walk'
     args.speed = args.speed or 10
     args.stateArgs = args.stateArgs or { args.object.properties.direction or 'left' }
+    --args.life = args.life or 3
 
     -- 親クラス初期化
     Enemy.initialize(self, args)
+end
+
+-- ダメージ
+function Walker:damage(damage, direction)
+    self:gotoState('damage', damage, direction)
 end
 
 -- 立ちステート
@@ -42,8 +48,8 @@ function Walk:enteredState(direction)
         self.postponeEnterState = true
         return
     end
-    self._walk = {}
-    self._walk.direction = direction or 'right'
+    self._walk = self._walk or {}
+    self._walk.direction = direction or self._walk.direction or 'right'
     self.scaleX = direction == 'left' and -self.baseScaleX or self.baseScaleX
 end
 
@@ -108,6 +114,57 @@ function Walk:walk(direction)
     if direction ~= self._walk.direction then
         self:gotoState('walk', direction)
     end
+end
+
+-- ダメージステート
+local Damage = Walker:addState 'damage'
+
+-- ダメージ: ステート開始
+function Damage:enteredState(damage, direction)
+    self:resetAnimations(
+        { 'enemyWalking_4.png' }
+    )
+
+    -- ダメージを受ける
+    self.life = self.life - (damage or 1)
+
+    -- 死んだら退場
+    if self.life <= 0 then
+        -- 飛ばされる方向
+        self._damage = {}
+        self._damage.direction = direction
+
+        -- Ｙ軸の速度をカット
+        local vx, vy = self:getLinearVelocity()
+        self:setLinearVelocity(vx, 0)
+
+        -- ジャンプ
+        self:applyLinearImpulse(0, -self.jumpPower * 0.75)
+        self.grounded = false
+
+        -- 退場
+        self.leave = true
+        --self:setColliderActive(false)
+    else
+        -- しばらく点滅して無敵
+        self.invincible = true
+        self.timer:every(
+            0.05,
+            function ()
+                self.visible = not self.visible
+            end,
+            30,
+            function ()
+                self.visible = true
+                self.invincible = false
+                self:gotoState 'walk'
+            end
+        )
+    end
+end
+
+-- ダメージ: ダメージ
+function Damage:damage(damage, direction)
 end
 
 return Walker

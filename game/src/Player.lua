@@ -23,6 +23,9 @@ function Player:initialize(args)
         function(collider_1, collider_2, contact)
             if collider_1.collision_class ~= self.collider.collision_class then
                 -- 自分ではない？
+            elseif self.leave and collider_2.collision_class ~= 'deadline' then
+                -- 退場時はデッドライン以外はスルー
+                contact:setEnabled(false)
             elseif collider_2.collision_class == 'enemy' then
                 -- スルー
                 contact:setEnabled(false)
@@ -418,9 +421,19 @@ function Damage:enteredState(damage, direction)
     -- ダメージを受ける
     self.life = self.life - (damage or 1)
 
+    -- 死んだら退場
+    if self.life <= 0 then
+        self.leave = true
+        --self:setColliderActive(false)
+    end
+
     -- 飛ばされる方向
     self._damage = {}
     self._damage.direction = direction
+
+    -- Ｙ軸の速度をカット
+    local vx, vy = self:getLinearVelocity()
+    self:setLinearVelocity(vx, 0)
 
     -- ジャンプ
     self:applyLinearImpulse(0, -self.jumpPower * 0.75)
@@ -446,7 +459,7 @@ function Damage:update(dt)
     if not self:isGrounded() then
         -- 空中
     elseif self.life <= 0 then
-        self:die()
+        --self:die()
     else
         -- しばらく点滅して無敵
         self.invincible = true
