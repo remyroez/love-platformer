@@ -113,4 +113,18 @@ function Collider:getCollisionEvents(collisionClass)
     end
 end
 
+-- コライダーの形状追加
+function Collider:addColliderShape(...)
+    if self.collider then
+        self.collider:addShape(...)
+    end
+end
+
+-- コライダーの形状削除
+function Collider:removeColliderShape(...)
+    if self.collider then
+        self.collider:removeShape(...)
+    end
+end
+
 return Collider

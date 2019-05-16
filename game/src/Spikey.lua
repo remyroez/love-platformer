@@ -13,10 +13,17 @@ function Spikey:initialize(args)
     args.state = args.state or 'walk'
     args.speed = args.speed or 5
     args.stateArgs = args.stateArgs or { args.object.properties.direction or 'left' }
-    --args.life = args.life or 3
+
+    -- 長いタイプかどうか
+    self.long = args.object.properties.long ~= nil and args.object.properties.long or false
 
     -- 親クラス初期化
     Enemy.initialize(self, args)
+
+    -- シェイプの追加
+    if self.long then
+        self:addColliderShape('long', 'CircleShape', 0, -self.radius * 1.5, self.radius)
+    end
 end
 
 -- ダメージ
@@ -30,7 +37,7 @@ local Stand = Spikey:addState 'stand'
 -- 立ち: ステート開始
 function Stand:enteredState()
     self:resetAnimations(
-        { 'enemySpikey_1.png' }
+        { self.long and 'enemySpikey_3.png' or 'enemySpikey_1.png' }
     )
 end
 
@@ -40,7 +47,7 @@ local Walk = Spikey:addState 'walk'
 -- 歩き: ステート開始
 function Walk:enteredState(direction)
     self:resetAnimations(
-        { 'enemySpikey_1.png' }
+        { self.long and 'enemySpikey_3.png' or 'enemySpikey_1.png' }
     )
 
     -- 未初期化なら延期
@@ -91,7 +98,15 @@ function Walk:update(dt)
 
     -- 他の敵に接触した
     if not turn and self:enterCollider('enemy') then
-        turn = true
+        local data = self:getEnterCollisionData('enemy')
+        local enemy = data.collider:getObject()
+        if enemy == nil then
+            -- エネミー情報が取れなかった
+        elseif enemy.x > self.x and self._walk.direction == 'right' then
+            turn = true
+        elseif enemy.x < self.x and self._walk.direction == 'left' then
+            turn = true
+        end
     end
 
     -- 向きを変える
@@ -123,7 +138,7 @@ local Damage = Spikey:addState 'damage'
 -- ダメージ: ステート開始
 function Damage:enteredState(damage, direction)
     self:resetAnimations(
-        { 'enemyWalking_4.png' }
+        { 'enemySpikey_4.png' }
     )
 
     -- ダメージを受ける

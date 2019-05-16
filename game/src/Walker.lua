@@ -90,7 +90,15 @@ function Walk:update(dt)
 
     -- 他の敵に接触した
     if not turn and self:enterCollider('enemy') then
-        turn = true
+        local data = self:getEnterCollisionData('enemy')
+        local enemy = data.collider:getObject()
+        if enemy == nil then
+            -- エネミー情報が取れなかった
+        elseif enemy.x > self.x and self._walk.direction == 'right' then
+            turn = true
+        elseif enemy.x < self.x and self._walk.direction == 'left' then
+            turn = true
+        end
     end
 
     -- 向きを変える
