@@ -1,6 +1,8 @@
 
 local class = require 'middleclass'
 
+local Timer = require 'Timer'
+
 -- キャラクター
 local Character = class('Character', require 'Entity')
 Character:include(require 'stateful')
@@ -14,6 +16,8 @@ Character:include(require 'Animation')
 function Character:initialize(args)
     self.initialized = false
     self.postponeEnterState = false
+
+    self.timer = Timer()
 
     -- オブジェクト
     self.object = args.object
@@ -35,8 +39,10 @@ function Character:initialize(args)
     self.attack = args.attack or 1
     self.life = args.life or 1
     self.alive = true
+    self.visible = true
     self.animation = true
     self.grounded = false
+    self.invincible = false
 
     self.onDead = args.onDead or function () end
 
@@ -104,7 +110,7 @@ end
 
 -- 破棄
 function Character:destroy()
-    -- 特殊物理
+    self.timer:destroy()
     self:gotoState(nil)
     self:destroyCollider()
 end
@@ -131,6 +137,8 @@ function Character:update(dt)
     end
 
     self:postUpdate(dt)
+
+    self.timer:update(dt)
 end
 
 -- 後更新
@@ -146,11 +154,15 @@ end
 
 -- 描画
 function Character:draw()
-    self:pushTransform(self:left(), self:top())
-    love.graphics.setColor(self.color)
-    self:drawSprite(self:getCurrentSpriteName())
-    self:popTransform()
+    -- スプライト描画
+    if self.visible then
+        self:pushTransform(self:left(), self:top())
+        love.graphics.setColor(self.color)
+        self:drawSprite(self:getCurrentSpriteName())
+        self:popTransform()
+    end
 
+    -- デバッグ描画
     if self.debug then
         self:drawDebug()
     end
@@ -215,6 +227,11 @@ end
 
 -- ダメージ
 function Character:damage(damage, direction)
+    -- 無敵
+    if self.invincible then
+        return
+    end
+
     -- ライフが０以上ならダメージを受ける
     if self.life > 0 then
         self.life = self.life - (damage or 1)

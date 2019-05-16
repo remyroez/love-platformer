@@ -23,6 +23,9 @@ function Player:initialize(args)
         function(collider_1, collider_2, contact)
             if collider_1.collision_class ~= self.collider.collision_class then
                 -- 自分ではない？
+            elseif collider_2.collision_class == 'enemy' then
+                -- スルー
+                contact:setEnabled(false)
             elseif collider_2.collision_class == 'one_way' then
                 if self:isClimbing() then
                     -- 登っている間は通り抜ける
@@ -86,7 +89,9 @@ end
 
 -- 敵の接触チェック
 function Player:checkEnemy()
-    if self:enterCollider('enemy') then
+    if self.invincible then
+        -- 無敵
+    elseif self:enterCollider('enemy') then
         local data = self:getEnterCollisionData('enemy')
         local enemy = data.collider:getObject()
         if enemy and enemy.alive then
@@ -106,7 +111,9 @@ end
 
 -- ダメージ床チェック
 function Player:checkDamage()
-    if self:enterCollider('damage') then
+    if self.invincible then
+        -- 無敵
+    elseif self:enterCollider('damage') then
         local vx, vy = state.player:getLinearVelocity()
         self:damage(1, vx > 0 and 'right' or vx < 0 and 'left' or nil)
     end
@@ -332,6 +339,10 @@ function Jump:enteredState()
         false
     )
 
+    -- Ｙ軸の速度をカット
+    local vx, vy = self:getLinearVelocity()
+    self:setLinearVelocity(vx, 0)
+
     -- ジャンプ
     self:applyLinearImpulse(0, -self.jumpPower)
 
@@ -437,6 +448,19 @@ function Damage:update(dt)
     elseif self.life <= 0 then
         self:die()
     else
+        -- しばらく点滅して無敵
+        self.invincible = true
+        self.timer:every(
+            0.05,
+            function ()
+                self.visible = not self.visible
+            end,
+            30,
+            function ()
+                self.visible = true
+                self.invincible = false
+            end
+        )
         self:gotoState 'stand'
     end
 end
