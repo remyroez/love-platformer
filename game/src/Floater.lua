@@ -66,10 +66,35 @@ end
 function Floater:searchPlayer(radius)
     radius = radius or self.searchRadius
     local player
+
+    -- 円形の範囲内のプレイヤーを探す
     local colliders = self.world:queryCircleArea(self.x, self.y, radius, { 'player' })
     for _, collider in ipairs(colliders) do
-        player = collider:getObject()
-        break
+        local found = collider:getObject()
+        if found then
+            -- 障害がないかチェック
+            local platforms = self.world:queryLine(self.x, self.y, found.x, found.y - found.offsetY, { 'platform', 'one_way' })
+            local ok = true
+            for _, platform in ipairs(platforms) do
+                if platform.collision_class == 'platform' then
+                    -- 障害
+                    ok = false
+                    break
+                elseif platform.collision_class == 'one_way' then
+                    -- 上からなら障害
+                    local px, py = platform:getPosition()
+                    if self.y < py - 32 then
+                        ok = false
+                        break
+                    end
+                end
+            end
+            -- 障害がなかったらプレイヤーを返す
+            if ok then
+                player = found
+                break
+            end
+        end
     end
     return player
 end
