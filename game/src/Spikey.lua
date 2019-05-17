@@ -90,7 +90,7 @@ function Walk:update(dt)
     if not turn then
         local radius = self._walk.direction == 'right' and self.radius or -self.radius
         local offset = self._walk.direction == 'right' and 3 or -3
-        local colliders = self.world:queryLine(self.x + radius, self.y - self.radius, self.x + radius + offset, self.y - self.radius, { 'platform' })
+        local colliders = self.world:queryLine(self.x + radius, self.y - self.radius * 0.5, self.x + radius + offset, self.y - self.radius * 0.5, { 'platform' })
         if #colliders > 0 then
             turn = true
         end
