@@ -16,6 +16,7 @@ local Enemy = require 'Enemy'
 local enemyClasses = {
     walker = require 'Walker',
     spikey = require 'Spikey',
+    floater = require 'Floater',
 }
 
 -- コリジョンクラス
@@ -244,8 +245,8 @@ function Level:spawnCharacter(object, spriteSheet)
             speed = object.properties.speed,
             jumpPower = object.properties.jumpPower,
             world = self.world,
-            h_align = 'center',
-            v_align = 'bottom',
+            h_align = object.properties.h_align,
+            v_align = object.properties.v_align,
             onDead = function (entity) table.insert(self.removes, entity) end,
             debug = self.debug,
         }

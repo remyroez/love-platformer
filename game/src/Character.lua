@@ -57,7 +57,7 @@ function Character:initialize(args)
     local h = args.height or spriteHeight
 
     -- Rectangle 初期化
-    self:initializeRectangle(args.x, args.y, w, h, args.h_align, args.v_align)
+    self:initializeRectangle(args.x, args.y, w, h, args.h_align or 'center', args.v_align or 'bottom')
 
     -- Transform 初期化
     self:initializeTransform(self.x, self.y, args.rotation, w / spriteWidth, h / spriteHeight)
@@ -96,6 +96,9 @@ function Character:initialize(args)
                 if py + self.offsetY/2 > ty then
                     contact:setEnabled(false)
                 end
+            elseif collider_2.collision_class == 'ladder' then
+                -- ハシゴは当たり判定なし
+                contact:setEnabled(false)
             end
         end
     )
