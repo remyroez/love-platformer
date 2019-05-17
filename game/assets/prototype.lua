@@ -9,7 +9,7 @@ return {
   tilewidth = 64,
   tileheight = 64,
   nextlayerid = 4,
-  nextobjectid = 7,
+  nextobjectid = 8,
   properties = {},
   tilesets = {
     {
@@ -1303,7 +1303,7 @@ return {
         },
         {
           id = 2,
-          name = "enemy",
+          name = "spikey",
           type = "enemy",
           shape = "point",
           x = 1510,
@@ -1318,7 +1318,7 @@ return {
         },
         {
           id = 3,
-          name = "enemy2",
+          name = "walker",
           type = "enemy",
           shape = "point",
           x = 1120,
@@ -1331,7 +1331,7 @@ return {
         },
         {
           id = 4,
-          name = "enemy",
+          name = "walker",
           type = "enemy",
           shape = "point",
           x = 1085,
@@ -1344,7 +1344,7 @@ return {
         },
         {
           id = 5,
-          name = "enemy",
+          name = "spikey-long",
           type = "enemy",
           shape = "point",
           x = 1997,
@@ -1360,7 +1360,7 @@ return {
         },
         {
           id = 6,
-          name = "enemy",
+          name = "floater",
           type = "enemy",
           shape = "point",
           x = 415,
@@ -1372,6 +1372,19 @@ return {
           properties = {
             ["race"] = "floater"
           }
+        },
+        {
+          id = 7,
+          name = "walker",
+          type = "enemy",
+          shape = "point",
+          x = 960,
+          y = 686,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
         }
       }
     }
