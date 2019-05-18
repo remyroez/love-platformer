@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="64" tileheight="64" infinite="1" nextlayerid="4" nextobjectid="8">
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="64" tileheight="64" infinite="1" nextlayerid="6" nextobjectid="11">
  <tileset firstgid="1" source="tilesheet.tsx"/>
  <layer id="1" name="ground" width="16" height="16">
+  <properties>
+   <property name="set" type="int" value="1"/>
+  </properties>
   <data encoding="csv">
    <chunk x="0" y="0" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
