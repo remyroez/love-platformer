@@ -64,6 +64,7 @@ function Player:preUpdate(dt)
     if self.alive then
         self:checkEnemy()
         self:checkDamage()
+        self:checkItem()
     end
 end
 
@@ -118,6 +119,17 @@ function Player:checkDamage()
     elseif self:enterCollider('damage') then
         local vx, vy = state.player:getLinearVelocity()
         self:damage(1, vx > 0 and 'right' or vx < 0 and 'left' or nil)
+    end
+end
+
+-- アイテムチェック
+function Player:checkItem()
+    if self:enterCollider('collection') then
+        local data = self:getEnterCollisionData('collection')
+        local item = data.collider:getObject()
+        if item and not item.got then
+            item:get()
+        end
     end
 end
 
