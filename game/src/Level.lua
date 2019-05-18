@@ -10,7 +10,7 @@ local Level = class 'Level'
 -- クラス
 local Character = require 'Character'
 local Player = require 'Player'
-local Enemy = require 'Enemy'
+local Item = require 'Item'
 local Background = require 'Background'
 
 -- 敵クラス
@@ -27,6 +27,7 @@ local collisionClasses = {
     'player',
     'enemy',
     'friend',
+    'collection',
     'damage',
     'object',
     'ladder',
@@ -39,6 +40,7 @@ local collisionClasses = {
     player = {},
     enemy = { ignores = { 'frame' } },
     friend = { ignores = { 'frame' } },
+    collection = {},
     damage = {},
     object = {},
     ladder = {},
@@ -54,6 +56,9 @@ function Level:initialize(path)
 
     -- キャラクター
     self.characters = {}
+
+    -- 獲得アイテム
+    self.collection = {}
 
     -- コリジョンクラスの追加
     for index, name in ipairs(collisionClasses) do
@@ -189,10 +194,16 @@ function Level:draw(x, y, scale)
     -- マップ
     self.map:draw(x, y, scale)
 
-    -- ワールドのデバッグ描画
+    -- デバッグ描画
     if self.debug then
-        self.world:draw()
+        self:drawDebug(x, y, scale)
     end
+end
+
+-- デバッグ描画
+function Level:drawDebug(x, y, scale)
+    -- ワールドのデバッグ描画
+    self.world:draw()
 end
 
 -- デバッグモード設定
@@ -212,7 +223,8 @@ end
 
 -- キャラクターのセットアップ
 function Level:setupCharacters(spriteSheet)
-    self:clearEntities()
+    self:removeCharacters('player')
+    self:removeCharacters('enemy')
 
     -- character レイヤー
     local layer = self.map.layers['character']
@@ -276,6 +288,57 @@ function Level:spawnCharacter(object, spriteSheet)
     return entity
 end
 
+-- アイテムのセットアップ
+function Level:setupItems(spriteSheet)
+    self:removeCharacters('collection')
+
+    -- character レイヤー
+    local layer = self.map.layers['collection']
+    if layer == nil then
+        return
+    end
+    layer.visible = false
+
+    -- オブジェクトからキャラクター生成
+    for _, object in ipairs(layer.objects) do
+        -- キャラクターのスポーン
+        local entity = self:spawnItem(object, spriteSheet)
+    end
+end
+
+-- アイテムのスポーン
+function Level:spawnItem(object, spriteSheet)
+    local entity = self:registerEntity(
+        Item {
+            object = object,
+            item = object.properties.item,
+            spriteType = object.properties.sprite,
+            spriteSheet = spriteSheet,
+            x = object.x,
+            y = object.y,
+            offsetY = object.properties.offsetY,
+            radius = object.properties.radius,
+            world = self.world,
+            collisionClass = object.properties.collisionClass,
+            h_align = object.properties.h_align,
+            v_align = object.properties.v_align,
+            onGet = function (entity) self:collectItem(entity) end,
+            onCollected = function (entity) table.insert(self.removes, entity) end,
+            debug = self.debug,
+        }
+    )
+
+    -- キャラクターテーブルに登録
+    if self.characters[object.type] then
+        table.insert(self.characters[object.type], entity)
+    else
+        print('invalid object type [' .. object.type .. ']')
+    end
+
+    return entity
+end
+
+
 -- エンティティの追加
 function Level:registerEntity(entity)
     table.insert(self.entities, entity)
@@ -315,6 +378,11 @@ function Level:getCharacters(category)
     return self.characters[category]
 end
 
+-- 特定のキャラクターを全て削除リストに追加
+function Level:removeCharacters(category)
+    self.removes = lume.concat(self.removes, self:getCharacters(category))
+end
+
 -- プレイヤーリストの取得
 function Level:getPlayers()
     return self:getCharacters('player')
@@ -323,6 +391,17 @@ end
 -- プレイヤーの取得
 function Level:getPlayer()
     return lume.first(self:getPlayers())
+end
+
+-- アイテムの獲得
+function Level:collectItem(item)
+    if self.collection[item.item] == nil then
+        self.collection[item.item] = {}
+    end
+    if self.collection[item.item][item.spriteType] == nil then
+        self.collection[item.item][item.spriteType] = 0
+    end
+    self.collection[item.item][item.spriteType] = self.collection[item.item][item.spriteType] + 1
 end
 
 return Level
