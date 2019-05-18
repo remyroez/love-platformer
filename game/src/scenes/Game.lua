@@ -32,6 +32,7 @@ function Game:entered(state, ...)
     state.level = Level('assets/prototype.lua')
     state.level:setDebug(self.debugMode)
     state.level:setupCharacters(self.spriteSheet)
+    state.level:setupItems(self.spriteSheet)
 
     -- ワールド
     state.world = state.level.world
@@ -111,12 +112,34 @@ function Game:draw(state)
         state.level:draw(
             state.camera.w / 2 - state.camera.x,
             state.camera.h / 2 - state.camera.y,
-            state.camera.scale)
+            state.camera.scale
+        )
     end
     state.camera:detach()
 
     -- カメラ演出描画
     state.camera:draw()
+
+    -- デバッグ描画
+    if self.debugMode then
+        self:drawDebug(state)
+    end
+end
+
+-- デバッグ描画
+function Game:drawDebug(state)
+    local x, y = 0, 0
+    for item, t in pairs(state.level.collection) do
+        for spriteType, num in pairs(t) do
+            love.graphics.printf(
+                item .. '(' .. spriteType .. '): ' .. num,
+                x, y,
+                self.width,
+                'right'
+            )
+            y = y + 12
+        end
+    end
 end
 
 -- キー入力
