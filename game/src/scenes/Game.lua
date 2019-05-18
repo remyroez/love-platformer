@@ -30,6 +30,7 @@ end
 function Game:entered(state, ...)
     -- レベル
     state.level = Level('assets/prototype.lua')
+    state.level:setDebug(self.debugMode)
     state.level:setupCharacters(self.spriteSheet)
 
     -- ワールド
@@ -41,7 +42,7 @@ function Game:entered(state, ...)
         spriteSheet = self.spriteSheet,
         x = 100,
         y = 100,
-        offsetY = 16,
+        radius = 16,
         collider = state.world:newRectangleCollider(0, 0, 24, 32),
         collisionClass = 'player',
         world = state.world,
@@ -126,6 +127,14 @@ end
 function Game:mousepressed(state, x, y, button, istouch, presses)
 end
 
+-- デバッグモードの設定
+function Game:setDebugMode(mode)
+    Base.setDebugMode(self, mode)
+
+    -- レベル
+    self.state.level:setDebug(mode)
+end
+
 -- プレイヤー操作
 function Game:controlPlayer(state)
     local direction
@@ -156,22 +165,6 @@ function Game:controlPlayer(state)
         state.player:jump()
     elseif vdirection then
         state.player:climb(vdirection)
-    end
-
-    -- 地面にいる
-    if state.player:isGrounded() then
-    else
-    end
-
-    -- ダメージ判定
-    if state.player:enterCollider('damage') then
-        local vx, vy = state.player:getLinearVelocity()
-        state.player:damage(1, vx > 0 and 'right' or vx < 0 and 'left' or nil)
-    end
-
-    -- 強制死亡
-    if state.player:enterCollider('deadline') then
-        state.player:die()
     end
 end
 

@@ -62,6 +62,12 @@
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="21">
+  <properties>
+   <property name="class" value="ladder"/>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+ </tile>
  <tile id="22">
   <properties>
    <property name="collidable" type="bool" value="false"/>
@@ -141,6 +147,12 @@
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="43">
+  <properties>
+   <property name="class" value="ladder"/>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+ </tile>
  <tile id="44">
   <properties>
    <property name="collidable" type="bool" value="false"/>
@@ -185,6 +197,36 @@
  <tile id="52">
   <properties>
    <property name="class" value="one_way"/>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="61">
+  <properties>
+   <property name="class" value="ladder"/>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="62">
+  <properties>
+   <property name="class" value="ladder"/>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="63">
+  <properties>
+   <property name="class" value="ladder"/>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="64">
+  <properties>
+   <property name="class" value="ladder"/>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="65">
+  <properties>
+   <property name="class" value="ladder"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
@@ -233,6 +275,36 @@
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="83">
+  <properties>
+   <property name="class" value="ladder"/>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="84">
+  <properties>
+   <property name="class" value="ladder"/>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="85">
+  <properties>
+   <property name="class" value="ladder"/>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="86">
+  <properties>
+   <property name="class" value="ladder"/>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="87">
+  <properties>
+   <property name="class" value="ladder"/>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+ </tile>
  <tile id="88">
   <properties>
    <property name="collidable" type="bool" value="false"/>
@@ -275,6 +347,30 @@
  </tile>
  <tile id="96">
   <properties>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="105">
+  <properties>
+   <property name="class" value="ladder"/>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="106">
+  <properties>
+   <property name="class" value="ladder"/>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="107">
+  <properties>
+   <property name="class" value="ladder"/>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="109">
+  <properties>
+   <property name="class" value="ladder"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>

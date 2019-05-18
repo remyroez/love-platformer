@@ -7,12 +7,23 @@ require 'sbss'
 local lume = require 'lume'
 local lurker = require 'lurker'
 
+-- デバッグモード
+local debugMode = true
+
+-- フォーカス
+local focused = true
+local screenshot
+
+-- 画面のサイズ
+local width, height = 0, 0
+
 -- シーンステート
 local Scenes = require 'scenes'
 
 -- シーン
 local scene = Scenes()
 scene:gotoState 'boot'
+scene:setDebugMode(debugMode)
 
 -- ホットスワップ後の対応
 lurker.postswap = function (f)
@@ -25,12 +36,6 @@ lurker.postswap = function (f)
     end
 end
 
--- デバッグモード
-local debugMode = false
-
--- 画面のサイズ
-local width, height = 0, 0
-
 -- 読み込み
 function love.load()
     love.math.setRandomSeed(love.timer.getTime())
@@ -40,21 +45,28 @@ end
 -- 更新
 function love.update(dt)
     -- シーンの更新
-    scene:updateState(dt)
+    if focused then
+        scene:updateState(dt)
+    end
 end
 
 -- 描画
 function love.draw()
-    -- 画面のリセット
-    love.graphics.reset()
+    if focused or screenshot == nil then
+        -- 画面のリセット
+        love.graphics.reset()
 
-    -- シーンの描画
-    scene:drawState()
+        -- シーンの描画
+        scene:drawState()
 
-    -- ステートの描画
-    if debugMode then
-        love.graphics.setColor(1, 1, 1)
-        scene:printStates(0, 0)
+        -- ステートの描画
+        if debugMode then
+            love.graphics.setColor(1, 1, 1)
+            scene:printStates(0, 0)
+        end
+    elseif screenshot then
+        -- スクリーンショットを描画
+        love.graphics.draw(screenshot)
     end
 end
 
@@ -91,4 +103,22 @@ end
 function love.mousepressed(...)
     -- シーンに処理を渡す
     scene:mousepressedState(...)
+end
+
+-- フォーカス
+function love.focus(f)
+    focused = f
+
+    if not f then
+        -- フォーカスを失ったので、スクリーンショット撮影
+        love.graphics.captureScreenshot(
+            function (imageData)
+                screenshot = love.graphics.newImage(imageData)
+            end
+        )
+    elseif screenshot then
+        -- フォーカスが戻ったので、スクリーンショット開放
+        screenshot:release()
+        screenshot = nil
+    end
 end

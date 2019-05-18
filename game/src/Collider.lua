@@ -23,6 +23,13 @@ function Collider:destroyCollider()
     end
 end
 
+-- コライダーの有効状態設定
+function Collider:setColliderActive(active)
+    if self.collider then
+        self.collider:setActive(active == nil and true or active)
+    end
+end
+
 -- コライダー速度の設定
 function Collider:setColliderVelocity(x, y, speed)
     if self.collider == nil then
@@ -103,6 +110,20 @@ function Collider:getCollisionEvents(collisionClass)
         return self.collider.collision_events[collisionClass]
     else
         return nil
+    end
+end
+
+-- コライダーの形状追加
+function Collider:addColliderShape(...)
+    if self.collider then
+        self.collider:addShape(...)
+    end
+end
+
+-- コライダーの形状削除
+function Collider:removeColliderShape(...)
+    if self.collider then
+        self.collider:removeShape(...)
     end
 end
 

@@ -9,7 +9,7 @@ return {
   tilewidth = 64,
   tileheight = 64,
   nextlayerid = 4,
-  nextobjectid = 2,
+  nextobjectid = 8,
   properties = {},
   tilesets = {
     {
@@ -104,6 +104,13 @@ return {
         },
         {
           id = 20,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 21,
           properties = {
             ["class"] = "ladder",
             ["collidable"] = true
@@ -298,6 +305,13 @@ return {
           }
         },
         {
+          id = 43,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
           id = 44,
           properties = {
             ["collidable"] = false
@@ -350,6 +364,41 @@ return {
           id = 52,
           properties = {
             ["class"] = "one_way",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 61,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 62,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 63,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 64,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 65,
+          properties = {
+            ["class"] = "ladder",
             ["collidable"] = true
           }
         },
@@ -408,6 +457,41 @@ return {
           }
         },
         {
+          id = 83,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 84,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 85,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 86,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 87,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
           id = 88,
           properties = {
             ["collidable"] = false
@@ -458,6 +542,34 @@ return {
         {
           id = 96,
           properties = {
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 105,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 106,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 107,
+          properties = {
+            ["class"] = "ladder",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 109,
+          properties = {
+            ["class"] = "ladder",
             ["collidable"] = true
           }
         },
@@ -1069,8 +1181,8 @@ return {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 193,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1090,8 +1202,8 @@ return {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 11, 0, 34, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 6, 7, 8, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 6, 7, 8, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 193, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            7, 7, 8, 0, 0, 6, 7, 8, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 6, 7, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0,
@@ -1183,6 +1295,91 @@ return {
           shape = "point",
           x = 226.333,
           y = 443.333,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 2,
+          name = "spikey",
+          type = "enemy",
+          shape = "point",
+          x = 1510,
+          y = 824,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["race"] = "spikey"
+          }
+        },
+        {
+          id = 3,
+          name = "walker",
+          type = "enemy",
+          shape = "point",
+          x = 1120,
+          y = 610,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 4,
+          name = "walker",
+          type = "enemy",
+          shape = "point",
+          x = 1085,
+          y = 296,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 5,
+          name = "spikey-long",
+          type = "enemy",
+          shape = "point",
+          x = 1997,
+          y = 631,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["long"] = true,
+            ["race"] = "spikey"
+          }
+        },
+        {
+          id = 6,
+          name = "floater",
+          type = "enemy",
+          shape = "point",
+          x = 415,
+          y = 639,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["race"] = "floater"
+          }
+        },
+        {
+          id = 7,
+          name = "walker",
+          type = "enemy",
+          shape = "point",
+          x = 960,
+          y = 686,
           width = 0,
           height = 0,
           rotation = 0,

@@ -1,6 +1,8 @@
 
 local class = require 'middleclass'
 
+local Timer = require 'Timer'
+
 -- キャラクター
 local Character = class('Character', require 'Entity')
 Character:include(require 'stateful')
@@ -12,21 +14,39 @@ Character:include(require 'Animation')
 
 -- 初期化
 function Character:initialize(args)
+    self.initialized = false
+    self.postponeEnterState = false
+
+    self.timer = Timer()
+
+    -- オブジェクト
+    self.object = args.object
+
     -- Animation 初期化
     self:initializeAnimation()
 
-    -- 初期設定
+    -- スプライト及びステート
     self.spriteType = args.spriteType or 'playerRed'
-    self:gotoState 'stand'
+    self:gotoState(args.state or 'stand', unpack(args.stateArgs or {}))
 
+    -- 初期設定
     self.spriteName = self:getCurrentSpriteName()
     self.color = args.color or { 1, 1, 1, 1 }
-    self.offsetY = args.offsetY or 0
+    self.offsetY = args.offsetY or 16
+    self.radius = args.radius or 16
     self.world = args.world or {}
     self.speed = args.speed or 50
     self.jumpPower = args.jumpPower or 1000
+    self.attack = args.attack or 1
     self.life = args.life or 1
     self.alive = true
+    self.visible = true
+    self.animation = true
+    self.grounded = false
+    self.invincible = false
+    self.leave = false
+
+    self.onDead = args.onDead or function () end
 
     -- SpriteRenderer 初期化
     self:initializeSpriteRenderer(args.spriteSheet)
@@ -37,48 +57,44 @@ function Character:initialize(args)
     local h = args.height or spriteHeight
 
     -- Rectangle 初期化
-    self:initializeRectangle(args.x, args.y, w, h, args.h_align, args.v_align)
+    self:initializeRectangle(args.x, args.y, w, h, args.h_align or 'center', args.v_align or 'bottom')
 
     -- Transform 初期化
     self:initializeTransform(self.x, self.y, args.rotation, w / spriteWidth, h / spriteHeight)
 
+    -- ベーススケール
     self.baseScaleX, self.baseScaleY = self.scaleX, self.scaleY
 
-    local x, y = args.collider:getPosition()
-
     -- Collider 初期化
-    self:initializeCollider(args.collider)
+    self:initializeCollider(args.collider or self.world:newCircleCollider(0, 0, self.radius))
 
     -- Collider 初期設定
+    self.collider:setObject(self)
     self.collider:setFixedRotation(true)
-    --self.collider:setMass(args.mass or 10)
+    self.collider:setSleepingAllowed(false)
     local mx, my, mass, inertia = self.collider:getMassData()
     local newMass = args.mass or mass
     self.collider:setMassData(mx, my, newMass, inertia * (newMass / mass))
     if args.collisionClass then
         self.collider:setCollisionClass(args.collisionClass)
     end
-    self.collider:setSleepingAllowed(false)
 
     -- 接触先によって当たり判定を調整する
     self.collider:setPreSolve(
         function(collider_1, collider_2, contact)
             if collider_1.collision_class ~= self.collider.collision_class then
                 -- 自分ではない？
+            elseif self.leave and collider_2.collision_class ~= 'deadline' then
+                -- 退場時はデッドライン以外はスルー
+                contact:setEnabled(false)
             elseif collider_2.collision_class == 'one_way' then
-                if self:isClimbing() then
-                    -- 登っている間は通り抜ける
+                -- 下からは通過する
+                local px, py = collider_1:getPosition()
+                local tx, ty = collider_2:getPosition()
+                local collision = collider_2:getObject()
+                tx, ty = tx + collision.object.x, ty + collision.object.y
+                if py + self.offsetY/2 > ty then
                     contact:setEnabled(false)
-                else
-                    -- 下からは通過する
-                    local px, py = collider_1:getPosition()
-                    local pw, ph = 16, 16
-                    local tx, ty = collider_2:getPosition()
-                    local collision = collider_2:getObject()
-                    tx, ty = tx + collision.object.x, ty + collision.object.y
-                    if py + ph/2 > ty then
-                        contact:setEnabled(false)
-                    end
                 end
             elseif collider_2.collision_class == 'ladder' then
                 -- ハシゴは当たり判定なし
@@ -87,26 +103,35 @@ function Character:initialize(args)
         end
     )
 
-    self.grounded = false
-    self.groundedTime = 0
+    -- デバッグフラグ
+    self.debug = args.debug ~= nil and args.debug or false
 
-    self.inLadderCount = 0
+    -- 初期化完了
+    self.initialized = true
 
-    self.animation = true
+    -- ステート開始を延期していれば再開
+    if self.postponeEnterState then
+        self:gotoState(args.state or 'stand', unpack(args.stateArgs or {}))
+        self.postponeEnterState = false
+    end
 end
 
 -- 破棄
 function Character:destroy()
+    self.timer:destroy()
     self:gotoState(nil)
     self:destroyCollider()
 end
 
--- 更新
-function Character:update(dt)
-    -- 特殊物理
+-- 前更新
+function Character:preUpdate(dt)
     self:reduceSpeed()
     self:applyAlternativeGravity()
-    self:checkLadder()
+end
+
+-- 更新
+function Character:update(dt)
+    self:preUpdate(dt)
 
     -- コライダーの位置を取得して適用
     self:applyPositionFromCollider()
@@ -119,22 +144,42 @@ function Character:update(dt)
         self:updateAnimation(dt)
     end
 
+    self:postUpdate(dt)
+
+    self.timer:update(dt)
+end
+
+-- 後更新
+function Character:postUpdate(dt)
     -- 着地判定
-    self:updateGrounded()
+    self:checkGrounded()
+
+    -- 強制死亡判定
+    if self.alive then
+        self:checkDeadline()
+    end
 end
 
 -- 描画
 function Character:draw()
-    self:pushTransform(self:left(), self:top())
-    love.graphics.setColor(self.color)
-    self:drawSprite(self:getCurrentSpriteName())
-    self:popTransform()
+    -- スプライト描画
+    if self.visible then
+        self:pushTransform(self:left(), self:top())
+        love.graphics.setColor(self.color)
+        self:drawSprite(self:getCurrentSpriteName())
+        self:popTransform()
+    end
 
+    -- デバッグ描画
+    if self.debug then
+        self:drawDebug()
+    end
+end
+
+-- デバッグ描画
+function Character:drawDebug()
     love.graphics.print('x = ' .. self.x .. ', y = ' .. self.y, self.x, self.y)
     love.graphics.print('alive: ' .. tostring(self.alive), self.x, self.y + 12)
-    love.graphics.print('grounded: ' .. tostring(self:isGrounded()), self.x, self.y + 24)
-    love.graphics.print('ladder: ' .. tostring(self.inLadderCount), self.x, self.y + 36)
-    love.graphics.line(self.x, self.y, self.x, self.y + 10)
 end
 
 -- 描画
@@ -153,25 +198,13 @@ function Character:applyAlternativeGravity()
     self:applyLinearImpulse(0, 20)
 end
 
--- ハシゴの接触チェック
-function Character:checkLadder()
-    local events = self:getCollisionEvents('ladder')
-    if events and #events > 0  then
-        for _, e in ipairs(events) do
-            if e.collision_type == 'enter' then
-                self.inLadderCount = self.inLadderCount + 1
-            elseif e.collision_type == 'exit' then
-                self.inLadderCount = self.inLadderCount - 1
-            end
-        end
-    end
-end
-
 -- 着地しているかどうか更新
-function Character:updateGrounded()
+function Character:checkGrounded()
     local grounded = self.grounded
 
-    if self:isFalling() then
+    if self.leave then
+        grounded = false
+    elseif self:isFalling() then
         local colliders = self.world:queryLine(self.x, self.y, self.x, self.y + 10, { 'platform', 'one_way' })
         grounded = #colliders > 0
     end
@@ -184,6 +217,13 @@ function Character:updateGrounded()
     self.collider:setFriction(self.grounded and 1 or 0)
 end
 
+-- 死亡ラインを超えたかどうか判定
+function Character:checkDeadline()
+    if self:enterCollider('deadline') then
+        self:die()
+    end
+end
+
 -- 落下しているかどうか返す
 function Character:isFalling()
     local vx, vy = self:getLinearVelocity()
@@ -192,352 +232,31 @@ end
 
 -- 着地しているかどうか返す
 function Character:isGrounded()
-    return self.grounded -- and self.groundedTime > 0.1
-end
-
--- ハシゴに接触しているかどうか返す
-function Character:inLadder()
-    return self.inLadderCount > 0
-end
-
--- ハシゴを登っているかどうか
-function Character:isClimbing()
-    return false
-end
-
--- 立つ
-function Character:stand()
-    self:gotoState('stand')
-end
-
--- 歩く
-function Character:walk(direction)
-    self:gotoState('walk', direction)
-end
-
--- ジャンプ
-function Character:jump()
-    self:gotoState 'jump'
-end
-
--- はしごを登る
-function Character:climb(direction)
-    -- はしごがあるかどうか
-    local onLadder = false
-    -- 下方向
-    do
-        local colliders = self.world:queryLine(self.x, self.y, self.x, self.y + 10, { 'ladder' })
-        if #colliders > 0 then
-            onLadder = direction == 'down'
-        end
-    end
-    -- 上方向
-    if not onLadder then
-        local colliders = self.world:queryLine(self.x, self.y, self.x, self.y - self.offsetY - 64, { 'ladder' })
-        if #colliders > 0 then
-            onLadder = direction == 'up'
-        end
-    end
-    if self:inLadder() and onLadder then
-        self:gotoState 'ladder'
-        return true
-    end
-    return false
+    return self.grounded
 end
 
 -- ダメージ
 function Character:damage(damage, direction)
-    self:gotoState('damage', damage, direction)
+    -- 無敵
+    if self.invincible then
+        return
+    end
+
+    -- ライフが０以上ならダメージを受ける
+    if self.life > 0 then
+        self.life = self.life - (damage or 1)
+    end
+
+    -- ライフが０以下になったら死ぬ
+    if self.life <= 0 then
+        self:die()
+    end
 end
 
 -- 死ぬ
 function Character:die()
-    self:gotoState 'dead'
-end
-
--- 立ちステート
-local Stand = Character:addState 'stand'
-
--- 立ち: ステート開始
-function Stand:enteredState()
-    self:resetAnimations(
-        { self.spriteType .. '_stand.png' }
-    )
-end
-
--- 立ち: ジャンプ
-function Stand:jump()
-    if self:isGrounded() then
-        self:gotoState 'jump'
-    end
-end
-
--- 歩きステート
-local Walk = Character:addState 'walk'
-
--- 歩き: ステート開始
-function Walk:enteredState(direction)
-    self:resetAnimations(
-        { self.spriteType .. '_walk1.png', self.spriteType .. '_walk2.png' },
-        0.1
-    )
-    self._walk = {}
-    self._walk.direction = direction or 'right'
-    self.scaleX = direction == 'left' and -self.baseScaleX or self.baseScaleX
-end
-
--- 歩き: ステート終了
-function Walk:exitedState()
-    self.scaleX = self.baseScaleX
-end
-
--- 歩き: 更新
-function Walk:update(dt)
-    -- 移動
-    self:applyLinearImpulse(self._walk.direction == 'right' and self.speed or -self.speed, 0)
-
-    Character.update(self, dt)
-end
-
--- 歩き: 歩く
-function Walk:walk(direction)
-    if direction ~= self._walk.direction then
-        self:gotoState('walk', direction)
-    end
-end
-
--- ハシゴステート
-local Ladder = Character:addState 'ladder'
-
--- ハシゴ: ステート開始
-function Ladder:enteredState()
-    self:resetAnimations(
-        { self.spriteType .. '_swim1.png', self.spriteType .. '_swim2.png' },
-        0.1
-    )
-    self:setLinearVelocity(0, 0)
-    self.collider:setGravityScale(0)
-    self.animation = false
-end
-
--- ハシゴ: ステート終了
-function Ladder:exitedState()
-    self.scaleX = self.baseScaleX
-    self.collider:setGravityScale(1)
-    self.animation = true
-end
-
--- ハシゴ: 更新
-function Ladder:update(dt)
-    Character.update(self, dt)
-
-    self.animation = false
-
-    -- ハシゴから離れた
-    if not self:inLadder() then
-        self:gotoState 'stand'
-    end
-end
-
--- 落下しているかどうか返す
-function Ladder:isFalling()
-    return true
-end
-
--- ハシゴ: ハシゴを登っているかどうか
-function Ladder:isClimbing()
-    return true
-end
-
--- ハシゴ: 減速
-function Ladder:reduceSpeed()
-    local vx, vy = self:getLinearVelocity()
-    self:setLinearVelocity(vx * 0.8, vy * 0.8)
-end
-
--- ハシゴ: 地面に押し付ける
-function Ladder:applyAlternativeGravity()
-end
-
--- ハシゴ: 立つ
-function Ladder:stand(...)
-end
-
--- ハシゴ: 歩く
-function Ladder:walk(direction)
-    if direction then
-        self:applyLinearImpulse(
-            direction == 'right' and self.speed or direction == 'left' and -self.speed or 0,
-            0
-        )
-        self.scaleX = direction == 'left' and -self.baseScaleX or self.baseScaleX
-        self.animation = true
-    end
-end
-
--- ハシゴ: 登る
-function Ladder:climb(direction)
-    -- 上方向
-    local onLadder = false
-    do
-        local colliders = self.world:queryLine(self.x - self.offsetY, self.y, self.x - self.offsetY, self.y - self.offsetY - 64, { 'ladder' })
-        onLadder =  #colliders > 0
-    end
-    if not onLadder then
-        local colliders = self.world:queryLine(self.x + self.offsetY, self.y, self.x + self.offsetY, self.y - self.offsetY - 64, { 'ladder' })
-        onLadder =  #colliders > 0
-    end
-
-    if not direction then
-        -- 方向なし
-    elseif direction == 'down' and self:isGrounded() and onLadder then
-        -- 着地中に下へ移動
-        self:gotoState 'stand'
-    else
-        self:applyLinearImpulse(
-            0,
-            direction == 'down' and self.speed or direction == 'up' and -self.speed or 0
-        )
-        self.animation = true
-    end
-    return true
-end
-
--- ジャンプステート
-local Jump = Character:addState 'jump'
-
--- ジャンプ: ステート開始
-function Jump:enteredState()
-    self:resetAnimations(
-        { self.spriteType .. '_up1.png', self.spriteType .. '_up2.png' },
-        0.1,
-        1,
-        false
-    )
-
-    -- ジャンプ
-    self:applyLinearImpulse(0, -self.jumpPower)
-
-    self.grounded = false
-end
-
--- 更新
-function Jump:update(dt)
-    Character.update(self, dt)
-
-    -- 着地したら立つ
-    if self:isGrounded() then
-        self:gotoState 'stand'
-    end
-end
-
--- ジャンプ: 立つ
-function Jump:stand(...)
-end
-
--- ジャンプ: 歩く
-function Jump:walk(direction)
-    if direction then
-        self:applyLinearImpulse(direction == 'right' and self.speed or -self.speed, 0)
-    end
-end
-
--- ジャンプ: ジャンプ
-function Jump:jump()
-end
-
--- 死亡ステート
-local Dead = Character:addState 'dead'
-
--- 死亡: ステート開始
-function Dead:enteredState()
-    self:resetAnimations(
-        { self.spriteType .. '_dead.png' }
-    )
     self.alive = false
+    self.onDead(self)
 end
-
--- 死亡: 立つ
-function Dead:stand()
-end
-
--- 死亡: 歩く
-function Dead:walk()
-end
-
--- 死亡: ジャンプ
-function Dead:jump()
-end
-
--- 死亡: ダメージ
-function Dead:damage()
-end
-
--- 死亡: 死ぬ
-function Dead:die()
-end
-
--- ダメージステート
-local Damage = Character:addState 'damage'
-
--- ダメージ: ステート開始
-function Damage:enteredState(damage, direction)
-    self:resetAnimations(
-        { self.spriteType .. '_dead.png' }
-    )
-
-    -- ダメージを受ける
-    self.life = self.life - (damage or 1)
-
-    -- 飛ばされる方向
-    self._damage = {}
-    self._damage.direction = direction
-
-    -- ジャンプ
-    self:applyLinearImpulse(0, -self.jumpPower * 0.75)
-    self.grounded = false
-end
-
--- ダメージ: 更新
-function Damage:update(dt)
-    -- 移動
-    local x = 0
-    if self._damage.direction == 'right' then
-        x = self.speed
-    elseif self._damage.direction == 'left' then
-        x = -self.speed
-    end
-    if x ~= 0 then
-        self:applyLinearImpulse(x, 0)
-    end
-
-    Character.update(self, dt)
-
-    -- 着地したら次へ
-    if not self:isGrounded() then
-        -- 空中
-    elseif self.life <= 0 then
-        self:die()
-    else
-        self:gotoState 'stand'
-    end
-end
-
--- ダメージ: 立つ
-function Damage:stand()
-end
-
--- ダメージ: 歩く
-function Damage:walk()
-end
-
--- ダメージ: ジャンプ
-function Damage:jump()
-end
-
--- ダメージ: ダメージ
-function Damage:damage()
-end
-
 
 return Character

@@ -9,6 +9,15 @@ local Level = class 'Level'
 
 -- クラス
 local Character = require 'Character'
+local Player = require 'Player'
+local Enemy = require 'Enemy'
+
+-- 敵クラス
+local enemyClasses = {
+    walker = require 'Walker',
+    spikey = require 'Spikey',
+    floater = require 'Floater',
+}
 
 -- コリジョンクラス
 local collisionClasses = {
@@ -142,6 +151,7 @@ function Level:initialize(path)
 
     -- エンティティ
     self.entities = {}
+    self.removes = {}
 
     -- デバッグモード
     self.debug = true
@@ -157,6 +167,7 @@ end
 function Level:update(dt)
     self.world:update(dt)
     self.map:update(dt)
+    self:removeEntities()
 end
 
 -- 描画
@@ -205,30 +216,38 @@ end
 
 -- キャラクターのスポーン
 function Level:spawnCharacter(object, spriteSheet)
-    local default = {}
-
+    -- エンティティクラス
+    local entityClass
     if object.type == 'player' then
-        default.sprite = 'playerRed'
-        default.collisionClass = 'player'
+        -- プレイヤー
+        entityClass = Player
     elseif object.type == 'enemy' then
-        default.sprite = 'playerRed'
-        default.collisionClass = 'enemy'
-    else
+        -- エネミー
+        entityClass = enemyClasses[object.properties.race or 'walker']
+    end
+
+    -- エンティティ用クラスを決定できなかったのでキャンセル
+    if entityClass == nil then
+        return
     end
 
     -- キャラクターエンティティの登録
     local entity = self:registerEntity(
-        Character {
-            spriteType = object.properties.sprite or default.sprite,
+        entityClass {
+            object = object,
+            spriteType = object.properties.sprite,
             spriteSheet = spriteSheet,
             x = object.x,
             y = object.y,
-            offsetY = 16,
-            collider = self.world:newCircleCollider(0, 0, 16),
-            collisionClass = object.properties.collisionClass or default.collisionClass,
+            offsetY = object.properties.offsetY,
+            radius = object.properties.radius,
+            collisionClass = object.properties.collisionClass,
+            speed = object.properties.speed,
+            jumpPower = object.properties.jumpPower,
             world = self.world,
-            h_align = 'center',
-            v_align = 'bottom',
+            h_align = object.properties.h_align,
+            v_align = object.properties.v_align,
+            onDead = function (entity) table.insert(self.removes, entity) end,
             debug = self.debug,
         }
     )
@@ -257,6 +276,14 @@ function Level:deregisterEntity(entity)
     for type, list in pairs(self.characters) do
         lume.remove(list, entity)
     end
+end
+
+-- 削除リストにいるエンティティを全て削除
+function Level:removeEntities()
+    for _, entity in pairs(self.removes) do
+        self:deregisterEntity(entity)
+    end
+    lume.clear(self.removes)
 end
 
 -- 全エンティティの削除
