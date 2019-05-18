@@ -11,6 +11,7 @@ local Level = class 'Level'
 local Character = require 'Character'
 local Player = require 'Player'
 local Enemy = require 'Enemy'
+local Background = require 'Background'
 
 -- 敵クラス
 local enemyClasses = {
@@ -69,6 +70,7 @@ function Level:initialize(path)
     self.right = 0
     self.top = 0
     self.bottom = 0
+    local bgIndex = nil
     local customIndex = nil
     for index, layer in ipairs(self.map.layers) do
         if layer == self.map.layers['character'] then
@@ -149,6 +151,11 @@ function Level:initialize(path)
         collision.collider:setFriction(0)
     end
 
+    -- 背景
+    if self.map.layers.ground then
+        self.background = Background(self.map.layers.ground.properties.set, self.width, self.height)
+    end
+
     -- エンティティ
     self.entities = {}
     self.removes = {}
@@ -161,6 +168,9 @@ end
 function Level:destroy()
     self:clearEntities()
     self.world:destroy()
+    if self.background then
+        self.background:destroy()
+    end
 end
 
 -- 更新
@@ -172,6 +182,10 @@ end
 
 -- 描画
 function Level:draw(x, y, scale)
+    if self.background then
+        self.background:draw()
+    end
+
     -- マップ
     self.map:draw(x, y, scale)
 

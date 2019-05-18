@@ -8,8 +8,8 @@ return {
   height = 16,
   tilewidth = 64,
   tileheight = 64,
-  nextlayerid = 4,
-  nextobjectid = 8,
+  nextlayerid = 6,
+  nextobjectid = 11,
   properties = {},
   tilesets = {
     {
@@ -1171,7 +1171,9 @@ return {
       opacity = 1,
       offsetx = 0,
       offsety = 0,
-      properties = {},
+      properties = {
+        ["set"] = 1
+      },
       encoding = "lua",
       chunks = {
         {
