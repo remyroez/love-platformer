@@ -8,8 +8,8 @@ return {
   height = 16,
   tilewidth = 64,
   tileheight = 64,
-  nextlayerid = 6,
-  nextobjectid = 11,
+  nextlayerid = 7,
+  nextobjectid = 29,
   properties = {},
   tilesets = {
     {
@@ -1281,6 +1281,307 @@ return {
     },
     {
       type = "objectgroup",
+      id = 6,
+      name = "collection",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {
+        {
+          id = 11,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 310,
+          y = 692,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "blue"
+          }
+        },
+        {
+          id = 12,
+          name = "gem",
+          type = "collection",
+          shape = "point",
+          x = 384,
+          y = 690,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "gem",
+            ["sprite"] = "blue"
+          }
+        },
+        {
+          id = 13,
+          name = "crystal",
+          type = "collection",
+          shape = "point",
+          x = 456,
+          y = 692,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "crystal",
+            ["sprite"] = "blue"
+          }
+        },
+        {
+          id = 14,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 310,
+          y = 606,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "green"
+          }
+        },
+        {
+          id = 15,
+          name = "gem",
+          type = "collection",
+          shape = "point",
+          x = 384,
+          y = 604,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "gem",
+            ["sprite"] = "green"
+          }
+        },
+        {
+          id = 16,
+          name = "crystal",
+          type = "collection",
+          shape = "point",
+          x = 456,
+          y = 606,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "crystal",
+            ["sprite"] = "green"
+          }
+        },
+        {
+          id = 17,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 316,
+          y = 526,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 18,
+          name = "gem",
+          type = "collection",
+          shape = "point",
+          x = 390,
+          y = 524,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "gem",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 19,
+          name = "crystal",
+          type = "collection",
+          shape = "point",
+          x = 462,
+          y = 526,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "crystal",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 20,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 532,
+          y = 692,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "yellow"
+          }
+        },
+        {
+          id = 21,
+          name = "gem",
+          type = "collection",
+          shape = "point",
+          x = 606,
+          y = 690,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "gem",
+            ["sprite"] = "yellow"
+          }
+        },
+        {
+          id = 22,
+          name = "crystal",
+          type = "collection",
+          shape = "point",
+          x = 678,
+          y = 692,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "crystal",
+            ["sprite"] = "yellow"
+          }
+        },
+        {
+          id = 23,
+          name = "disc",
+          type = "collection",
+          shape = "point",
+          x = 34,
+          y = 690,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "disc",
+            ["sprite"] = "green"
+          }
+        },
+        {
+          id = 24,
+          name = "puzzle",
+          type = "collection",
+          shape = "point",
+          x = 108,
+          y = 688,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "disc",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 25,
+          name = "key",
+          type = "collection",
+          shape = "point",
+          x = 44,
+          y = 606,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "key",
+            ["sprite"] = "green"
+          }
+        },
+        {
+          id = 26,
+          name = "key",
+          type = "collection",
+          shape = "point",
+          x = 118,
+          y = 604,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "key",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 27,
+          name = "puzzle",
+          type = "collection",
+          shape = "point",
+          x = 44,
+          y = 524,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "puzzle",
+            ["sprite"] = "green"
+          }
+        },
+        {
+          id = 28,
+          name = "puzzle",
+          type = "collection",
+          shape = "point",
+          x = 118,
+          y = 522,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "puzzle",
+            ["sprite"] = "red"
+          }
+        }
+      }
+    },
+    {
+      type = "objectgroup",
       id = 3,
       name = "character",
       visible = true,
@@ -1365,8 +1666,8 @@ return {
           name = "floater",
           type = "enemy",
           shape = "point",
-          x = 415,
-          y = 639,
+          x = 1827,
+          y = 471,
           width = 0,
           height = 0,
           rotation = 0,
