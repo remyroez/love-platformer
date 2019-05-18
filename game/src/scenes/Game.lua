@@ -27,9 +27,9 @@ function Game:load(state, ...)
 end
 
 -- ステート開始
-function Game:entered(state, ...)
+function Game:entered(state, path, ...)
     -- レベル
-    state.level = Level('assets/prototype.lua')
+    state.level = Level(path)
     state.level:setDebug(self.debugMode)
     state.level:setupCharacters(self.spriteSheet)
     state.level:setupItems(self.spriteSheet)
