@@ -74,7 +74,7 @@ end
 
 -- マウス入力
 function Title:mousepressed(state, x, y, button, istouch, presses)
-    self:keypressed('space')
+    self:keypressed(state, 'space')
 end
 
 return Title
