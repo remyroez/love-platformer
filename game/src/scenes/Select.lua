@@ -133,8 +133,10 @@ function Select:draw(state)
     )
 
     -- クリア表示
-    if self.clearedLevel >= self.selectedLevel then
-        lg.printf('CLEARED', self.font16, state.offset, self.height * 0.7 - self.font16:getHeight() * 0.5, self.width, 'center')
+    if self.clearedLevelScores[self.selectedLevel] ~= nil then
+        local x, y = state.offset, self.height * 0.65 - self.font16:getHeight() * 0.5
+        lg.printf('best', self.font16, x, y, self.width, 'center')
+        lg.printf(self.clearedLevelScores[self.selectedLevel], self.font32, x, y + self.font16:getHeight() * 1.5, self.width, 'center')
     end
 
     -- キー入力表示
