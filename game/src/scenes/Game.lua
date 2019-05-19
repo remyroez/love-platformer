@@ -270,7 +270,34 @@ function Game:draw(state)
         end
     end
 
-    -- 獲得アイテム
+    -- トップバー
+    do
+        local topbarHeight = 40
+
+        -- 背景
+        lg.setColor(0, 0, 0, 0.75)
+        lg.rectangle('fill', 0, 0, self.width, topbarHeight)
+
+        -- レベル
+        lg.setColor(1, 1, 1, 1)
+        lg.printf('level. ' .. self.selectedLevel, self.font16, 16, topbarHeight / 2 - self.font16:getHeight() * 0.5, self.width, 'left')
+
+        local x, y = self.width - 32, topbarHeight / 2
+        for _, name in pairs(drawableItems) do
+            if state.level.collection[name] then
+                local collection = state.level.collection[name]
+                for __, spriteType in pairs(drawableItems.colors) do
+                    if collection[spriteType] then
+                        local num = collection[spriteType]
+                        local w, h = self:drawSprite(name .. drawableItems[spriteType] .. '.png', x, y)
+                        x = x - w - 16
+                    end
+                end
+            end
+        end
+    end
+
+    -- ボトムバー
     do
         local bottombarHeight = 40
 
