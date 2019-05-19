@@ -14,11 +14,17 @@ local Character = require 'Character'
 local Input = require 'Input'
 local Camera = require 'Camera'
 local Level = require 'Level'
+local Timer = require 'Timer'
 
 -- エイリアス
 local lg = love.graphics
 local lk = love.keyboard
 local lm = love.mouse
+
+-- 次のステートへ
+function Game:nextState(...)
+    self:gotoState('select', ...)
+end
 
 -- 読み込み
 function Game:load(state, ...)
@@ -79,10 +85,33 @@ function Game:entered(state, path, ...)
             state.input:bind(key, name)
         end
     end
+
+    -- 演出
+    state.timer = Timer()
+    state.busy = true
+    state.pause = false
+    state.visiblePressAnyKey = false
+    state.fade = { 1, 1, 1, 1 }
+    state.alpha = 0
+    state.gameover = false
+
+    -- 開始演出
+    state.timer:tween(
+        0.5,
+        state,
+        { fade = { [4] = 0 } },
+        'in-out-cubic',
+        function ()
+            -- 操作可能
+            state.busy = false
+            state.pause = false
+        end
+    )
 end
 
 -- ステート終了
 function Game:exited(state, ...)
+    state.timer:destroy()
     state.input:unbindAll()
     state.level:destroy()
 end
@@ -90,12 +119,46 @@ end
 -- 更新
 function Game:update(state, dt)
     -- プレイヤー操作
-    if state.player.alive then
+    if not state.busy and state.player.alive then
         self:controlPlayer(state)
     end
 
-    -- レベル更新
-    state.level:update(dt)
+    -- 更新
+    if state.pause then
+        -- ポーズ中は更新しない
+    else
+        -- レベル更新
+        state.level:update(dt)
+
+        -- ゲームオーバー判定
+        if not state.gameover and not state.player.alive then
+            -- まだゲームオーバーじゃなくてプレイヤーが死んだとき
+            state.gameover = true
+
+            -- 開始演出
+            state.busy = true
+            state.timer:tween(
+                0.5,
+                state,
+                { alpha = 1 },
+                'in-out-cubic',
+                function ()
+                    -- キー入力表示の点滅
+                    state.visiblePressAnyKey = true
+                    state.timer:every(
+                        0.5,
+                        function ()
+                            state.visiblePressAnyKey = not state.visiblePressAnyKey
+                        end
+                    )
+
+                    -- 操作可能
+                    state.busy = false
+                    state.pause = true
+                end
+            )
+        end
+    end
 
     -- カメラ更新
     state.camera:update(dt)
@@ -104,6 +167,9 @@ function Game:update(state, dt)
     if state.player.alive then
         state.camera:follow(state.player:getPosition())
     end
+
+    -- タイマー更新
+    state.timer:update(dt)
 end
 
 -- 描画
@@ -122,6 +188,25 @@ function Game:draw(state)
 
     -- カメラ演出描画
     state.camera:draw()
+
+    -- ゲームオーバー表示
+    if state.gameover and state.alpha > 0 then
+        lg.setColor(0, 0, 0, state.alpha * 0.75)
+        lg.rectangle('fill', 0, 0, self.width, self.height)
+        lg.setColor(1, 0, 0, state.alpha)
+        lg.printf('GAMEOVER', self.font64, 0, self.height * 0.4 - self.font64:getHeight() * 0.5, self.width, 'center')
+
+        -- キー入力表示
+        if not state.busy and state.visiblePressAnyKey then
+            lg.printf('PRESS ANY KEY', self.font16, 0, self.height * 0.7 - self.font16:getHeight() * 0.5, self.width, 'center')
+        end
+    end
+
+    -- フェード
+    if state.fade[4] > 0 then
+        lg.setColor(unpack(state.fade))
+        lg.rectangle('fill', 0, 0, self.width, self.height)
+    end
 
     -- デバッグ描画
     if self.debugMode then
@@ -147,10 +232,31 @@ end
 
 -- キー入力
 function Game:keypressed(state, key, scancode, isrepeat)
+    if state.busy then
+        -- 操作不可
+    elseif state.gameover then
+        -- ゲームオーバー時
+        state.busy = true
+        state.fade = { 0, 0, 0, 0 }
+        state.timer:tween(
+            0.5,
+            state,
+            { fade = { [4] = 1 } },
+            'in-out-cubic',
+            function ()
+                self:nextState('failed')
+            end
+        )
+    end
 end
 
 -- マウス入力
 function Game:mousepressed(state, x, y, button, istouch, presses)
+    if state.busy then
+        -- 操作不可
+    else
+        self:keypressed(state, 'mouse')
+    end
 end
 
 -- デバッグモードの設定

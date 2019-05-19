@@ -14,7 +14,7 @@ local lg = love.graphics
 
 -- 次のステートへ
 function Title:nextState(...)
-    self:gotoState('select', ...)
+    self:gotoState('select', 'title', ...)
 end
 
 -- 読み込み

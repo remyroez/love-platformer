@@ -30,8 +30,9 @@ function Select:load(state, ...)
 end
 
 -- 開始
-function Select:entered(state, background, bgX, ...)
-    local fromTitle = background ~= nil
+function Select:entered(state, from, background, bgX, ...)
+    local fromTitle = from == 'title'
+    local fromFailed = from == 'failed'
 
     -- タイトルから背景を引き継ぐ
     state.background = background or Background(2, self.width * 2, self.height)
@@ -43,7 +44,7 @@ function Select:entered(state, background, bgX, ...)
     -- 演出
     state.busy = true
     state.visiblePressAnyKey = true
-    state.fade = { 1, 1, 1, fromTitle and 0 or 1 }
+    state.fade = { fromFailed and 0 or 1, fromFailed and 0 or 1, fromFailed and 0 or 1, fromTitle and 0 or 1 }
     state.alpha = 0
     state.offset = 0
 
