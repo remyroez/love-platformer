@@ -139,6 +139,10 @@ function Game:exited(state, ...)
     state.timer:destroy()
     state.input:unbindAll()
     state.level:destroy()
+
+    -- ＳＥ
+    self:stopSound('clear')
+    self:stopSound('gameover')
 end
 
 -- 更新
@@ -405,6 +409,10 @@ function Game:keypressed(state, key, scancode, isrepeat)
                     self:nextState('failed')
                 end
             )
+
+            -- ＳＥ
+            self:playSound('ok')
+
         elseif key == 'r' then
             state.busy = true
             state.fade = { 1, 1, 1, 0 }
@@ -417,7 +425,11 @@ function Game:keypressed(state, key, scancode, isrepeat)
                     self:gotoState('game')
                 end
             )
+
+            -- ＳＥ
+            self:playSound('ok')
         end
+
     elseif state.cleared and key == 'return' then
         -- クリア時
         state.busy = true
@@ -442,6 +454,9 @@ function Game:keypressed(state, key, scancode, isrepeat)
                 end
             end
         )
+
+        -- ＳＥ
+        self:playSound('ok')
     end
 end
 

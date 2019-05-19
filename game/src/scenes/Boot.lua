@@ -52,6 +52,8 @@ function Boot:load(state, ...)
         damage = 'hit3.ogg',
         gem = 'coin5.ogg',
         key = 'coin1.ogg',
+        ok = 'upgrade1.ogg',
+        select = 'phaseJump5.ogg',
     }
     self.sounds = {}
     for name, path in pairs(sounds) do

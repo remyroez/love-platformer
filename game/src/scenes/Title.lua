@@ -122,6 +122,9 @@ function Title:keypressed(state, key, scancode, isrepeat)
                 self:nextState(state.background, state.bgX)
             end
         )
+
+        -- ＳＥ
+        self:playSound('ok')
     end
 end
 

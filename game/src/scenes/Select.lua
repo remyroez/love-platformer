@@ -176,6 +176,9 @@ function Select:keypressed(state, key, scancode, isrepeat)
             end
         )
 
+        -- ＳＥ
+        self:playSound('ok')
+
     elseif key == 'left' or key == 'a' then
         -- 左
         self.selectedLevel = self.selectedLevel - 1
@@ -193,6 +196,9 @@ function Select:keypressed(state, key, scancode, isrepeat)
             'select'
         )
 
+        -- ＳＥ
+        self:playSound('select')
+
     elseif key == 'right' or key == 'd' then
         -- 右
         self.selectedLevel = self.selectedLevel + 1
@@ -209,6 +215,9 @@ function Select:keypressed(state, key, scancode, isrepeat)
             'out-elastic',
             'select'
         )
+
+        -- ＳＥ
+        self:playSound('select')
     end
 end
 
