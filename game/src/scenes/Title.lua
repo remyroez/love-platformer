@@ -29,6 +29,32 @@ function Title:entered(state, ...)
 
     -- タイマー
     state.timer = Timer()
+
+    -- 演出
+    state.busy = true
+    state.visiblePressAnyKey = true
+    state.fade = { .42, .75, .89, 1 }
+    state.alpha = 0
+
+    -- 開始演出
+    state.timer:tween(
+        1,
+        state,
+        { fade = { [4] = 0 }, alpha = 1 },
+        'in-out-cubic',
+        function ()
+            -- キー入力表示の点滅
+            self.state.timer:every(
+                0.5,
+                function ()
+                    self.state.visiblePressAnyKey = not self.state.visiblePressAnyKey
+                end
+            )
+
+            -- 操作可能
+            self.state.busy = false
+        end
+    )
 end
 
 -- ステート終了
@@ -61,20 +87,42 @@ function Title:draw(state)
     end
 
     -- タイトル
+    lg.setColor(1, 1, 1, state.alpha)
     lg.printf('PLATFORMER', self.font64, 0, self.height * 0.3 - self.font64:getHeight() * 0.5, self.width, 'center')
 
-    -- タイトル
-    lg.printf('PRESS ANY KEY', self.font32, 0, self.height * 0.7 - self.font32:getHeight() * 0.5, self.width, 'center')
+    -- キー入力表示
+    if not state.busy and state.visiblePressAnyKey then
+        lg.printf('PRESS ANY KEY', self.font32, 0, self.height * 0.7 - self.font32:getHeight() * 0.5, self.width, 'center')
+    end
+
+    -- フェード
+    if state.fade[4] > 0 then
+        lg.setColor(unpack(state.fade))
+        lg.rectangle('fill', 0, 0, self.width, self.height)
+    end
 end
 
 -- キー入力
 function Title:keypressed(state, key, scancode, isrepeat)
-    self:nextState(state.background, state.bgX)
+    -- 操作不可
+    self.state.busy = true
+
+    -- 終了演出
+    state.timer:tween(
+        0.5,
+        state,
+        { alpha = 0 },
+        'in-out-cubic',
+        function ()
+            -- 演出が終わったら次へ
+            self:nextState(state.background, state.bgX)
+        end
+    )
 end
 
 -- マウス入力
 function Title:mousepressed(state, x, y, button, istouch, presses)
-    self:keypressed(state, 'space')
+    self:keypressed(state, 'mouse' .. button)
 end
 
 return Title
