@@ -435,24 +435,28 @@ return {
         {
           id = 71,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 72,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 73,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 74,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
@@ -501,24 +505,156 @@ return {
           id = 89,
           properties = {
             ["collidable"] = true
+          },
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "polyline",
+                x = 64,
+                y = 0,
+                width = 0,
+                height = 0,
+                rotation = 0,
+                visible = true,
+                polyline = {
+                  { x = 0, y = 0 },
+                  { x = -64, y = 64 },
+                  { x = 0, y = 64 },
+                  { x = 0, y = 0 }
+                },
+                properties = {
+                  ["collidable"] = true
+                }
+              }
+            }
           }
         },
         {
           id = 90,
           properties = {
             ["collidable"] = true
+          },
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "polyline",
+                x = 0,
+                y = 0,
+                width = 0,
+                height = 0,
+                rotation = 0,
+                visible = true,
+                polyline = {
+                  { x = 0, y = 0 },
+                  { x = 64, y = 64 },
+                  { x = 0, y = 64 },
+                  { x = 0, y = 0 }
+                },
+                properties = {
+                  ["collidable"] = true
+                }
+              }
+            }
           }
         },
         {
           id = 91,
           properties = {
             ["collidable"] = true
+          },
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "polyline",
+                x = 64,
+                y = 0,
+                width = 0,
+                height = 0,
+                rotation = 0,
+                visible = true,
+                polyline = {
+                  { x = 0, y = 0 },
+                  { x = -64, y = 64 },
+                  { x = 0, y = 64 },
+                  { x = 0, y = 0 }
+                },
+                properties = {
+                  ["collidable"] = true
+                }
+              }
+            }
           }
         },
         {
           id = 92,
           properties = {
             ["collidable"] = true
+          },
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "polyline",
+                x = 0,
+                y = 0,
+                width = 0,
+                height = 0,
+                rotation = 0,
+                visible = true,
+                polyline = {
+                  { x = 0, y = 0 },
+                  { x = 64, y = 64 },
+                  { x = 0, y = 64 },
+                  { x = 0, y = 0 }
+                },
+                properties = {
+                  ["collidable"] = true
+                }
+              }
+            }
           }
         },
         {
@@ -536,12 +672,14 @@ return {
         {
           id = 95,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 96,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
@@ -618,12 +756,14 @@ return {
         {
           id = 117,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 118,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
@@ -720,24 +860,28 @@ return {
         {
           id = 137,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 138,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 139,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 140,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
@@ -811,24 +955,156 @@ return {
           id = 155,
           properties = {
             ["collidable"] = true
+          },
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "polyline",
+                x = 64,
+                y = 0,
+                width = 0,
+                height = 0,
+                rotation = 0,
+                visible = true,
+                polyline = {
+                  { x = 0, y = 0 },
+                  { x = -64, y = 64 },
+                  { x = 0, y = 64 },
+                  { x = 0, y = 0 }
+                },
+                properties = {
+                  ["collidable"] = true
+                }
+              }
+            }
           }
         },
         {
           id = 156,
           properties = {
             ["collidable"] = true
+          },
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "polyline",
+                x = 0,
+                y = 0,
+                width = 0,
+                height = 0,
+                rotation = 0,
+                visible = true,
+                polyline = {
+                  { x = 0, y = 0 },
+                  { x = 64, y = 64 },
+                  { x = 0, y = 64 },
+                  { x = 0, y = 0 }
+                },
+                properties = {
+                  ["collidable"] = true
+                }
+              }
+            }
           }
         },
         {
           id = 157,
           properties = {
             ["collidable"] = true
+          },
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "polyline",
+                x = 64,
+                y = 0,
+                width = 0,
+                height = 0,
+                rotation = 0,
+                visible = true,
+                polyline = {
+                  { x = 0, y = 0 },
+                  { x = -64, y = 64 },
+                  { x = 0, y = 64 },
+                  { x = 0, y = 0 }
+                },
+                properties = {
+                  ["collidable"] = true
+                }
+              }
+            }
           }
         },
         {
           id = 158,
           properties = {
             ["collidable"] = true
+          },
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "polyline",
+                x = 0,
+                y = 0,
+                width = 0,
+                height = 0,
+                rotation = 0,
+                visible = true,
+                polyline = {
+                  { x = 0, y = 0 },
+                  { x = 64, y = 64 },
+                  { x = 0, y = 64 },
+                  { x = 0, y = 0 }
+                },
+                properties = {
+                  ["collidable"] = true
+                }
+              }
+            }
           }
         },
         {
@@ -846,12 +1122,14 @@ return {
         {
           id = 161,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 162,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
@@ -912,12 +1190,42 @@ return {
         {
           id = 183,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 184,
           properties = {
+            ["class"] = "one_way",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 188,
+          properties = {
+            ["class"] = "goal",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 189,
+          properties = {
+            ["class"] = "goal",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 190,
+          properties = {
+            ["class"] = "goal",
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 191,
+          properties = {
+            ["class"] = "goal",
             ["collidable"] = true
           }
         },
@@ -990,24 +1298,28 @@ return {
         {
           id = 203,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 204,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 205,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 206,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
@@ -1057,24 +1369,156 @@ return {
           id = 221,
           properties = {
             ["collidable"] = true
+          },
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "polyline",
+                x = 64,
+                y = 0,
+                width = 0,
+                height = 0,
+                rotation = 0,
+                visible = true,
+                polyline = {
+                  { x = 0, y = 0 },
+                  { x = -64, y = 64 },
+                  { x = 0, y = 64 },
+                  { x = 0, y = 0 }
+                },
+                properties = {
+                  ["collidable"] = true
+                }
+              }
+            }
           }
         },
         {
           id = 222,
           properties = {
             ["collidable"] = true
+          },
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "polyline",
+                x = 0,
+                y = 0,
+                width = 0,
+                height = 0,
+                rotation = 0,
+                visible = true,
+                polyline = {
+                  { x = 0, y = 0 },
+                  { x = 64, y = 64 },
+                  { x = 0, y = 64 },
+                  { x = 0, y = 0 }
+                },
+                properties = {
+                  ["collidable"] = true
+                }
+              }
+            }
           }
         },
         {
           id = 223,
           properties = {
             ["collidable"] = true
+          },
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "polyline",
+                x = 64,
+                y = 0,
+                width = 0,
+                height = 0,
+                rotation = 0,
+                visible = true,
+                polyline = {
+                  { x = 0, y = 0 },
+                  { x = -64, y = 64 },
+                  { x = 0, y = 64 },
+                  { x = 0, y = 0 }
+                },
+                properties = {
+                  ["collidable"] = true
+                }
+              }
+            }
           }
         },
         {
           id = 224,
           properties = {
             ["collidable"] = true
+          },
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "polyline",
+                x = 0,
+                y = 0,
+                width = 0,
+                height = 0,
+                rotation = 0,
+                visible = true,
+                polyline = {
+                  { x = 0, y = 0 },
+                  { x = 64, y = 64 },
+                  { x = 0, y = 64 },
+                  { x = 0, y = 0 }
+                },
+                properties = {
+                  ["collidable"] = true
+                }
+              }
+            }
           }
         },
         {
@@ -1092,12 +1536,14 @@ return {
         {
           id = 227,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 228,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
@@ -1146,12 +1592,14 @@ return {
         {
           id = 249,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 250,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         }
@@ -1268,7 +1716,7 @@ return {
             0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 242, 0, 0, 0,
+            0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 191, 0, 0, 0,
             0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
