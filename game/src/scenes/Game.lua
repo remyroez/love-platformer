@@ -21,6 +21,27 @@ local lg = love.graphics
 local lk = love.keyboard
 local lm = love.mouse
 
+-- 数を描画するアイテム
+local drawableNumItems = {
+    'jewel',
+    'gem',
+    'crystal',
+    jewel = 'Jewel',
+    gem = 'Gem',
+    crystal = 'Crystal',
+    colors = { 'red', 'green', 'blue', 'yellow' }
+}
+
+-- 獲得のみ描画するアイテム
+local drawableItems = {
+    'disc',
+    'key',
+    'puzzle',
+    green = 'Green',
+    red = 'Red',
+    colors = { 'red', 'green' }
+}
+
 -- 次のステートへ
 function Game:nextState(...)
     self:gotoState('select', ...)
@@ -249,6 +270,36 @@ function Game:draw(state)
         end
     end
 
+    -- 獲得アイテム
+    do
+        local bottombarHeight = 40
+
+        lg.setColor(0, 0, 0, 0.75)
+        lg.rectangle('fill', 0, self.height - bottombarHeight, self.width, bottombarHeight)
+
+        lg.setColor(1, 1, 1, 1)
+        local x, y = 32, self.height - bottombarHeight + bottombarHeight / 2
+        for _, name in pairs(drawableNumItems) do
+            if state.level.collection[name] then
+                local collection = state.level.collection[name]
+                for __, spriteType in pairs(drawableNumItems.colors) do
+                    if collection[spriteType] then
+                        local num = collection[spriteType]
+                        local w, h = self:drawSprite(spriteType .. drawableNumItems[name] .. '.png', x, y)
+                        lg.printf(
+                            num,
+                            self.font16,
+                            x + w * 0.5 + 8, y - self.font16:getHeight() * 0.5,
+                            self.width,
+                            'left'
+                        )
+                        x = x + w * 0.5 + 8 + self.font32:getWidth(num) + 16
+                    end
+                end
+            end
+        end
+    end
+
     -- フェード
     if state.fade[4] > 0 then
         lg.setColor(unpack(state.fade))
@@ -385,6 +436,34 @@ function Game:controlPlayer(state)
     elseif vdirection then
         state.player:climb(vdirection)
     end
+end
+
+-- スプライトの描画
+function Game:drawSprite(spriteName, x, y, w, h)
+    -- スプライトが不正なら何もしない
+    if self.spriteSheet.quad[spriteName] == nil then
+        return
+    end
+
+    -- スプライトのサイズ
+    local _, __, sw, sh = self.spriteSheet.quad[spriteName]:getViewport()
+    if w ~= nil then
+        h = w
+    end
+    w = w or sw
+    h = h or sh
+    x = x or 0
+    y = y or 0
+
+    lg.push()
+    lg.translate(x, y)
+    --lg.translate(sw / 2, sh / 2)
+    lg.scale(w / sw, h / sh)
+    lg.translate(-sw / 2, -sh / 2)
+    self.spriteSheet:draw(spriteName, 0, 0)
+    lg.pop()
+
+    return w, h
 end
 
 return Game
