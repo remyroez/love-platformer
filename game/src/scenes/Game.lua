@@ -307,8 +307,10 @@ function Game:keypressed(state, key, scancode, isrepeat)
             function ()
                 if self.clearedLevel < self.selectedLevel then
                     self.clearedLevel = self.selectedLevel
+                    self:nextState('next')
+                else
+                    self:nextState('cleared')
                 end
-                self:nextState('cleared')
             end
         )
     end

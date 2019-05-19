@@ -17,7 +17,15 @@ local levels = {
     {
         title = 'PROTOTYPE',
         path = 'assets/prototype.lua',
-    }
+    },
+    {
+        title = 'PROTOTYPE',
+        path = 'assets/prototype.lua',
+    },
+    {
+        title = 'PROTOTYPE',
+        path = 'assets/prototype.lua',
+    },
 }
 
 -- 次のステートへ
@@ -33,6 +41,15 @@ end
 function Select:entered(state, from, background, bgX, ...)
     local fromTitle = from == 'title'
     local fromFailed = from == 'failed'
+    local fromNext = from == 'next'
+
+    -- 次のレベルへ
+    if fromNext then
+        self.selectedLevel = self.selectedLevel + 1
+        if self.selectedLevel > #levels then
+            self.selectedLevel = #levels
+        end
+    end
 
     -- タイトルから背景を引き継ぐ
     state.background = background or Background(2, self.width * 2, self.height)
@@ -155,7 +172,7 @@ function Select:keypressed(state, key, scancode, isrepeat)
         -- 左
         self.selectedLevel = self.selectedLevel - 1
         if self.selectedLevel <= 0 then
-            self.selectedLevel = #levels
+            self.selectedLevel = math.min(self.clearedLevel + 1, #levels)
         end
 
         -- 演出
@@ -171,7 +188,7 @@ function Select:keypressed(state, key, scancode, isrepeat)
     elseif key == 'right' or key == 'd' then
         -- 右
         self.selectedLevel = self.selectedLevel + 1
-        if self.selectedLevel > #levels then
+        if self.selectedLevel > math.min(self.clearedLevel + 1, #levels) then
             self.selectedLevel = 1
         end
 
