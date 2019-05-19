@@ -61,8 +61,8 @@ function Game:entered(state, path, ...)
     -- レベル
     state.level = Level(state.path)
     state.level:setDebug(self.debugMode)
-    state.level:setupCharacters(self.spriteSheet)
-    state.level:setupItems(self.spriteSheet)
+    state.level:setupCharacters(self.spriteSheet, self.sounds)
+    state.level:setupItems(self.spriteSheet, self.sounds)
 
     -- ワールド
     state.world = state.level.world
@@ -129,6 +129,9 @@ function Game:entered(state, path, ...)
             state.pause = false
         end
     )
+
+    -- ＢＧＭ
+    self:playMusic('ingame')
 end
 
 -- ステート終了
@@ -136,6 +139,10 @@ function Game:exited(state, ...)
     state.timer:destroy()
     state.input:unbindAll()
     state.level:destroy()
+
+    -- ＳＥ
+    self:stopSound('clear')
+    self:stopSound('gameover')
 end
 
 -- 更新
@@ -182,6 +189,12 @@ function Game:update(state, dt)
                 end
             )
 
+            -- ＢＧＭ
+            self:stopMusic()
+
+            -- ＳＥ
+            self:playSound('clear')
+
         elseif not state.player.alive then
             -- まだゲームオーバー画面じゃなくて、プレイヤーが死んだとき
             state.gameover = true
@@ -208,6 +221,12 @@ function Game:update(state, dt)
                     state.pause = true
                 end
             )
+
+            -- ＢＧＭ
+            self:stopMusic()
+
+            -- ＳＥ
+            self:playSound('gameover')
         end
     end
 
@@ -390,6 +409,10 @@ function Game:keypressed(state, key, scancode, isrepeat)
                     self:nextState('failed')
                 end
             )
+
+            -- ＳＥ
+            self:playSound('ok')
+
         elseif key == 'r' then
             state.busy = true
             state.fade = { 1, 1, 1, 0 }
@@ -402,7 +425,11 @@ function Game:keypressed(state, key, scancode, isrepeat)
                     self:gotoState('game')
                 end
             )
+
+            -- ＳＥ
+            self:playSound('ok')
         end
+
     elseif state.cleared and key == 'return' then
         -- クリア時
         state.busy = true
@@ -427,6 +454,9 @@ function Game:keypressed(state, key, scancode, isrepeat)
                 end
             end
         )
+
+        -- ＳＥ
+        self:playSound('ok')
     end
 end
 

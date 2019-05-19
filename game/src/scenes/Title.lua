@@ -55,6 +55,9 @@ function Title:entered(state, ...)
             state.busy = false
         end
     )
+
+    -- ＢＧＭ
+    self:playMusic('outgame')
 end
 
 -- ステート終了
@@ -119,6 +122,9 @@ function Title:keypressed(state, key, scancode, isrepeat)
                 self:nextState(state.background, state.bgX)
             end
         )
+
+        -- ＳＥ
+        self:playSound('ok')
     end
 end
 

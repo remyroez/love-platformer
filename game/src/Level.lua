@@ -237,7 +237,7 @@ function Level:resizeMapCanvas(w, h, scale)
 end
 
 -- キャラクターのセットアップ
-function Level:setupCharacters(spriteSheet)
+function Level:setupCharacters(spriteSheet, sounds)
     self:removeCharacters('player')
     self:removeCharacters('enemy')
 
@@ -251,12 +251,12 @@ function Level:setupCharacters(spriteSheet)
     -- オブジェクトからキャラクター生成
     for _, object in ipairs(layer.objects) do
         -- キャラクターのスポーン
-        local entity = self:spawnCharacter(object, spriteSheet)
+        local entity = self:spawnCharacter(object, spriteSheet, sounds)
     end
 end
 
 -- キャラクターのスポーン
-function Level:spawnCharacter(object, spriteSheet)
+function Level:spawnCharacter(object, spriteSheet, sounds)
     -- エンティティクラス
     local entityClass
     local onGoal
@@ -280,6 +280,7 @@ function Level:spawnCharacter(object, spriteSheet)
             object = object,
             spriteType = object.properties.sprite,
             spriteSheet = spriteSheet,
+            sounds = sounds,
             x = object.x,
             y = object.y,
             offsetY = object.properties.offsetY,
@@ -313,7 +314,7 @@ function Level:spawnCharacter(object, spriteSheet)
 end
 
 -- アイテムのセットアップ
-function Level:setupItems(spriteSheet)
+function Level:setupItems(spriteSheet, sounds)
     self:removeCharacters('collection')
 
     -- character レイヤー
@@ -326,18 +327,19 @@ function Level:setupItems(spriteSheet)
     -- オブジェクトからキャラクター生成
     for _, object in ipairs(layer.objects) do
         -- キャラクターのスポーン
-        local entity = self:spawnItem(object, spriteSheet)
+        local entity = self:spawnItem(object, spriteSheet, sounds)
     end
 end
 
 -- アイテムのスポーン
-function Level:spawnItem(object, spriteSheet)
+function Level:spawnItem(object, spriteSheet, sounds)
     local entity = self:registerEntity(
         Item {
             object = object,
             item = object.properties.item,
             spriteType = object.properties.sprite,
             spriteSheet = spriteSheet,
+            sounds = sounds,
             x = object.x,
             y = object.y,
             offsetY = object.properties.offsetY,

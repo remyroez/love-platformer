@@ -118,6 +118,9 @@ function Float:update(dt)
     if player then
         -- 見つかったので追跡
         self:gotoState('goto', player)
+
+        -- ＳＥ
+        self:playSound('floaterOn')
     end
 end
 
@@ -197,6 +200,9 @@ function Goto:update(dt)
     if dist < self.radius * 2 then
         -- 到着したので浮きに戻る
         self:gotoState('float')
+
+        -- ＳＥ
+        self:playSound('floaterOff')
     end
 end
 
@@ -260,6 +266,9 @@ function Damage:enteredState(damage, direction)
             end
         )
     end
+
+    -- ＳＥ
+    self:playSound('attack')
 end
 
 -- ダメージ: ダメージ

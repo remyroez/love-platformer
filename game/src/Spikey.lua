@@ -179,6 +179,9 @@ function Damage:enteredState(damage, direction)
             end
         )
     end
+
+    -- ＳＥ
+    self:playSound('attack')
 end
 
 -- ダメージ: ダメージ

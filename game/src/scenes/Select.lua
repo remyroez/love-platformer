@@ -84,6 +84,9 @@ function Select:entered(state, from, background, bgX, ...)
             state.busy = false
         end
     )
+
+    -- ＢＧＭ
+    self:playMusic('outgame')
 end
 
 -- 終了
@@ -95,6 +98,9 @@ function Select:exited(state, ...)
     -- 背景開放
     state.background:destroy()
     state.background = nil
+
+    -- ＢＧＭ
+    self:stopMusic()
 end
 
 -- 更新
@@ -170,6 +176,9 @@ function Select:keypressed(state, key, scancode, isrepeat)
             end
         )
 
+        -- ＳＥ
+        self:playSound('ok')
+
     elseif key == 'left' or key == 'a' then
         -- 左
         self.selectedLevel = self.selectedLevel - 1
@@ -187,6 +196,9 @@ function Select:keypressed(state, key, scancode, isrepeat)
             'select'
         )
 
+        -- ＳＥ
+        self:playSound('select')
+
     elseif key == 'right' or key == 'd' then
         -- 右
         self.selectedLevel = self.selectedLevel + 1
@@ -203,6 +215,9 @@ function Select:keypressed(state, key, scancode, isrepeat)
             'out-elastic',
             'select'
         )
+
+        -- ＳＥ
+        self:playSound('select')
     end
 end
 

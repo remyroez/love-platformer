@@ -11,6 +11,7 @@ Character:include(require 'SpriteRenderer')
 Character:include(require 'Transform')
 Character:include(require 'Collider')
 Character:include(require 'Animation')
+Character:include(require 'SoundPlayer')
 
 -- 初期化
 function Character:initialize(args)
@@ -24,6 +25,9 @@ function Character:initialize(args)
 
     -- Animation 初期化
     self:initializeAnimation()
+
+    -- SoundPlayer 初期化
+    self:initializeSoundPlayer(args.sounds)
 
     -- スプライト及びステート
     self.spriteType = args.spriteType or 'playerRed'
