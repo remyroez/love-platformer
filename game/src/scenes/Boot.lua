@@ -29,6 +29,7 @@ function Boot:load(state, ...)
     self.font64 = lg.newFont(fontPath, 64)
     self.font32 = lg.newFont(fontPath, 32)
     self.font16 = lg.newFont(fontPath, 16)
+    self.font8 = lg.newFont(fontPath, 8)
 
     self.selectedLevel = 1
     self.clearedLevel = 0
