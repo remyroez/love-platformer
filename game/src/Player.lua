@@ -375,7 +375,11 @@ function Jump:enteredState()
     -- ジャンプ
     self:applyLinearImpulse(0, -self.jumpPower)
 
+    -- 空中へ
     self.grounded = false
+
+    -- ＳＥ
+    self:playSound('jump')
 end
 
 -- 更新
@@ -464,6 +468,9 @@ function Damage:enteredState(damage, direction)
     -- ジャンプ
     self:applyLinearImpulse(0, -self.jumpPower * 0.75)
     self.grounded = false
+
+    -- ＳＥ
+    self:playSound('damage')
 end
 
 -- ダメージ: 更新

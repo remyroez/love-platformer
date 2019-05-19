@@ -47,6 +47,9 @@ function Boot:load(state, ...)
     local sounds = {
         clear = 'Polka ident.ogg',
         gameover = 'Serious ident.ogg',
+        jump = 'jump3.ogg',
+        attack = 'jump2.ogg',
+        damage = 'hit3.ogg',
     }
     self.sounds = {}
     for name, path in pairs(sounds) do
