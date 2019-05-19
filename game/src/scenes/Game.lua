@@ -231,7 +231,8 @@ function Game:draw(state)
 
         -- キー入力表示
         if not state.busy and state.visiblePressAnyKey then
-            lg.printf('PRESS ENTER to LEVEL SELECT', self.font16, 0, self.height * 0.7 - self.font16:getHeight() * 0.5, self.width, 'center')
+            lg.printf('PRESS R to RETRY', self.font16, 0, self.height * 0.7 - self.font16:getHeight() * 0.5, self.width, 'center')
+            lg.printf('PRESS ENTER to LEVEL SELECTION', self.font16, 0, self.height * 0.7 - self.font16:getHeight() * 0.5 + self.font16:getHeight() * 1.5, self.width, 'center')
         end
     elseif state.cleared and state.alpha > 0 then
         -- 暗転
@@ -244,7 +245,7 @@ function Game:draw(state)
 
         -- キー入力表示
         if not state.busy and state.visiblePressAnyKey then
-            lg.printf('PRESS ENTER to LEVEL SELECT', self.font16, 0, self.height * 0.7 - self.font16:getHeight() * 0.5, self.width, 'center')
+            lg.printf('PRESS ENTER to LEVEL SELECTION', self.font16, 0, self.height * 0.7 - self.font16:getHeight() * 0.5, self.width, 'center')
         end
     end
 
@@ -282,19 +283,33 @@ end
 function Game:keypressed(state, key, scancode, isrepeat)
     if state.busy then
         -- 操作不可
-    elseif state.gameover and key == 'return' then
+    elseif state.gameover then
         -- ゲームオーバー時
-        state.busy = true
-        state.fade = { 0, 0, 0, 0 }
-        state.timer:tween(
-            0.5,
-            state,
-            { fade = { [4] = 1 } },
-            'in-out-cubic',
-            function ()
-                self:nextState('failed')
-            end
-        )
+        if key == 'return' then
+            state.busy = true
+            state.fade = { 0, 0, 0, 0 }
+            state.timer:tween(
+                0.5,
+                state,
+                { fade = { [4] = 1 } },
+                'in-out-cubic',
+                function ()
+                    self:nextState('failed')
+                end
+            )
+        elseif key == 'r' then
+            state.busy = true
+            state.fade = { 1, 1, 1, 0 }
+            state.timer:tween(
+                0.5,
+                state,
+                { fade = { [4] = 1 } },
+                'in-out-cubic',
+                function ()
+                    self:gotoState('game')
+                end
+            )
+        end
     elseif state.cleared and key == 'return' then
         -- クリア時
         state.busy = true
