@@ -50,6 +50,8 @@ function Boot:load(state, ...)
         jump = 'jump3.ogg',
         attack = 'jump2.ogg',
         damage = 'hit3.ogg',
+        floaterOn = 'creature4.ogg',
+        floaterOff = 'creature3.ogg',
         gem = 'coin5.ogg',
         key = 'coin1.ogg',
         ok = 'upgrade1.ogg',
