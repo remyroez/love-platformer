@@ -47,6 +47,9 @@ function Player:initialize(args)
             elseif collider_2.collision_class == 'ladder' then
                 -- ハシゴは当たり判定なし
                 contact:setEnabled(false)
+            elseif collider_2.collision_class == 'goal' then
+                -- ゴールは当たり判定なし
+                contact:setEnabled(false)
             end
         end
     )
@@ -65,6 +68,7 @@ function Player:preUpdate(dt)
         self:checkEnemy()
         self:checkDamage()
         self:checkItem()
+        self:checkGoal()
     end
 end
 
@@ -129,6 +133,17 @@ function Player:checkItem()
         local item = data.collider:getObject()
         if item and not item.got then
             item:get()
+        end
+    end
+end
+
+-- ゴールチェック
+function Player:checkGoal()
+    if self:enterCollider('goal') then
+        if self.onGoal then
+            self.onGoal(self)
+            self.onGoal = nil
+            self.invincible = true
         end
     end
 end

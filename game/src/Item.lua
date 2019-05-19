@@ -35,6 +35,7 @@ function Item:initialize(args)
     self.spriteName = self:getCurrentSpriteName()
     self.color = args.color or { 1, 1, 1, 1 }
     self.radius = args.radius or 16
+    self.score = args.score or 0
     self.world = args.world
     self.got = false
     self.visible = true

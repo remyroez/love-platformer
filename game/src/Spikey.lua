@@ -160,7 +160,9 @@ function Damage:enteredState(damage, direction)
 
         -- 退場
         self.leave = true
-        --self:setColliderActive(false)
+
+        -- 退場時
+        self.onDying(self)
     else
         -- しばらく点滅して無敵
         self.invincible = true

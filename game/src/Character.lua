@@ -39,6 +39,7 @@ function Character:initialize(args)
     self.jumpPower = args.jumpPower or 1000
     self.attack = args.attack or 1
     self.life = args.life or 1
+    self.score = args.score or 0
     self.alive = true
     self.visible = true
     self.animation = true
@@ -46,7 +47,9 @@ function Character:initialize(args)
     self.invincible = false
     self.leave = false
 
+    self.onDying = args.onDying or function () end
     self.onDead = args.onDead or function () end
+    self.onGoal = args.onGoal or function () end
 
     -- SpriteRenderer 初期化
     self:initializeSpriteRenderer(args.spriteSheet)
@@ -249,6 +252,7 @@ function Character:damage(damage, direction)
 
     -- ライフが０以下になったら死ぬ
     if self.life <= 0 then
+        self.onDying(self)
         self:die()
     end
 end
