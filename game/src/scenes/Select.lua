@@ -114,6 +114,11 @@ function Select:draw(state)
         'center'
     )
 
+    -- クリア表示
+    if self.clearedLevel >= self.selectedLevel then
+        lg.printf('CLEARED', self.font16, state.offset, self.height * 0.7 - self.font16:getHeight() * 0.5, self.width, 'center')
+    end
+
     -- キー入力表示
     if not state.busy and state.visiblePressAnyKey then
         lg.printf('left/right/enter', self.font8, 0, self.height * 0.5 - self.font8:getHeight() * 0.5, self.width, 'center')
