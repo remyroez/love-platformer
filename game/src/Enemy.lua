@@ -12,6 +12,7 @@ function Enemy:initialize(args)
     -- デフォルト値
     args.spriteType = args.spriteType or 'enemy'
     args.collisionClass = args.collisionClass or 'enemy'
+    args.score = args.score or 100
 
     -- 親クラス初期化
     Character.initialize(self, args)

@@ -282,7 +282,20 @@ function Game:draw(state)
         lg.setColor(1, 1, 1, 1)
         lg.printf('level. ' .. self.selectedLevel, self.font16, 16, topbarHeight / 2 - self.font16:getHeight() * 0.5, self.width, 'left')
 
-        local x, y = self.width - 32, topbarHeight / 2
+        -- 得点
+        lg.printf(state.level.score, self.font16, 0, topbarHeight / 2 - self.font16:getHeight() * 0.5, self.width, 'right')
+
+        local x, y = self.width * 0.5, topbarHeight / 2
+        for _, name in pairs(drawableItems) do
+            if state.level.collection[name] then
+                local collection = state.level.collection[name]
+                for __, spriteType in pairs(drawableItems.colors) do
+                    if collection[spriteType] then
+                        x = x - (36 + 16) / 2
+                    end
+                end
+            end
+        end
         for _, name in pairs(drawableItems) do
             if state.level.collection[name] then
                 local collection = state.level.collection[name]
@@ -290,7 +303,7 @@ function Game:draw(state)
                     if collection[spriteType] then
                         local num = collection[spriteType]
                         local w, h = self:drawSprite(name .. drawableItems[spriteType] .. '.png', x, y)
-                        x = x - w - 16
+                        x = x + 36 + 16
                     end
                 end
             end
@@ -298,6 +311,7 @@ function Game:draw(state)
     end
 
     -- ボトムバー
+    --[[
     do
         local bottombarHeight = 40
 
@@ -326,6 +340,7 @@ function Game:draw(state)
             end
         end
     end
+    --]]
 
     -- フェード
     if state.fade[4] > 0 then
@@ -398,6 +413,12 @@ function Game:keypressed(state, key, scancode, isrepeat)
             { fade = { [4] = 1 } },
             'in-out-cubic',
             function ()
+                -- ハイスコア更新
+                if self.clearedLevelScores[self.selectedLevel] == nil or state.level.score > self.clearedLevelScores[self.selectedLevel] then
+                    self.clearedLevelScores[self.selectedLevel] = state.level.score
+                end
+
+                -- クリア済み判定
                 if self.clearedLevel < self.selectedLevel then
                     self.clearedLevel = self.selectedLevel
                     self:nextState('next')

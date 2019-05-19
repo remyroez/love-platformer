@@ -51,6 +51,13 @@ local collisionClasses = {
     deadline = {},
 }
 
+-- アイテム別のスコア
+local itemScores = {
+    jewel = 10,
+    gem = 10,
+    crystal = 100,
+}
+
 -- 初期化
 function Level:initialize(path)
     -- ワールド作成
@@ -167,6 +174,9 @@ function Level:initialize(path)
     self.entities = {}
     self.removes = {}
 
+    -- スコア
+    self.score = 0
+
     -- クリアフラグ
     self.cleared = false
 
@@ -280,7 +290,13 @@ function Level:spawnCharacter(object, spriteSheet)
             world = self.world,
             h_align = object.properties.h_align,
             v_align = object.properties.v_align,
-            onDead = function (entity) table.insert(self.removes, entity) end,
+            score = object.properties.score,
+            onDying = function (entity)
+                self.score = self.score + entity.score
+            end,
+            onDead = function (entity)
+                table.insert(self.removes, entity)
+            end,
             onGoal = onGoal,
             debug = self.debug,
         }
@@ -330,6 +346,7 @@ function Level:spawnItem(object, spriteSheet)
             collisionClass = object.properties.collisionClass,
             h_align = object.properties.h_align,
             v_align = object.properties.v_align,
+            score = object.properties.score or itemScores[object.properties.item],
             onGet = function (entity) self:collectItem(entity) end,
             onCollected = function (entity) table.insert(self.removes, entity) end,
             debug = self.debug,
@@ -403,6 +420,8 @@ end
 
 -- アイテムの獲得
 function Level:collectItem(item)
+    self.score = self.score + item.score
+
     if self.collection[item.item] == nil then
         self.collection[item.item] = {}
     end

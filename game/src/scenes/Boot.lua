@@ -31,8 +31,11 @@ function Boot:load(state, ...)
     self.font16 = lg.newFont(fontPath, 16)
     self.font8 = lg.newFont(fontPath, 8)
 
+    -- レベル関連
     self.selectedLevel = 1
     self.clearedLevel = 0
+    self.clearedLevelScores = {}
+    self.collectedItems = {}
 end
 
 -- 更新
