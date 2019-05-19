@@ -28,8 +28,11 @@ end
 
 -- ステート開始
 function Game:entered(state, path, ...)
+    -- レベルのパス
+    state.path = state.path or path
+
     -- レベル
-    state.level = Level(path)
+    state.level = Level(state.path)
     state.level:setDebug(self.debugMode)
     state.level:setupCharacters(self.spriteSheet)
     state.level:setupItems(self.spriteSheet)
