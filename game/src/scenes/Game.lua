@@ -62,7 +62,7 @@ function Game:entered(state, path, ...)
     state.level = Level(state.path)
     state.level:setDebug(self.debugMode)
     state.level:setupCharacters(self.spriteSheet, self.sounds)
-    state.level:setupItems(self.spriteSheet)
+    state.level:setupItems(self.spriteSheet, self.sounds)
 
     -- ワールド
     state.world = state.level.world

@@ -10,6 +10,7 @@ Item:include(require 'Rectangle')
 Item:include(require 'SpriteRenderer')
 Item:include(require 'Transform')
 Item:include(require 'Collider')
+Item:include(require 'SoundPlayer')
 
 -- 一部のスプライト名
 local itemColor = {
@@ -25,6 +26,9 @@ function Item:initialize(args)
 
     -- オブジェクト
     self.object = args.object
+
+    -- SoundPlayer 初期化
+    self:initializeSoundPlayer(args.sounds)
 
     -- スプライト及びステート
     self.item = args.item or 'jewel'
@@ -135,6 +139,11 @@ function Item:getEmptySpriteName()
     return nil
 end
 
+-- 取得時のＳＥ名
+function Item:getCollectSoundName()
+    return 'gem'
+end
+
 -- 取得（取った瞬間）
 function Item:get()
     -- 獲得済みなら何もしない
@@ -158,6 +167,9 @@ function Item:get()
     )
     self.collider:setGravityScale(1)
     self:applyLinearImpulse(0, -300)
+
+    -- ＳＥ
+    self:playSound(self:getCollectSoundName())
 end
 
 -- 取得（獲得した）
@@ -218,6 +230,11 @@ function Disc:getEmptySpriteName()
     return 'outlineDisc_alt.png'
 end
 
+-- ディスク: 取得時のＳＥ名
+function Disc:getCollectSoundName()
+    return 'key'
+end
+
 -- キーステート
 local Key = Item:addState 'key'
 
@@ -232,6 +249,11 @@ function Key:getEmptySpriteName()
     return 'outlineKey.png'
 end
 
+-- キー: 取得時のＳＥ名
+function Key:getCollectSoundName()
+    return 'key'
+end
+
 -- パズルステート
 local Puzzle = Item:addState 'puzzle'
 
@@ -244,6 +266,11 @@ end
 -- パズル: 空のスプライト名
 function Puzzle:getEmptySpriteName()
     return 'outlinePuzzle.png'
+end
+
+-- パズル: 取得時のＳＥ名
+function Puzzle:getCollectSoundName()
+    return 'key'
 end
 
 return Item
