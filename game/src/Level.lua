@@ -33,6 +33,7 @@ local collisionClasses = {
     'ladder',
     'platform',
     'one_way',
+    'goal',
     'deadline',
 
     -- オプション
@@ -40,12 +41,13 @@ local collisionClasses = {
     player = {},
     enemy = { ignores = { 'frame' } },
     friend = { ignores = { 'frame' } },
-    collection = {},
-    damage = {},
+    collection = { ignores = { 'enemy' } },
+    damage = { ignores = { 'enemy' } },
     object = {},
-    ladder = {},
+    ladder = { ignores = { 'enemy' } },
     platform = {},
     one_way = {},
+    goal = { ignores = { 'enemy' } },
     deadline = {},
 }
 
@@ -165,6 +167,9 @@ function Level:initialize(path)
     self.entities = {}
     self.removes = {}
 
+    -- クリアフラグ
+    self.cleared = false
+
     -- デバッグモード
     self.debug = true
 end
@@ -244,9 +249,11 @@ end
 function Level:spawnCharacter(object, spriteSheet)
     -- エンティティクラス
     local entityClass
+    local onGoal
     if object.type == 'player' then
         -- プレイヤー
         entityClass = Player
+        onGoal = function (entity) self.cleared = true end
     elseif object.type == 'enemy' then
         -- エネミー
         entityClass = enemyClasses[object.properties.race or 'walker']
@@ -274,6 +281,7 @@ function Level:spawnCharacter(object, spriteSheet)
             h_align = object.properties.h_align,
             v_align = object.properties.v_align,
             onDead = function (entity) table.insert(self.removes, entity) end,
+            onGoal = onGoal,
             debug = self.debug,
         }
     )

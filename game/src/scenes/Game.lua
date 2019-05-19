@@ -94,6 +94,7 @@ function Game:entered(state, path, ...)
     state.fade = { 1, 1, 1, 1 }
     state.alpha = 0
     state.gameover = false
+    state.cleared = false
 
     -- 開始演出
     state.timer:tween(
@@ -119,7 +120,7 @@ end
 -- 更新
 function Game:update(state, dt)
     -- プレイヤー操作
-    if not state.busy and state.player.alive then
+    if state.player.alive then
         self:controlPlayer(state)
     end
 
@@ -130,12 +131,41 @@ function Game:update(state, dt)
         -- レベル更新
         state.level:update(dt)
 
-        -- ゲームオーバー判定
-        if not state.gameover and not state.player.alive then
-            -- まだゲームオーバーじゃなくてプレイヤーが死んだとき
+        -- クリア／ゲームオーバー判定
+        if state.cleared or state.gameover then
+            -- クリア／ゲームオーバー済み
+        elseif state.level.cleared then
+            -- まだクリア画面じゃなくて、レベルクリアしたとき
+            state.cleared = true
+
+            -- クリア演出
+            state.busy = true
+            state.timer:tween(
+                0.5,
+                state,
+                { alpha = 1 },
+                'in-out-cubic',
+                function ()
+                    -- キー入力表示の点滅
+                    state.visiblePressAnyKey = true
+                    state.timer:every(
+                        0.5,
+                        function ()
+                            state.visiblePressAnyKey = not state.visiblePressAnyKey
+                        end
+                    )
+
+                    -- 操作可能
+                    state.busy = false
+                    state.pause = true
+                end
+            )
+
+        elseif not state.player.alive then
+            -- まだゲームオーバー画面じゃなくて、プレイヤーが死んだとき
             state.gameover = true
 
-            -- 開始演出
+            -- ゲームオーバー演出
             state.busy = true
             state.timer:tween(
                 0.5,
@@ -189,16 +219,32 @@ function Game:draw(state)
     -- カメラ演出描画
     state.camera:draw()
 
-    -- ゲームオーバー表示
+    -- クリア／ゲームオーバー表示
     if state.gameover and state.alpha > 0 then
+        -- 暗転
         lg.setColor(0, 0, 0, state.alpha * 0.75)
         lg.rectangle('fill', 0, 0, self.width, self.height)
+
+        -- ゲームオーバー
         lg.setColor(1, 0, 0, state.alpha)
         lg.printf('GAMEOVER', self.font64, 0, self.height * 0.4 - self.font64:getHeight() * 0.5, self.width, 'center')
 
         -- キー入力表示
         if not state.busy and state.visiblePressAnyKey then
-            lg.printf('PRESS ANY KEY', self.font16, 0, self.height * 0.7 - self.font16:getHeight() * 0.5, self.width, 'center')
+            lg.printf('PRESS ENTER to LEVEL SELECT', self.font16, 0, self.height * 0.7 - self.font16:getHeight() * 0.5, self.width, 'center')
+        end
+    elseif state.cleared and state.alpha > 0 then
+        -- 暗転
+        lg.setColor(1, 1, 1, state.alpha * 0.75)
+        lg.rectangle('fill', 0, 0, self.width, self.height)
+
+        -- クリア
+        lg.setColor(0, 0, 0, state.alpha)
+        lg.printf('LEVEL CLEAR!', self.font64, 0, self.height * 0.4 - self.font64:getHeight() * 0.5, self.width, 'center')
+
+        -- キー入力表示
+        if not state.busy and state.visiblePressAnyKey then
+            lg.printf('PRESS ENTER to LEVEL SELECT', self.font16, 0, self.height * 0.7 - self.font16:getHeight() * 0.5, self.width, 'center')
         end
     end
 
@@ -216,6 +262,8 @@ end
 
 -- デバッグ描画
 function Game:drawDebug(state)
+    lg.setColor(1, 1, 1, 1)
+
     local x, y = 0, 0
     for item, t in pairs(state.level.collection) do
         for spriteType, num in pairs(t) do
@@ -234,7 +282,7 @@ end
 function Game:keypressed(state, key, scancode, isrepeat)
     if state.busy then
         -- 操作不可
-    elseif state.gameover then
+    elseif state.gameover and key == 'return' then
         -- ゲームオーバー時
         state.busy = true
         state.fade = { 0, 0, 0, 0 }
@@ -247,6 +295,22 @@ function Game:keypressed(state, key, scancode, isrepeat)
                 self:nextState('failed')
             end
         )
+    elseif state.cleared and key == 'return' then
+        -- クリア時
+        state.busy = true
+        state.fade = { 1, 1, 1, 0 }
+        state.timer:tween(
+            0.5,
+            state,
+            { fade = { [4] = 1 } },
+            'in-out-cubic',
+            function ()
+                if self.clearedLevel < self.selectedLevel then
+                    self.clearedLevel = self.selectedLevel
+                end
+                self:nextState('cleared')
+            end
+        )
     end
 end
 
@@ -255,7 +319,7 @@ function Game:mousepressed(state, x, y, button, istouch, presses)
     if state.busy then
         -- 操作不可
     else
-        self:keypressed(state, 'mouse')
+        self:keypressed(state, 'return')
     end
 end
 
@@ -273,13 +337,17 @@ function Game:controlPlayer(state)
     local vdirection
 
     -- 移動判定
-    if state.input:down('left') then
+    if state.busy then
+        -- 操作不可
+    elseif state.input:down('left') then
         direction = 'left'
     elseif state.input:down('right') then
         direction = 'right'
     end
 
-    if state.input:down('up') then
+    if state.busy then
+        -- 操作不可
+    elseif state.input:down('up') then
         vdirection = 'up'
     elseif state.input:down('down') then
         vdirection = 'down'
@@ -293,7 +361,9 @@ function Game:controlPlayer(state)
     end
 
     -- ジャンプ判定
-    if state.input:pressed('jump') then
+    if state.busy then
+        -- 操作不可
+    elseif state.input:pressed('jump') then
         state.player:jump()
     elseif vdirection then
         state.player:climb(vdirection)

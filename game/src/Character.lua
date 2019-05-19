@@ -47,6 +47,7 @@ function Character:initialize(args)
     self.leave = false
 
     self.onDead = args.onDead or function () end
+    self.onGoal = args.onGoal or function () end
 
     -- SpriteRenderer 初期化
     self:initializeSpriteRenderer(args.spriteSheet)
