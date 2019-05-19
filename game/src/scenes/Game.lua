@@ -129,6 +129,9 @@ function Game:entered(state, path, ...)
             state.pause = false
         end
     )
+
+    -- ＢＧＭ
+    self:playMusic('ingame')
 end
 
 -- ステート終了
@@ -182,6 +185,12 @@ function Game:update(state, dt)
                 end
             )
 
+            -- ＢＧＭ
+            self:stopMusic()
+
+            -- ＳＥ
+            self:playSound('clear')
+
         elseif not state.player.alive then
             -- まだゲームオーバー画面じゃなくて、プレイヤーが死んだとき
             state.gameover = true
@@ -208,6 +217,12 @@ function Game:update(state, dt)
                     state.pause = true
                 end
             )
+
+            -- ＢＧＭ
+            self:stopMusic()
+
+            -- ＳＥ
+            self:playSound('gameover')
         end
     end
 

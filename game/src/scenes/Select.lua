@@ -84,6 +84,9 @@ function Select:entered(state, from, background, bgX, ...)
             state.busy = false
         end
     )
+
+    -- ＢＧＭ
+    self:playMusic('outgame')
 end
 
 -- 終了
@@ -95,6 +98,9 @@ function Select:exited(state, ...)
     -- 背景開放
     state.background:destroy()
     state.background = nil
+
+    -- ＢＧＭ
+    self:stopMusic()
 end
 
 -- 更新

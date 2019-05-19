@@ -31,6 +31,28 @@ function Boot:load(state, ...)
     self.font16 = lg.newFont(fontPath, 16)
     self.font8 = lg.newFont(fontPath, 8)
 
+    -- 音楽
+    local musics = {
+        ingame = 'Polka Train.ogg',
+        outgame = 'Night at the Beach.ogg',
+    }
+    self.musics = {}
+    for name, path in pairs(musics) do
+        self.musics[name] = love.audio.newSource('assets/' .. path, 'static')
+        self.musics[name]:setLooping(true)
+        self.musics[name]:setVolume(0.5)
+    end
+
+    -- ＳＥ
+    local sounds = {
+        clear = 'Polka ident.ogg',
+        gameover = 'Serious ident.ogg',
+    }
+    self.sounds = {}
+    for name, path in pairs(sounds) do
+        self.sounds[name] = love.audio.newSource('assets/' .. path, 'static')
+    end
+
     -- レベル関連
     self.selectedLevel = 1
     self.clearedLevel = 0
