@@ -44,15 +44,15 @@ function Title:entered(state, ...)
         'in-out-cubic',
         function ()
             -- キー入力表示の点滅
-            self.state.timer:every(
+            state.timer:every(
                 0.5,
                 function ()
-                    self.state.visiblePressAnyKey = not self.state.visiblePressAnyKey
+                    state.visiblePressAnyKey = not state.visiblePressAnyKey
                 end
             )
 
             -- 操作可能
-            self.state.busy = false
+            state.busy = false
         end
     )
 end
@@ -104,25 +104,29 @@ end
 
 -- キー入力
 function Title:keypressed(state, key, scancode, isrepeat)
-    -- 操作不可
-    self.state.busy = true
+    if not state.busy then
+        -- 操作不可
+        state.busy = true
 
-    -- 終了演出
-    state.timer:tween(
-        0.5,
-        state,
-        { alpha = 0 },
-        'in-out-cubic',
-        function ()
-            -- 演出が終わったら次へ
-            self:nextState(state.background, state.bgX)
-        end
-    )
+        -- 終了演出
+        state.timer:tween(
+            0.5,
+            state,
+            { alpha = 0 },
+            'in-out-cubic',
+            function ()
+                -- 演出が終わったら次へ
+                self:nextState(state.background, state.bgX)
+            end
+        )
+    end
 end
 
 -- マウス入力
 function Title:mousepressed(state, x, y, button, istouch, presses)
-    self:keypressed(state, 'mouse' .. button)
+    if not state.busy then
+        self:keypressed(state, 'mouse' .. button)
+    end
 end
 
 return Title
