@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="64" tileheight="64" infinite="1" nextlayerid="5" nextobjectid="27">
+ <tileset firstgid="1" source="tilesheet.tsx"/>
+ <layer id="1" name="ground" width="16" height="16" opacity="0.9">
+  <properties>
+   <property name="set" type="int" value="1"/>
+  </properties>
+  <data encoding="csv">
+   <chunk x="0" y="0" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,34,0,0,0,10,11,0,0,0,0,0,0,10,0,0,
+2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
+1,1,1,1,1,1,1,23,1,1,1,1,1,1,1,1,
+1,1,45,1,1,1,1,1,23,1,1,1,1,1,1,23,
+1,1,1,1,1,1,1,45,1,1,1,1,1,1,1,1
+</chunk>
+   <chunk x="16" y="0" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,12,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,30,3,
+0,0,0,0,0,0,0,0,0,0,0,0,33,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,30,3,31,0,0,
+0,0,0,0,0,0,0,0,0,0,10,0,0,0,0,0,
+0,0,0,0,0,0,0,0,30,3,31,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+32,0,0,0,0,0,10,0,24,3,25,0,0,0,11,0,
+3,3,3,3,3,3,3,3,46,1,47,3,3,3,3,3,
+1,1,1,1,23,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,45,1,1,1,23,1,1,1,1,
+1,1,1,1,1,1,23,1,1,1,1,1,1,45,1,1
+</chunk>
+   <chunk x="32" y="0" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,30,3,31,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,30,31,0,0,0,24,3,3,25,0,0,0,
+0,0,0,0,0,0,0,0,24,46,1,45,47,25,0,0,
+0,10,0,0,0,0,10,24,46,23,1,1,1,47,25,34,
+3,3,3,3,3,3,3,46,1,1,1,1,1,1,47,4,
+1,1,1,1,45,1,1,1,1,1,1,1,1,1,1,1,
+23,1,1,1,1,1,1,1,1,1,1,1,1,23,1,1,
+1,1,1,1,1,1,1,1,23,1,1,1,1,1,1,1
+</chunk>
+  </data>
+ </layer>
+ <layer id="3" name="other" width="16" height="16">
+  <data encoding="csv">
+   <chunk x="0" y="0" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,237,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+   <chunk x="16" y="0" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,240,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,240,18,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,20,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,20,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,20,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,20,0,0,0,0,0,0,
+0,0,0,0,240,237,0,0,0,0,0,0,237,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+   <chunk x="32" y="0" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+262,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,191,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,240,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+  </data>
+ </layer>
+ <objectgroup id="4" name="collection">
+  <object id="11" name="jewel" type="collection" x="538.788" y="608.242">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="blue"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="12" name="jewel" type="collection" x="1633.33" y="415.152">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="blue"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="13" name="jewel" type="collection" x="1827.27" y="287.879">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="blue"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="14" name="jewel" type="collection" x="2027.27" y="160.606">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="blue"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="17" name="jewel" type="collection" x="830.667" y="606.667">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="blue"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="18" name="jewel" type="collection" x="1106.67" y="608">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="blue"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="19" name="jewel" type="collection" x="1381.33" y="613.333">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="blue"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="20" name="jewel" type="collection" x="1886.67" y="609.333">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="blue"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="21" name="jewel" type="collection" x="2090.67" y="605.333">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="blue"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="22" name="jewel" type="collection" x="2368" y="560">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="blue"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="23" name="crystal" type="collection" x="3038.67" y="672">
+   <properties>
+    <property name="item" value="crystal"/>
+    <property name="sprite" value="blue"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="24" name="crystal" type="collection" x="2210.67" y="248">
+   <properties>
+    <property name="item" value="crystal"/>
+    <property name="sprite" value="blue"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="25" name="crystal" type="collection" x="2210.67" y="317.333">
+   <properties>
+    <property name="item" value="crystal"/>
+    <property name="sprite" value="blue"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="26" name="crystal" type="collection" x="2208" y="384">
+   <properties>
+    <property name="item" value="crystal"/>
+    <property name="sprite" value="blue"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="2" name="character">
+  <object id="1" name="player" type="player" x="209.091" y="724.242">
+   <properties>
+    <property name="sprite" value="playerGrey"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="2" name="walker" type="enemy" x="949.091" y="733.212">
+   <point/>
+  </object>
+  <object id="3" name="walker" type="enemy" x="1428.61" y="736.97">
+   <point/>
+  </object>
+  <object id="4" name="walker" type="enemy" x="2210.55" y="431.515">
+   <point/>
+  </object>
+  <object id="5" name="walker" type="enemy" x="2196.97" y="751.394">
+   <point/>
+  </object>
+  <object id="6" name="walker" type="enemy" x="3042.42" y="739.394">
+   <point/>
+  </object>
+ </objectgroup>
+</map>

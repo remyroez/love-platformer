@@ -15,8 +15,8 @@ local lg = love.graphics
 -- レベル情報
 local levels = {
     {
-        title = 'PROTOTYPE',
-        path = 'assets/prototype.lua',
+        title = 'FIRST',
+        path = 'assets/red-1.lua',
     },
     {
         title = 'PROTOTYPE',
