@@ -56,7 +56,7 @@ end
 -- ステート開始
 function Game:entered(state, path, ...)
     -- レベルのパス
-    state.path = state.path or path
+    state.path = path or state.path
 
     -- レベル
     state.level = Level(state.path)
