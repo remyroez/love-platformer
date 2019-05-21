@@ -10,12 +10,12 @@ local lg    = require((...):gsub('plugins.windfield', 'graphics'))
 local wf = rawget(_G, "windfield") or require((...):gsub('sti.plugins.windfield', "windfield"))
 
 local function UUID()
-    local fn = function(x)
-        local r = love.math.random(16) - 1
-        r = (x == "x") and (r + 1) or (r % 4) + 9
-        return ("0123456789abcdef"):sub(r, r)
-    end
-    return (("xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"):gsub("[xy]", fn))
+	local fn = function(x)
+		local r = love.math.random(16) - 1
+		r = (x == "x") and (r + 1) or (r % 4) + 9
+		return ("0123456789abcdef"):sub(r, r)
+	end
+	return (("xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"):gsub("[xy]", fn))
 end
 
 return {
@@ -66,11 +66,29 @@ return {
 			--collider:setMass(userdata.properties.mass or objprop.mass or baseobjprop.mass or collider:getMass())
 			collider:setCollisionClass(userdata.properties.class or objprop.class or baseobjprop.class or collider.collision_class)
 
+			local right, bottom = 0, 0
+			for i = 1, #vertices, 2 do
+				local x, y = vertices[i], vertices[i + 1]
+				if x > right then right = x end
+				if y > bottom then bottom = y end
+			end
+
+			local left, top = right, bottom
+			for i = 1, #vertices, 2 do
+				local x, y = vertices[i], vertices[i + 1]
+				if x < left then left = x end
+				if y < top then top = y end
+			end
+
 			local obj = {
 				object   = object,
 				baseObj  = baseObj,
 				collider = collider,
 				userdata = userdata,
+				left = left,
+				top = top,
+				right = right,
+				bottom = bottom,
 			}
 
 			collider:setObject(obj)
