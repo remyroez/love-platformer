@@ -9,7 +9,7 @@ return {
   tilewidth = 64,
   tileheight = 64,
   nextlayerid = 8,
-  nextobjectid = 2,
+  nextobjectid = 48,
   properties = {},
   tilesets = {
     {
@@ -2155,7 +2155,376 @@ return {
       offsety = 0,
       draworder = "topdown",
       properties = {},
-      objects = {}
+      objects = {
+        {
+          id = 18,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 760,
+          y = 2406,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 19,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 574,
+          y = 2338,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 20,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 388,
+          y = 2276,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 21,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 320,
+          y = 2144,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 22,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 450,
+          y = 2014,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 23,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 642,
+          y = 1960,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 24,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 834,
+          y = 1892,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 25,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 968,
+          y = 1762,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 26,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 830,
+          y = 1644,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 27,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 576,
+          y = 1570,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 28,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 320,
+          y = 1502,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 29,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 390,
+          y = 1378,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 30,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 388,
+          y = 1254,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 31,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 516,
+          y = 1128,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 32,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 772,
+          y = 1126,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 33,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 838,
+          y = 998,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 34,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 636,
+          y = 932,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 35,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 388,
+          y = 872,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 40,
+          name = "crystal",
+          type = "collection",
+          shape = "point",
+          x = 124,
+          y = 698,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "crystal",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 41,
+          name = "crystal",
+          type = "collection",
+          shape = "point",
+          x = 804,
+          y = 570,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "crystal",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 42,
+          name = "crystal",
+          type = "collection",
+          shape = "point",
+          x = 1018,
+          y = 472,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "crystal",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 46,
+          name = "crystal",
+          type = "collection",
+          shape = "point",
+          x = 118,
+          y = 1572,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "crystal",
+            ["sprite"] = "red"
+          }
+        },
+        {
+          id = 47,
+          name = "crystal",
+          type = "collection",
+          shape = "point",
+          x = 126,
+          y = 2210,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "crystal",
+            ["sprite"] = "red"
+          }
+        }
+      }
     },
     {
       type = "objectgroup",
@@ -2181,6 +2550,218 @@ return {
           visible = true,
           properties = {
             ["sprite"] = "playerBlue"
+          }
+        },
+        {
+          id = 4,
+          name = "walker",
+          type = "enemy",
+          shape = "point",
+          x = 1178,
+          y = 2516,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 5,
+          name = "walker",
+          type = "enemy",
+          shape = "point",
+          x = 1270,
+          y = 2198,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 6,
+          name = "walker",
+          type = "enemy",
+          shape = "point",
+          x = 1540,
+          y = 2004,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 7,
+          name = "walker",
+          type = "enemy",
+          shape = "point",
+          x = 1822,
+          y = 1876,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 8,
+          name = "walker",
+          type = "enemy",
+          shape = "point",
+          x = 1836,
+          y = 1554,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 9,
+          name = "walker",
+          type = "enemy",
+          shape = "point",
+          x = 1648,
+          y = 1304,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 10,
+          name = "walker",
+          type = "enemy",
+          shape = "point",
+          x = 1750,
+          y = 912,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 11,
+          name = "walker",
+          type = "enemy",
+          shape = "point",
+          x = 1510,
+          y = 520,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 15,
+          name = "spikey",
+          type = "enemy",
+          shape = "point",
+          x = 780,
+          y = 2736,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["race"] = "spikey"
+          }
+        },
+        {
+          id = 16,
+          name = "spikey",
+          type = "enemy",
+          shape = "point",
+          x = 1422,
+          y = 2728,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["race"] = "spikey"
+          }
+        },
+        {
+          id = 37,
+          name = "spikey-long",
+          type = "enemy",
+          shape = "point",
+          x = 676,
+          y = 2156,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["long"] = true,
+            ["race"] = "spikey"
+          }
+        },
+        {
+          id = 38,
+          name = "spikey-long",
+          type = "enemy",
+          shape = "point",
+          x = 1708,
+          y = 2726,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["long"] = true,
+            ["race"] = "spikey"
+          }
+        },
+        {
+          id = 39,
+          name = "spikey-long",
+          type = "enemy",
+          shape = "point",
+          x = 400,
+          y = 2726,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["long"] = true,
+            ["race"] = "spikey"
+          }
+        },
+        {
+          id = 43,
+          name = "floater",
+          type = "enemy",
+          shape = "point",
+          x = 1420,
+          y = 1908,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["race"] = "floater"
+          }
+        },
+        {
+          id = 45,
+          name = "floater",
+          type = "enemy",
+          shape = "point",
+          x = 1352,
+          y = 812,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["race"] = "floater"
           }
         }
       }

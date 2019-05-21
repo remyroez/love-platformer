@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="64" tileheight="64" infinite="1" nextlayerid="8" nextobjectid="2">
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="64" tileheight="64" infinite="1" nextlayerid="8" nextobjectid="48">
  <tileset firstgid="1" source="tilesheet.tsx"/>
  <layer id="1" name="ground" width="16" height="16">
   <properties>
@@ -380,11 +380,242 @@
 </chunk>
   </data>
  </layer>
- <objectgroup id="7" name="collection"/>
+ <objectgroup id="7" name="collection">
+  <object id="18" name="jewel" type="collection" x="760" y="2406">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="red"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="19" name="jewel" type="collection" x="574" y="2338">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="red"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="20" name="jewel" type="collection" x="388" y="2276">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="red"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="21" name="jewel" type="collection" x="320" y="2144">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="red"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="22" name="jewel" type="collection" x="450" y="2014">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="red"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="23" name="jewel" type="collection" x="642" y="1960">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="red"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="24" name="jewel" type="collection" x="834" y="1892">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="red"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="25" name="jewel" type="collection" x="968" y="1762">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="red"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="26" name="jewel" type="collection" x="830" y="1644">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="red"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="27" name="jewel" type="collection" x="576" y="1570">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="red"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="28" name="jewel" type="collection" x="320" y="1502">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="red"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="29" name="jewel" type="collection" x="390" y="1378">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="red"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="30" name="jewel" type="collection" x="388" y="1254">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="red"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="31" name="jewel" type="collection" x="516" y="1128">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="red"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="32" name="jewel" type="collection" x="772" y="1126">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="red"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="33" name="jewel" type="collection" x="838" y="998">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="red"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="34" name="jewel" type="collection" x="636" y="932">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="red"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="35" name="jewel" type="collection" x="388" y="872">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="red"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="40" name="crystal" type="collection" x="124" y="698">
+   <properties>
+    <property name="item" value="crystal"/>
+    <property name="sprite" value="red"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="41" name="crystal" type="collection" x="804" y="570">
+   <properties>
+    <property name="item" value="crystal"/>
+    <property name="sprite" value="red"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="42" name="crystal" type="collection" x="1018" y="472">
+   <properties>
+    <property name="item" value="crystal"/>
+    <property name="sprite" value="red"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="46" name="crystal" type="collection" x="118" y="1572">
+   <properties>
+    <property name="item" value="crystal"/>
+    <property name="sprite" value="red"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="47" name="crystal" type="collection" x="126" y="2210">
+   <properties>
+    <property name="item" value="crystal"/>
+    <property name="sprite" value="red"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
  <objectgroup id="5" name="character">
   <object id="1" name="player" type="player" x="848" y="2580">
    <properties>
     <property name="sprite" value="playerBlue"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="4" name="walker" type="enemy" x="1178" y="2516">
+   <point/>
+  </object>
+  <object id="5" name="walker" type="enemy" x="1270" y="2198">
+   <point/>
+  </object>
+  <object id="6" name="walker" type="enemy" x="1540" y="2004">
+   <point/>
+  </object>
+  <object id="7" name="walker" type="enemy" x="1822" y="1876">
+   <point/>
+  </object>
+  <object id="8" name="walker" type="enemy" x="1836" y="1554">
+   <point/>
+  </object>
+  <object id="9" name="walker" type="enemy" x="1648" y="1304">
+   <point/>
+  </object>
+  <object id="10" name="walker" type="enemy" x="1750" y="912">
+   <point/>
+  </object>
+  <object id="11" name="walker" type="enemy" x="1510" y="520">
+   <point/>
+  </object>
+  <object id="15" name="spikey" type="enemy" x="780" y="2736">
+   <properties>
+    <property name="race" value="spikey"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="16" name="spikey" type="enemy" x="1422" y="2728">
+   <properties>
+    <property name="race" value="spikey"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="37" name="spikey-long" type="enemy" x="676" y="2156">
+   <properties>
+    <property name="long" type="bool" value="true"/>
+    <property name="race" value="spikey"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="38" name="spikey-long" type="enemy" x="1708" y="2726">
+   <properties>
+    <property name="long" type="bool" value="true"/>
+    <property name="race" value="spikey"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="39" name="spikey-long" type="enemy" x="400" y="2726">
+   <properties>
+    <property name="long" type="bool" value="true"/>
+    <property name="race" value="spikey"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="43" name="floater" type="enemy" x="1420" y="1908">
+   <properties>
+    <property name="race" value="floater"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="45" name="floater" type="enemy" x="1352" y="812">
+   <properties>
+    <property name="race" value="floater"/>
    </properties>
    <point/>
   </object>
