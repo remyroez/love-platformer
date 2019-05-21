@@ -23,7 +23,7 @@ function Player:initialize(args)
         function(collider_1, collider_2, contact)
             if collider_1.collision_class ~= self.collider.collision_class then
                 -- 自分ではない？
-            elseif self.leave and collider_2.collision_class ~= 'deadline' then
+            elseif self.leave and collider_2.collision_class ~= 'frame' and collider_2.collision_class ~= 'deadline' then
                 -- 退場時はデッドライン以外はスルー
                 contact:setEnabled(false)
             elseif collider_2.collision_class == 'enemy' then
