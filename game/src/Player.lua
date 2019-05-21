@@ -36,10 +36,10 @@ function Player:initialize(args)
                 else
                     -- 下からは通過する
                     local px, py = collider_1:getPosition()
-                    local pw, ph = 16, 16
-                    local tx, ty = collider_2:getPosition()
+                    local character = collider_1:getObject()
+                    local ph = character and character.radius or 16
                     local collision = collider_2:getObject()
-                    tx, ty = tx + collision.object.x, ty + collision.object.y
+                    local tx, ty = collision.left, collision.top
                     if py + ph/2 > ty then
                         contact:setEnabled(false)
                     end
