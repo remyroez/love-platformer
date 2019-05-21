@@ -97,10 +97,11 @@ function Character:initialize(args)
             elseif collider_2.collision_class == 'one_way' then
                 -- 下からは通過する
                 local px, py = collider_1:getPosition()
-                local tx, ty = collider_2:getPosition()
+                local character = collider_1:getObject()
+                local ph = character and character.radius or 16
                 local collision = collider_2:getObject()
-                tx, ty = tx + collision.object.x, ty + collision.object.y
-                if py + self.offsetY/2 > ty then
+                local tx, ty = collision.left, collision.top
+                if py + ph/2 > ty then
                     contact:setEnabled(false)
                 end
             elseif collider_2.collision_class == 'ladder' then
