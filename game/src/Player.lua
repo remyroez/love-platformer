@@ -44,6 +44,12 @@ function Player:initialize(args)
                         contact:setEnabled(false)
                     end
                 end
+            elseif collider_2.collision_class == 'door' then
+                -- ドアはキーアイテムを持っていれば通過
+                local collision = collider_2:getObject()
+                if collision.userdata and collision.userdata.properties and collision.userdata.properties.key and self.hasKey(collision.userdata.properties.key) then
+                    contact:setEnabled(false)
+                end
             elseif collider_2.collision_class == 'ladder' then
                 -- ハシゴは当たり判定なし
                 contact:setEnabled(false)

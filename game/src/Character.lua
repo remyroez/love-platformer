@@ -54,6 +54,7 @@ function Character:initialize(args)
     self.onDying = args.onDying or function () end
     self.onDead = args.onDead or function () end
     self.onGoal = args.onGoal or function () end
+    self.hasKey = args.hasKey or function () return false end
 
     -- SpriteRenderer 初期化
     self:initializeSpriteRenderer(args.spriteSheet)
