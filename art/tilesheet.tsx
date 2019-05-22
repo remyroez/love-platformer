@@ -525,12 +525,16 @@
  </tile>
  <tile id="130">
   <properties>
+   <property name="class" value="door"/>
    <property name="collidable" type="bool" value="true"/>
+   <property name="key" value="green"/>
   </properties>
  </tile>
  <tile id="131">
   <properties>
+   <property name="class" value="door"/>
    <property name="collidable" type="bool" value="true"/>
+   <property name="key" value="red"/>
   </properties>
  </tile>
  <tile id="132">
@@ -628,12 +632,16 @@
  </tile>
  <tile id="152">
   <properties>
+   <property name="class" value="door"/>
    <property name="collidable" type="bool" value="true"/>
+   <property name="key" value="green"/>
   </properties>
  </tile>
  <tile id="153">
   <properties>
+   <property name="class" value="door"/>
    <property name="collidable" type="bool" value="true"/>
+   <property name="key" value="red"/>
   </properties>
  </tile>
  <tile id="154">
@@ -719,12 +727,16 @@
  </tile>
  <tile id="174">
   <properties>
+   <property name="class" value="door"/>
    <property name="collidable" type="bool" value="true"/>
+   <property name="key" value="green"/>
   </properties>
  </tile>
  <tile id="175">
   <properties>
+   <property name="class" value="door"/>
    <property name="collidable" type="bool" value="true"/>
+   <property name="key" value="red"/>
   </properties>
  </tile>
  <tile id="176">

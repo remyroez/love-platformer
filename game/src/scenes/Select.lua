@@ -19,6 +19,10 @@ local levels = {
         path = 'assets/red-1.lua',
     },
     {
+        title = 'STRANGE FOREST',
+        path = 'assets/yellow-1.lua',
+    },
+    {
         title = 'ICE MOUNTAIN',
         path = 'assets/blue-1.lua',
     },
