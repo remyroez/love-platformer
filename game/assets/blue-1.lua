@@ -842,13 +842,17 @@ return {
         {
           id = 130,
           properties = {
-            ["collidable"] = true
+            ["class"] = "door",
+            ["collidable"] = true,
+            ["key"] = "green"
           }
         },
         {
           id = 131,
           properties = {
-            ["collidable"] = true
+            ["class"] = "door",
+            ["collidable"] = true,
+            ["key"] = "red"
           }
         },
         {
@@ -964,13 +968,17 @@ return {
         {
           id = 152,
           properties = {
-            ["collidable"] = true
+            ["class"] = "door",
+            ["collidable"] = true,
+            ["key"] = "green"
           }
         },
         {
           id = 153,
           properties = {
-            ["collidable"] = true
+            ["class"] = "door",
+            ["collidable"] = true,
+            ["key"] = "red"
           }
         },
         {
@@ -1166,13 +1174,17 @@ return {
         {
           id = 174,
           properties = {
-            ["collidable"] = true
+            ["class"] = "door",
+            ["collidable"] = true,
+            ["key"] = "green"
           }
         },
         {
           id = 175,
           properties = {
-            ["collidable"] = true
+            ["class"] = "door",
+            ["collidable"] = true,
+            ["key"] = "red"
           }
         },
         {
@@ -1361,6 +1373,70 @@ return {
           properties = {
             ["class"] = "one_way",
             ["collidable"] = true
+          }
+        },
+        {
+          id = 210,
+          properties = {
+            ["class"] = "damage",
+            ["collidable"] = true
+          },
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = 8,
+                y = 38,
+                width = 47,
+                height = 26,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              }
+            }
+          }
+        },
+        {
+          id = 211,
+          properties = {
+            ["class"] = "damage",
+            ["collidable"] = true
+          },
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 2,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = 10,
+                y = 34,
+                width = 44,
+                height = 30,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              }
+            }
           }
         },
         {

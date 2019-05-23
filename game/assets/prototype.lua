@@ -46,24 +46,28 @@ return {
         {
           id = 1,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 2,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 3,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 4,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
@@ -281,12 +285,14 @@ return {
         {
           id = 27,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 28,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
@@ -320,36 +326,42 @@ return {
         {
           id = 45,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 46,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 47,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 48,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 49,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 50,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
@@ -411,24 +423,28 @@ return {
         {
           id = 67,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 68,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 69,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 70,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
@@ -660,12 +676,14 @@ return {
         {
           id = 93,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 94,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
@@ -720,36 +738,42 @@ return {
         {
           id = 111,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 112,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 113,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 114,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 115,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 116,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
@@ -818,13 +842,17 @@ return {
         {
           id = 130,
           properties = {
-            ["collidable"] = true
+            ["class"] = "door",
+            ["collidable"] = true,
+            ["key"] = "green"
           }
         },
         {
           id = 131,
           properties = {
-            ["collidable"] = true
+            ["class"] = "door",
+            ["collidable"] = true,
+            ["key"] = "red"
           }
         },
         {
@@ -836,24 +864,28 @@ return {
         {
           id = 133,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 134,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 135,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 136,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
@@ -936,13 +968,17 @@ return {
         {
           id = 152,
           properties = {
-            ["collidable"] = true
+            ["class"] = "door",
+            ["collidable"] = true,
+            ["key"] = "green"
           }
         },
         {
           id = 153,
           properties = {
-            ["collidable"] = true
+            ["class"] = "door",
+            ["collidable"] = true,
+            ["key"] = "red"
           }
         },
         {
@@ -1110,12 +1146,14 @@ return {
         {
           id = 159,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 160,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
@@ -1136,13 +1174,17 @@ return {
         {
           id = 174,
           properties = {
-            ["collidable"] = true
+            ["class"] = "door",
+            ["collidable"] = true,
+            ["key"] = "green"
           }
         },
         {
           id = 175,
           properties = {
-            ["collidable"] = true
+            ["class"] = "door",
+            ["collidable"] = true,
+            ["key"] = "red"
           }
         },
         {
@@ -1154,36 +1196,42 @@ return {
         {
           id = 177,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 178,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 179,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 180,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 181,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 182,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
@@ -1274,24 +1322,28 @@ return {
         {
           id = 199,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 200,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 201,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 202,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
@@ -1321,6 +1373,70 @@ return {
           properties = {
             ["class"] = "one_way",
             ["collidable"] = true
+          }
+        },
+        {
+          id = 210,
+          properties = {
+            ["class"] = "damage",
+            ["collidable"] = true
+          },
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = 8,
+                y = 38,
+                width = 47,
+                height = 26,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              }
+            }
+          }
+        },
+        {
+          id = 211,
+          properties = {
+            ["class"] = "damage",
+            ["collidable"] = true
+          },
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 2,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = 10,
+                y = 34,
+                width = 44,
+                height = 30,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              }
+            }
           }
         },
         {
@@ -1524,12 +1640,14 @@ return {
         {
           id = 225,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 226,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
@@ -1556,36 +1674,42 @@ return {
         {
           id = 243,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 244,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 245,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 246,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 247,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
         {
           id = 248,
           properties = {
+            ["class"] = "one_way",
             ["collidable"] = true
           }
         },
