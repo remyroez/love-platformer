@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="48" height="32" tilewidth="64" tileheight="64" infinite="1" nextlayerid="7" nextobjectid="54">
+ <tileset firstgid="1" source="tilesheet.tsx"/>
+ <layer id="4" name="ground" width="48" height="32">
+  <properties>
+   <property name="set" type="int" value="4"/>
+  </properties>
+  <data encoding="csv">
+   <chunk x="0" y="0" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,228,229,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+228,201,229,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,228,201,229,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,228,201,229,0,0,0,0,0,0
+</chunk>
+   <chunk x="16" y="0" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+228,229,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+   <chunk x="32" y="0" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,193,194,194,194,194,194,193,0,
+0,0,0,0,0,0,0,0,194,0,0,0,0,0,194,0,
+0,0,0,0,0,0,0,0,194,0,0,0,0,0,194,0,
+0,0,0,0,0,0,0,0,194,0,0,191,0,0,194,0,
+0,0,0,0,0,0,0,0,194,0,222,201,223,0,194,0,
+0,0,0,0,0,0,0,0,193,228,244,243,245,229,193,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+   <chunk x="0" y="16" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,228,201,229,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+201,201,201,201,201,201,201,201,223,0,0,0,222,201,201,223,
+199,199,199,199,199,199,199,199,245,223,212,222,244,199,199,245,
+199,199,199,199,199,199,199,199,199,245,201,244,199,199,199,199,
+199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,
+199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,
+199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199
+</chunk>
+   <chunk x="16" y="16" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,228,229,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,228,229,0,0,0,0,0,
+201,229,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,228,229,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+212,212,222,201,223,0,0,0,0,0,222,201,223,212,222,201,
+201,201,244,199,245,223,0,0,0,222,244,199,245,201,244,199,
+199,199,199,199,199,245,223,212,222,244,199,199,199,199,199,199,
+199,199,199,199,199,199,245,201,244,199,199,199,199,199,199,199,
+199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,
+199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199
+</chunk>
+   <chunk x="32" y="16" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+228,229,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,228,201,229,0,0,0,228,201,229,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,228,201,229,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,229,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+223,0,0,0,0,0,0,0,0,0,0,222,201,201,201,201,
+245,201,223,0,0,0,0,0,0,0,222,244,199,199,199,199,
+199,199,245,223,0,0,0,0,0,222,244,199,199,199,199,199,
+199,199,199,245,201,223,212,212,222,244,199,199,199,199,199,199,
+199,199,199,199,199,245,201,201,244,199,199,199,199,199,199,199,
+199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199
+</chunk>
+  </data>
+ </layer>
+ <layer id="5" name="other" width="48" height="32">
+  <data encoding="csv">
+   <chunk x="0" y="0" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,193,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,22,0,0,193,0,0,0,0,0,
+0,0,0,0,193,0,0,22,0,0,22,0,0,0,0,0,
+0,0,0,0,22,0,0,22,0,0,22,0,0,0,0,0,
+0,193,0,0,22,0,0,66,0,0,22,0,0,0,0,0,
+0,22,0,0,66,0,0,0,0,0,66,0,0,0,0,0,
+0,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+   <chunk x="16" y="0" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,193,0,0,0,0,0,0,
+0,0,0,0,0,0,193,0,0,22,0,0,193,0,0,0,
+0,0,0,193,0,0,22,0,0,22,0,0,22,0,0,193,
+0,0,0,22,0,0,22,0,0,66,0,0,22,0,0,22,
+0,0,0,22,0,0,22,0,0,0,0,0,66,0,0,22,
+0,0,0,66,0,0,22,0,0,0,0,0,0,0,0,66,
+0,0,0,0,0,0,22,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,22,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,22,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,66,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,193,0,
+0,0,0,0,0,0,0,0,0,0,193,0,0,0,22,0,
+0,0,0,0,0,0,193,0,0,0,0,0,0,0,22,0,
+0,0,0,0,0,0,22,0,0,0,0,0,0,0,22,0,
+0,0,0,0,0,0,22,0,0,0,0,0,0,0,66,0
+</chunk>
+   <chunk x="32" y="0" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,193,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,22,0,0,193,0,0,0,0,0,0,0,0,0,0,
+0,0,22,0,0,22,0,0,0,0,0,0,0,0,0,0,
+0,0,66,0,0,22,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,22,0,0,0,0,0,0,0,22,0,0,
+0,0,0,0,0,22,0,0,0,0,0,0,0,22,0,0,
+0,0,0,0,0,22,0,0,193,0,0,0,0,22,0,0,
+0,0,0,0,0,22,0,0,22,0,193,0,0,22,0,0,
+0,0,0,0,0,22,0,0,66,0,22,0,0,22,0,0,
+0,0,0,0,0,22,0,0,0,0,22,0,0,66,0,0,
+0,0,193,0,0,22,0,0,0,0,66,0,0,0,0,0,
+0,0,0,0,0,66,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+   <chunk x="0" y="16" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,237,0,0,0,208,209,188,0,0,0,0,0,208,210,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+   <chunk x="16" y="16" width="16" height="16">
+0,0,0,0,0,0,22,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,66,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,188,0,0,0,0,0,0,0,186,0,0,0,186,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+   <chunk x="32" y="16" width="16" height="16">
+0,0,0,0,0,193,0,0,0,0,0,0,0,0,0,0,
+0,22,0,0,0,22,0,0,0,0,0,0,0,0,0,0,
+0,66,0,0,0,22,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,66,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,22,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,66,0,
+0,0,0,0,0,0,0,0,0,0,0,0,208,209,209,209,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,188,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+  </data>
+ </layer>
+ <objectgroup id="6" name="collection">
+  <object id="2" name="jewel" type="collection" x="900" y="1596.97">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="3" name="jewel" type="collection" x="1248.48" y="1609.09">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="4" name="jewel" type="collection" x="1760.61" y="1600">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="5" name="jewel" type="collection" x="2018.18" y="1603.03">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="6" name="jewel" type="collection" x="2145.45" y="1700">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="7" name="jewel" type="collection" x="2336.36" y="1824.24">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="8" name="jewel" type="collection" x="466.667" y="1596.97">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="9" name="jewel" type="collection" x="2884.85" y="1609.09">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="14" name="jewel" type="collection" x="1951.52" y="830.303">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="15" name="jewel" type="collection" x="2400" y="1151.52">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="16" name="jewel" type="collection" x="1442.42" y="963.636">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="17" name="jewel" type="collection" x="93.9394" y="445.455">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="18" name="jewel" type="collection" x="290.909" y="318.182">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="19" name="jewel" type="collection" x="478.788" y="193.939">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="20" name="jewel" type="collection" x="675.758" y="257.576">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="21" name="jewel" type="collection" x="1251.52" y="324.242">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="22" name="jewel" type="collection" x="1445.45" y="260.606">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="23" name="jewel" type="collection" x="1439.39" y="803.03">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="24" name="jewel" type="collection" x="2400" y="990.909">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="25" name="jewel" type="collection" x="1696.97" y="727.273">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="26" name="jewel" type="collection" x="2215.15" y="721.212">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="27" name="jewel" type="collection" x="1951.52" y="642.424">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="28" name="crystal" type="collection" x="1727.27" y="254.545">
+   <properties>
+    <property name="item" value="crystal"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="29" name="crystal" type="collection" x="1921.21" y="324.242">
+   <properties>
+    <property name="item" value="crystal"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="30" name="crystal" type="collection" x="2115.15" y="321.212">
+   <properties>
+    <property name="item" value="crystal"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="31" name="crystal" type="collection" x="2306.06" y="333.333">
+   <properties>
+    <property name="item" value="crystal"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="32" name="crystal" type="collection" x="2500" y="387.879">
+   <properties>
+    <property name="item" value="crystal"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="33" name="crystal" type="collection" x="2590.91" y="639.394">
+   <properties>
+    <property name="item" value="crystal"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="34" name="crystal" type="collection" x="2727.27" y="709.091">
+   <properties>
+    <property name="item" value="crystal"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="35" name="crystal" type="collection" x="2915.15" y="509.091">
+   <properties>
+    <property name="item" value="crystal"/>
+    <property name="sprite" value="green"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="3" name="character">
+  <object id="1" name="player" type="player" x="238" y="1624">
+   <properties>
+    <property name="sprite" value="playerRed"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="38" name="walker" type="enemy" x="2790.91" y="1378.79">
+   <point/>
+  </object>
+  <object id="39" name="walker" type="enemy" x="2106.06" y="1066.67">
+   <point/>
+  </object>
+  <object id="40" name="walker" type="enemy" x="1672.73" y="1124.24">
+   <point/>
+  </object>
+  <object id="41" name="walker" type="enemy" x="1063.64" y="1190.91">
+   <point/>
+  </object>
+  <object id="42" name="walker" type="enemy" x="796.97" y="1060.61">
+   <point/>
+  </object>
+  <object id="43" name="walker" type="enemy" x="545.455" y="924.242">
+   <point/>
+  </object>
+  <object id="44" name="walker" type="enemy" x="287.879" y="790.909">
+   <point/>
+  </object>
+  <object id="45" name="walker" type="enemy" x="106.061" y="657.576">
+   <point/>
+  </object>
+  <object id="51" name="spikey" type="enemy" x="2018.18" y="163.636">
+   <properties>
+    <property name="race" value="spikey"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="52" name="spikey" type="enemy" x="1257.58" y="163.636">
+   <properties>
+    <property name="race" value="spikey"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="53" name="spikey" type="enemy" x="93.9394" y="287.879">
+   <properties>
+    <property name="race" value="spikey"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+</map>

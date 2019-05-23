@@ -23,7 +23,7 @@ function Player:initialize(args)
         function(collider_1, collider_2, contact)
             if collider_1.collision_class ~= self.collider.collision_class then
                 -- 自分ではない？
-            elseif self.leave and collider_2.collision_class ~= 'deadline' then
+            elseif self.leave and collider_2.collision_class ~= 'frame' and collider_2.collision_class ~= 'deadline' then
                 -- 退場時はデッドライン以外はスルー
                 contact:setEnabled(false)
             elseif collider_2.collision_class == 'enemy' then
@@ -36,13 +36,19 @@ function Player:initialize(args)
                 else
                     -- 下からは通過する
                     local px, py = collider_1:getPosition()
-                    local pw, ph = 16, 16
-                    local tx, ty = collider_2:getPosition()
+                    local character = collider_1:getObject()
+                    local ph = character and character.radius or 16
                     local collision = collider_2:getObject()
-                    tx, ty = tx + collision.object.x, ty + collision.object.y
+                    local tx, ty = collision.left, collision.top
                     if py + ph/2 > ty then
                         contact:setEnabled(false)
                     end
+                end
+            elseif collider_2.collision_class == 'door' then
+                -- ドアはキーアイテムを持っていれば通過
+                local collision = collider_2:getObject()
+                if collision.userdata and collision.userdata.properties and collision.userdata.properties.key and self.hasKey(collision.userdata.properties.key) then
+                    contact:setEnabled(false)
                 end
             elseif collider_2.collision_class == 'ladder' then
                 -- ハシゴは当たり判定なし
@@ -121,7 +127,7 @@ function Player:checkDamage()
     if self.invincible then
         -- 無敵
     elseif self:enterCollider('damage') then
-        local vx, vy = state.player:getLinearVelocity()
+        local vx, vy = self:getLinearVelocity()
         self:damage(1, vx > 0 and 'right' or vx < 0 and 'left' or nil)
     end
 end

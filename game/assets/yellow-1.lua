@@ -8,8 +8,8 @@ return {
   height = 16,
   tilewidth = 64,
   tileheight = 64,
-  nextlayerid = 7,
-  nextobjectid = 29,
+  nextlayerid = 5,
+  nextobjectid = 45,
   properties = {},
   tilesets = {
     {
@@ -1744,7 +1744,7 @@ return {
       offsetx = 0,
       offsety = 0,
       properties = {
-        ["set"] = 1
+        ["set"] = 2
       },
       encoding = "lua",
       chunks = {
@@ -1753,20 +1753,20 @@ return {
           data = {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 193,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 10, 0, 0, 12, 11, 0, 0, 34, 0, 0, 0, 0, 10, 0,
-            2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 0, 0, 2, 3, 3,
-            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1,
-            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1,
-            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1,
-            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1
+            0, 0, 0, 0, 0, 0, 0, 96, 69, 69, 69, 69, 69, 97, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 67, 67, 67, 67, 67, 0, 0, 0,
+            0, 0, 96, 69, 69, 69, 69, 97, 67, 67, 67, 67, 67, 0, 0, 0,
+            0, 0, 0, 89, 67, 67, 67, 0, 67, 67, 67, 67, 67, 96, 69, 69,
+            0, 0, 0, 67, 67, 67, 67, 0, 67, 67, 67, 67, 67, 0, 111, 95,
+            96, 69, 69, 94, 67, 67, 67, 0, 67, 67, 67, 67, 67, 0, 89, 111,
+            0, 67, 67, 67, 67, 67, 67, 0, 67, 67, 67, 67, 67, 0, 95, 69,
+            0, 67, 67, 89, 67, 67, 95, 69, 94, 67, 67, 67, 67, 0, 67, 67,
+            0, 67, 67, 89, 67, 67, 67, 67, 67, 67, 67, 67, 95, 69, 69, 94,
+            0, 67, 67, 111, 67, 67, 67, 67, 67, 69, 67, 67, 67, 67, 67, 67,
+            68, 69, 69, 69, 69, 69, 69, 69, 112, 111, 113, 69, 69, 69, 69, 69,
+            67, 67, 67, 67, 111, 67, 67, 67, 67, 67, 67, 67, 89, 67, 67, 67,
+            67, 89, 67, 67, 67, 67, 67, 67, 111, 89, 67, 67, 67, 67, 67, 67,
+            67, 67, 111, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 111, 67
           }
         },
         {
@@ -1774,27 +1774,90 @@ return {
           data = {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 11, 0, 34, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 6, 7, 8, 0, 0, 0, 0, 0, 0,
-            0, 0, 193, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            7, 7, 8, 0, 0, 6, 7, 8, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 6, 7, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0,
-            0, 33, 0, 0, 0, 0, 0, 6, 8, 0, 0, 0, 0, 12, 10, 0,
-            24, 3, 25, 0, 0, 11, 0, 0, 0, 0, 24, 3, 3, 3, 3, 4,
-            46, 23, 47, 3, 3, 4, 0, 0, 0, 24, 46, 1, 1, 1, 1, 1,
-            1, 1, 1, 1, 1, 1, 0, 32, 24, 46, 1, 1, 1, 1, 1, 1,
-            1, 1, 1, 1, 1, 1, 0, 2, 46, 1, 1, 1, 1, 1, 1, 1,
-            1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-            1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 96, 69, 69, 69, 97, 0,
+            97, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 67, 67, 67, 0, 0,
+            69, 97, 0, 0, 0, 0, 0, 0, 0, 0, 0, 67, 67, 67, 0, 0,
+            67, 0, 0, 0, 0, 0, 0, 96, 69, 69, 69, 94, 67, 67, 0, 0,
+            69, 69, 97, 0, 0, 0, 0, 0, 67, 67, 67, 67, 67, 67, 0, 0,
+            67, 67, 0, 0, 96, 69, 69, 69, 94, 67, 67, 67, 67, 95, 69, 69,
+            67, 67, 0, 0, 0, 67, 111, 89, 67, 67, 95, 69, 94, 67, 67, 67,
+            67, 67, 0, 0, 0, 67, 67, 111, 67, 69, 67, 67, 67, 67, 67, 67,
+            69, 69, 69, 69, 69, 69, 69, 69, 112, 111, 113, 69, 69, 69, 69, 69,
+            67, 67, 67, 67, 67, 67, 67, 111, 67, 67, 67, 67, 67, 67, 67, 67,
+            67, 67, 67, 67, 67, 111, 89, 67, 67, 89, 67, 111, 111, 67, 67, 89,
+            67, 89, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 111
+          }
+        },
+        {
+          x = 32, y = 0, width = 16, height = 16,
+          data = {
+            0, 0, 0, 0, 0, 0, 96, 69, 69, 69, 69, 69, 69, 69, 69, 69,
+            0, 0, 0, 0, 0, 0, 0, 67, 67, 67, 95, 69, 69, 69, 69, 69,
+            0, 0, 0, 0, 0, 0, 0, 95, 69, 69, 69, 69, 69, 69, 69, 69,
+            0, 0, 0, 0, 0, 0, 0, 67, 95, 69, 69, 69, 69, 69, 69, 69,
+            0, 0, 0, 0, 0, 0, 0, 67, 67, 95, 69, 69, 69, 69, 69, 69,
+            0, 0, 0, 0, 0, 0, 0, 95, 69, 69, 69, 69, 69, 69, 69, 69,
+            0, 0, 0, 0, 0, 0, 96, 69, 69, 69, 69, 69, 69, 69, 69, 69,
+            0, 0, 0, 0, 0, 0, 0, 67, 67, 95, 69, 69, 69, 69, 69, 69,
+            0, 0, 0, 0, 0, 0, 0, 95, 69, 69, 69, 69, 69, 69, 69, 69,
+            97, 0, 0, 0, 0, 0, 0, 67, 95, 69, 69, 69, 69, 69, 69, 69,
+            0, 0, 0, 0, 0, 96, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69,
+            0, 90, 69, 91, 0, 0, 95, 69, 69, 69, 69, 69, 69, 69, 69, 69,
+            69, 112, 111, 113, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69,
+            67, 67, 67, 67, 89, 89, 67, 67, 89, 67, 67, 67, 67, 67, 67, 67,
+            67, 67, 67, 67, 67, 67, 67, 67, 89, 67, 67, 111, 67, 67, 67, 111,
+            111, 67, 67, 67, 67, 67, 111, 111, 67, 67, 89, 89, 67, 67, 67, 67
+          }
+        },
+        {
+          x = 48, y = 0, width = 16, height = 16,
+          data = {
+            69, 69, 69, 69, 69, 69, 69, 97, 0, 0, 0, 0, 0, 0, 0, 0,
+            69, 69, 69, 69, 69, 94, 67, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            69, 69, 69, 69, 94, 67, 67, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            69, 69, 69, 69, 69, 69, 94, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            69, 69, 69, 69, 69, 69, 69, 97, 0, 0, 0, 0, 0, 0, 0, 0,
+            69, 69, 69, 69, 69, 94, 67, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 97, 0, 0, 0, 0, 0,
+            69, 69, 69, 69, 69, 69, 69, 94, 67, 67, 0, 0, 0, 0, 0, 0,
+            69, 69, 69, 69, 69, 69, 69, 69, 94, 67, 0, 0, 0, 0, 0, 0,
+            69, 69, 69, 69, 69, 69, 69, 69, 69, 94, 0, 0, 0, 0, 0, 0,
+            69, 69, 69, 69, 69, 69, 69, 69, 94, 67, 0, 0, 0, 0, 0, 0,
+            69, 69, 69, 69, 69, 69, 69, 69, 69, 94, 90, 69, 91, 0, 0, 0,
+            69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 112, 111, 113, 69, 69, 69,
+            67, 111, 111, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67,
+            89, 67, 89, 67, 67, 67, 67, 67, 89, 67, 89, 67, 67, 67, 67, 67,
+            67, 67, 67, 67, 67, 67, 67, 67, 111, 67, 67, 89, 67, 67, 67, 67
+          }
+        },
+        {
+          x = 64, y = 0, width = 16, height = 16,
+          data = {
+            0, 0, 0, 0, 0, 0, 0, 0, 241, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 241, 193, 241, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 208, 209, 209, 215, 194, 193, 209, 209, 210, 0, 0, 0,
+            0, 0, 0, 0, 193, 193, 193, 193, 193, 193, 215, 193, 193, 0, 0, 0,
+            0, 0, 208, 209, 209, 215, 209, 209, 193, 209, 209, 193, 209, 209, 210, 0,
+            0, 0, 215, 215, 215, 215, 215, 215, 215, 215, 215, 215, 215, 215, 215, 0,
+            0, 0, 20, 0, 0, 131, 0, 0, 0, 0, 0, 131, 0, 0, 20, 0,
+            0, 0, 20, 0, 0, 153, 0, 0, 0, 0, 0, 153, 0, 0, 20, 0,
+            0, 0, 20, 0, 0, 175, 0, 0, 189, 0, 0, 175, 0, 0, 20, 0,
+            0, 0, 20, 208, 216, 194, 194, 194, 194, 216, 194, 216, 194, 210, 20, 0,
+            0, 0, 20, 193, 193, 193, 193, 193, 193, 193, 193, 193, 193, 193, 20, 0,
+            240, 0, 193, 193, 193, 193, 193, 193, 193, 193, 193, 193, 193, 193, 193, 0,
+            69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 70,
+            67, 67, 67, 67, 67, 67, 89, 89, 67, 67, 67, 67, 67, 67, 67, 67,
+            111, 111, 89, 89, 67, 67, 67, 111, 67, 67, 67, 89, 67, 67, 89, 89,
+            67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 89, 89, 67
           }
         }
       }
     },
     {
       type = "tilelayer",
-      id = 2,
+      id = 4,
       name = "other",
       x = 0,
       y = 0,
@@ -1811,17 +1874,17 @@ return {
           x = 0, y = 0, width = 16, height = 16,
           data = {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 56, 55, 0, 0, 54, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 237, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 240,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 42, 0, 0, 54, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 40, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 56, 43, 0,
+            0, 0, 84, 108, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 65, 0,
+            0, 54, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64, 40,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 84, 108,
+            0, 0, 0, 0, 0, 0, 0, 76, 0, 0, 0, 0, 0, 84, 108, 0,
+            0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 62, 55, 0,
+            0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 54, 0, 63, 0, 55, 0, 56, 90, 0, 91, 0, 0, 0, 56, 55,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1834,15 +1897,78 @@ return {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 56, 0, 54, 0, 0,
+            54, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 41, 56, 0, 55, 0, 0, 0, 0, 0,
+            54, 0, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 54, 40, 65, 0, 0, 0, 0, 0, 0, 0, 54,
+            0, 0, 0, 0, 0, 0, 64, 87, 0, 0, 0, 55, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 106, 86, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 56, 0, 54, 0, 77, 63, 90, 0, 91, 56, 0, 54, 55, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 191, 0, 0, 0,
-            0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+          }
+        },
+        {
+          x = 32, y = 0, width = 16, height = 16,
+          data = {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 54, 0, 0, 0, 54, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 56, 56,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 56, 0, 0, 54, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 56, 0, 0, 54, 0, 55,
+            56, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 54, 0, 0, 0, 56, 0, 54, 0,
+            0, 0, 76, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 56, 54, 0, 55, 0, 0, 0, 0, 54, 56, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+          }
+        },
+        {
+          x = 48, y = 0, width = 16, height = 16,
+          data = {
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64, 0, 65, 0, 0,
+            0, 55, 0, 56, 0, 0, 0, 0, 0, 0, 0, 87, 0, 64, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 87, 0, 87, 0, 0,
+            0, 54, 0, 0, 0, 0, 54, 0, 0, 0, 0, 0, 0, 87, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 54, 0, 0, 0, 0, 56, 0, 0, 0, 56, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 56, 0, 55, 0, 0, 0, 56, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 54, 0, 0, 0, 54, 55, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 77, 0, 0, 0, 0,
+            55, 0, 0, 56, 0, 78, 0, 0, 55, 0, 0, 0, 0, 54, 55, 54,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+          }
+        },
+        {
+          x = 64, y = 0, width = 16, height = 16,
+          data = {
+            87, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            87, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            65, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 40, 0, 0, 40, 0, 0, 0, 0, 0, 0,
+            0, 0, 20, 0, 0, 0, 65, 0, 0, 64, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 64, 0, 0, 87, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 65, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 56, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 78,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1853,7 +1979,7 @@ return {
     },
     {
       type = "objectgroup",
-      id = 6,
+      id = 3,
       name = "collection",
       visible = true,
       opacity = 1,
@@ -1863,236 +1989,156 @@ return {
       properties = {},
       objects = {
         {
+          id = 2,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 481.333,
+          y = 542.667,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "yellow"
+          }
+        },
+        {
+          id = 3,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 897.333,
+          y = 606.667,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "yellow"
+          }
+        },
+        {
+          id = 4,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 120,
+          y = 416,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "yellow"
+          }
+        },
+        {
+          id = 5,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 969.333,
+          y = 296,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "yellow"
+          }
+        },
+        {
+          id = 6,
+          name = "crystal",
+          type = "collection",
+          shape = "point",
+          x = 682.667,
+          y = 89.3333,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "crystal",
+            ["sprite"] = "yellow"
+          }
+        },
+        {
+          id = 7,
+          name = "crystal",
+          type = "collection",
+          shape = "point",
+          x = 322.667,
+          y = 214.667,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "crystal",
+            ["sprite"] = "yellow"
+          }
+        },
+        {
+          id = 8,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 1769.33,
+          y = 613.333,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "yellow"
+          }
+        },
+        {
+          id = 9,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 1596,
+          y = 422.667,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "yellow"
+          }
+        },
+        {
+          id = 10,
+          name = "crystal",
+          type = "collection",
+          shape = "point",
+          x = 1838.67,
+          y = 226.667,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "crystal",
+            ["sprite"] = "yellow"
+          }
+        },
+        {
           id = 11,
-          name = "jewel",
-          type = "collection",
-          shape = "point",
-          x = 310,
-          y = 692,
-          width = 0,
-          height = 0,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["item"] = "jewel",
-            ["sprite"] = "blue"
-          }
-        },
-        {
-          id = 12,
-          name = "gem",
-          type = "collection",
-          shape = "point",
-          x = 384,
-          y = 690,
-          width = 0,
-          height = 0,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["item"] = "gem",
-            ["sprite"] = "blue"
-          }
-        },
-        {
-          id = 13,
-          name = "crystal",
-          type = "collection",
-          shape = "point",
-          x = 456,
-          y = 692,
-          width = 0,
-          height = 0,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["item"] = "crystal",
-            ["sprite"] = "blue"
-          }
-        },
-        {
-          id = 14,
-          name = "jewel",
-          type = "collection",
-          shape = "point",
-          x = 310,
-          y = 606,
-          width = 0,
-          height = 0,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["item"] = "jewel",
-            ["sprite"] = "green"
-          }
-        },
-        {
-          id = 15,
-          name = "gem",
-          type = "collection",
-          shape = "point",
-          x = 384,
-          y = 604,
-          width = 0,
-          height = 0,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["item"] = "gem",
-            ["sprite"] = "green"
-          }
-        },
-        {
-          id = 16,
-          name = "crystal",
-          type = "collection",
-          shape = "point",
-          x = 456,
-          y = 606,
-          width = 0,
-          height = 0,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["item"] = "crystal",
-            ["sprite"] = "green"
-          }
-        },
-        {
-          id = 17,
-          name = "jewel",
-          type = "collection",
-          shape = "point",
-          x = 316,
-          y = 526,
-          width = 0,
-          height = 0,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["item"] = "jewel",
-            ["sprite"] = "red"
-          }
-        },
-        {
-          id = 18,
-          name = "gem",
-          type = "collection",
-          shape = "point",
-          x = 390,
-          y = 524,
-          width = 0,
-          height = 0,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["item"] = "gem",
-            ["sprite"] = "red"
-          }
-        },
-        {
-          id = 19,
-          name = "crystal",
-          type = "collection",
-          shape = "point",
-          x = 462,
-          y = 526,
-          width = 0,
-          height = 0,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["item"] = "crystal",
-            ["sprite"] = "red"
-          }
-        },
-        {
-          id = 20,
-          name = "jewel",
-          type = "collection",
-          shape = "point",
-          x = 532,
-          y = 692,
-          width = 0,
-          height = 0,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["item"] = "jewel",
-            ["sprite"] = "yellow"
-          }
-        },
-        {
-          id = 21,
-          name = "gem",
-          type = "collection",
-          shape = "point",
-          x = 606,
-          y = 690,
-          width = 0,
-          height = 0,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["item"] = "gem",
-            ["sprite"] = "yellow"
-          }
-        },
-        {
-          id = 22,
-          name = "crystal",
-          type = "collection",
-          shape = "point",
-          x = 678,
-          y = 692,
-          width = 0,
-          height = 0,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["item"] = "crystal",
-            ["sprite"] = "yellow"
-          }
-        },
-        {
-          id = 23,
-          name = "disc",
-          type = "collection",
-          shape = "point",
-          x = 34,
-          y = 690,
-          width = 0,
-          height = 0,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["item"] = "disc",
-            ["sprite"] = "green"
-          }
-        },
-        {
-          id = 24,
-          name = "puzzle",
-          type = "collection",
-          shape = "point",
-          x = 108,
-          y = 688,
-          width = 0,
-          height = 0,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["item"] = "disc",
-            ["sprite"] = "red"
-          }
-        },
-        {
-          id = 25,
           name = "key",
           type = "collection",
           shape = "point",
-          x = 44,
-          y = 606,
+          x = 4901.33,
+          y = 561.333,
           width = 0,
           height = 0,
           rotation = 0,
@@ -2103,58 +2149,234 @@ return {
           }
         },
         {
-          id = 26,
-          name = "key",
+          id = 31,
+          name = "jewel",
           type = "collection",
           shape = "point",
-          x = 118,
-          y = 604,
+          x = 2821.33,
+          y = 744,
           width = 0,
           height = 0,
           rotation = 0,
           visible = true,
           properties = {
-            ["item"] = "key",
-            ["sprite"] = "red"
+            ["item"] = "jewel",
+            ["sprite"] = "yellow"
           }
         },
         {
-          id = 27,
-          name = "puzzle",
+          id = 32,
+          name = "jewel",
           type = "collection",
           shape = "point",
-          x = 44,
-          y = 524,
+          x = 3260,
+          y = 686.667,
           width = 0,
           height = 0,
           rotation = 0,
           visible = true,
           properties = {
-            ["item"] = "puzzle",
-            ["sprite"] = "green"
+            ["item"] = "jewel",
+            ["sprite"] = "yellow"
           }
         },
         {
-          id = 28,
-          name = "puzzle",
+          id = 33,
+          name = "jewel",
           type = "collection",
           shape = "point",
-          x = 118,
-          y = 522,
+          x = 2916,
+          y = 620,
           width = 0,
           height = 0,
           rotation = 0,
           visible = true,
           properties = {
-            ["item"] = "puzzle",
-            ["sprite"] = "red"
+            ["item"] = "jewel",
+            ["sprite"] = "yellow"
+          }
+        },
+        {
+          id = 34,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 3268,
+          y = 553.333,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "yellow"
+          }
+        },
+        {
+          id = 35,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 2944,
+          y = 488,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "yellow"
+          }
+        },
+        {
+          id = 36,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 3265.33,
+          y = 422.667,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "yellow"
+          }
+        },
+        {
+          id = 37,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 2968,
+          y = 357.333,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "yellow"
+          }
+        },
+        {
+          id = 38,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 3222.67,
+          y = 294.667,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "yellow"
+          }
+        },
+        {
+          id = 39,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 2937.33,
+          y = 233.333,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "yellow"
+          }
+        },
+        {
+          id = 40,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 3178.67,
+          y = 172,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "yellow"
+          }
+        },
+        {
+          id = 41,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 2946.67,
+          y = 106.667,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "yellow"
+          }
+        },
+        {
+          id = 42,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 3204,
+          y = 44,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "yellow"
+          }
+        },
+        {
+          id = 43,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 1406.06,
+          y = 545.455,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "yellow"
+          }
+        },
+        {
+          id = 44,
+          name = "jewel",
+          type = "collection",
+          shape = "point",
+          x = 2000,
+          y = 542.424,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "jewel",
+            ["sprite"] = "yellow"
           }
         }
       }
     },
     {
       type = "objectgroup",
-      id = 3,
+      id = 2,
       name = "character",
       visible = true,
       opacity = 1,
@@ -2168,36 +2390,23 @@ return {
           name = "player",
           type = "player",
           shape = "point",
-          x = 226.333,
-          y = 443.333,
-          width = 0,
-          height = 0,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 2,
-          name = "spikey",
-          type = "enemy",
-          shape = "point",
-          x = 1510,
-          y = 824,
+          x = 360,
+          y = 672,
           width = 0,
           height = 0,
           rotation = 0,
           visible = true,
           properties = {
-            ["race"] = "spikey"
+            ["sprite"] = "playerGreen"
           }
         },
         {
-          id = 3,
+          id = 12,
           name = "walker",
           type = "enemy",
           shape = "point",
-          x = 1120,
-          y = 610,
+          x = 4350.67,
+          y = 298.667,
           width = 0,
           height = 0,
           rotation = 0,
@@ -2205,12 +2414,12 @@ return {
           properties = {}
         },
         {
-          id = 4,
+          id = 13,
           name = "walker",
           type = "enemy",
           shape = "point",
-          x = 1085,
-          y = 296,
+          x = 4972,
+          y = 290.667,
           width = 0,
           height = 0,
           rotation = 0,
@@ -2218,12 +2427,77 @@ return {
           properties = {}
         },
         {
-          id = 5,
+          id = 14,
+          name = "walker",
+          type = "enemy",
+          shape = "point",
+          x = 4490.67,
+          y = 168,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 15,
+          name = "walker",
+          type = "enemy",
+          shape = "point",
+          x = 4840,
+          y = 168,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 16,
+          name = "walker",
+          type = "enemy",
+          shape = "point",
+          x = 1917.33,
+          y = 752,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 17,
+          name = "walker",
+          type = "enemy",
+          shape = "point",
+          x = 1405.33,
+          y = 754.667,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 18,
+          name = "walker",
+          type = "enemy",
+          shape = "point",
+          x = 930.667,
+          y = 746.667,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 19,
           name = "spikey-long",
           type = "enemy",
           shape = "point",
-          x = 1997,
-          y = 631,
+          x = 3525.33,
+          y = 570.667,
           width = 0,
           height = 0,
           rotation = 0,
@@ -2234,32 +2508,180 @@ return {
           }
         },
         {
-          id = 6,
-          name = "floater",
+          id = 20,
+          name = "spikey-long",
           type = "enemy",
           shape = "point",
-          x = 1827,
-          y = 471,
+          x = 2558.67,
+          y = 754.667,
           width = 0,
           height = 0,
           rotation = 0,
           visible = true,
           properties = {
-            ["race"] = "floater"
+            ["long"] = true,
+            ["race"] = "spikey"
           }
         },
         {
-          id = 7,
-          name = "walker",
+          id = 21,
+          name = "spikey-long",
           type = "enemy",
           shape = "point",
-          x = 960,
-          y = 686,
+          x = 3554.67,
+          y = 689.333,
           width = 0,
           height = 0,
           rotation = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["long"] = true,
+            ["race"] = "spikey"
+          }
+        },
+        {
+          id = 22,
+          name = "spikey-long",
+          type = "enemy",
+          shape = "point",
+          x = 2665.33,
+          y = 622.667,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["long"] = true,
+            ["race"] = "spikey"
+          }
+        },
+        {
+          id = 23,
+          name = "spikey-long",
+          type = "enemy",
+          shape = "point",
+          x = 2728,
+          y = 497.333,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["long"] = true,
+            ["race"] = "spikey"
+          }
+        },
+        {
+          id = 24,
+          name = "spikey-long",
+          type = "enemy",
+          shape = "point",
+          x = 3484,
+          y = 438.667,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["long"] = true,
+            ["race"] = "spikey"
+          }
+        },
+        {
+          id = 25,
+          name = "spikey-long",
+          type = "enemy",
+          shape = "point",
+          x = 2826.67,
+          y = 364,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["long"] = true,
+            ["race"] = "spikey"
+          }
+        },
+        {
+          id = 26,
+          name = "spikey-long",
+          type = "enemy",
+          shape = "point",
+          x = 3348,
+          y = 294.667,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["long"] = true,
+            ["race"] = "spikey"
+          }
+        },
+        {
+          id = 27,
+          name = "spikey-long",
+          type = "enemy",
+          shape = "point",
+          x = 2712,
+          y = 248,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["long"] = true,
+            ["race"] = "spikey"
+          }
+        },
+        {
+          id = 28,
+          name = "spikey-long",
+          type = "enemy",
+          shape = "point",
+          x = 3410.67,
+          y = 180,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["long"] = true,
+            ["race"] = "spikey"
+          }
+        },
+        {
+          id = 29,
+          name = "spikey-long",
+          type = "enemy",
+          shape = "point",
+          x = 2786.67,
+          y = 117.333,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["long"] = true,
+            ["race"] = "spikey"
+          }
+        },
+        {
+          id = 30,
+          name = "spikey-long",
+          type = "enemy",
+          shape = "point",
+          x = 3354.67,
+          y = 26.6667,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["long"] = true,
+            ["race"] = "spikey"
+          }
         }
       }
     }

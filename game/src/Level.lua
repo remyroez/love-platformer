@@ -30,6 +30,7 @@ local collisionClasses = {
     'collection',
     'damage',
     'object',
+    'door',
     'ladder',
     'platform',
     'one_way',
@@ -44,6 +45,7 @@ local collisionClasses = {
     collection = { ignores = { 'enemy' } },
     damage = { ignores = { 'enemy' } },
     object = {},
+    door = {},
     ladder = { ignores = { 'enemy' } },
     platform = {},
     one_way = {},
@@ -260,10 +262,12 @@ function Level:spawnCharacter(object, spriteSheet, sounds)
     -- エンティティクラス
     local entityClass
     local onGoal
+    local hasKey
     if object.type == 'player' then
         -- プレイヤー
         entityClass = Player
         onGoal = function (entity) self.cleared = true end
+        hasKey = function (key) return self:hasKey(key) end
     elseif object.type == 'enemy' then
         -- エネミー
         entityClass = enemyClasses[object.properties.race or 'walker']
@@ -298,6 +302,7 @@ function Level:spawnCharacter(object, spriteSheet, sounds)
             onDead = function (entity)
                 table.insert(self.removes, entity)
             end,
+            hasKey = hasKey,
             onGoal = onGoal,
             debug = self.debug,
         }
@@ -431,6 +436,11 @@ function Level:collectItem(item)
         self.collection[item.item][item.spriteType] = 0
     end
     self.collection[item.item][item.spriteType] = self.collection[item.item][item.spriteType] + 1
+end
+
+-- アイテムを持っているかどうか
+function Level:hasKey(spriteType)
+    return self.collection.key and self.collection.key[spriteType] or nil
 end
 
 return Level

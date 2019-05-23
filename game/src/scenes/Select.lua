@@ -15,16 +15,20 @@ local lg = love.graphics
 -- レベル情報
 local levels = {
     {
-        title = 'PROTOTYPE',
-        path = 'assets/prototype.lua',
+        title = 'FIRST',
+        path = 'assets/red-1.lua',
     },
     {
-        title = 'PROTOTYPE',
-        path = 'assets/prototype.lua',
+        title = 'TRAP HILL',
+        path = 'assets/green-1.lua',
     },
     {
-        title = 'PROTOTYPE',
-        path = 'assets/prototype.lua',
+        title = 'STRANGE FOREST',
+        path = 'assets/yellow-1.lua',
+    },
+    {
+        title = 'ICE MOUNTAIN',
+        path = 'assets/blue-1.lua',
     },
 }
 
@@ -183,7 +187,7 @@ function Select:keypressed(state, key, scancode, isrepeat)
         -- 左
         self.selectedLevel = self.selectedLevel - 1
         if self.selectedLevel <= 0 then
-            self.selectedLevel = math.min(self.clearedLevel + 1, #levels)
+            self.selectedLevel = self.debugMode and #levels or math.min(self.clearedLevel + 1, #levels)
         end
 
         -- 演出
@@ -202,7 +206,7 @@ function Select:keypressed(state, key, scancode, isrepeat)
     elseif key == 'right' or key == 'd' then
         -- 右
         self.selectedLevel = self.selectedLevel + 1
-        if self.selectedLevel > math.min(self.clearedLevel + 1, #levels) then
+        if self.selectedLevel > (self.debugMode and #levels or math.min(self.clearedLevel + 1, #levels)) then
             self.selectedLevel = 1
         end
 

@@ -8,21 +8,25 @@
  </tile>
  <tile id="1">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="2">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="3">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="4">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
@@ -127,11 +131,13 @@
  </tile>
  <tile id="27">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="28">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
@@ -160,31 +166,37 @@
  </tile>
  <tile id="45">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="46">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="47">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="48">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="49">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="50">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
@@ -237,21 +249,25 @@
  </tile>
  <tile id="67">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="68">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="69">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="70">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
@@ -368,11 +384,13 @@
  </tile>
  <tile id="93">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="94">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
@@ -419,31 +437,37 @@
  </tile>
  <tile id="111">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="112">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="113">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="114">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="115">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="116">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
@@ -501,12 +525,16 @@
  </tile>
  <tile id="130">
   <properties>
+   <property name="class" value="door"/>
    <property name="collidable" type="bool" value="true"/>
+   <property name="key" value="green"/>
   </properties>
  </tile>
  <tile id="131">
   <properties>
+   <property name="class" value="door"/>
    <property name="collidable" type="bool" value="true"/>
+   <property name="key" value="red"/>
   </properties>
  </tile>
  <tile id="132">
@@ -516,21 +544,25 @@
  </tile>
  <tile id="133">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="134">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="135">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="136">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
@@ -600,12 +632,16 @@
  </tile>
  <tile id="152">
   <properties>
+   <property name="class" value="door"/>
    <property name="collidable" type="bool" value="true"/>
+   <property name="key" value="green"/>
   </properties>
  </tile>
  <tile id="153">
   <properties>
+   <property name="class" value="door"/>
    <property name="collidable" type="bool" value="true"/>
+   <property name="key" value="red"/>
   </properties>
  </tile>
  <tile id="154">
@@ -667,11 +703,13 @@
  </tile>
  <tile id="159">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="160">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
@@ -689,12 +727,16 @@
  </tile>
  <tile id="174">
   <properties>
+   <property name="class" value="door"/>
    <property name="collidable" type="bool" value="true"/>
+   <property name="key" value="green"/>
   </properties>
  </tile>
  <tile id="175">
   <properties>
+   <property name="class" value="door"/>
    <property name="collidable" type="bool" value="true"/>
+   <property name="key" value="red"/>
   </properties>
  </tile>
  <tile id="176">
@@ -704,31 +746,37 @@
  </tile>
  <tile id="177">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="178">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="179">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="180">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="181">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="182">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
@@ -805,21 +853,25 @@
  </tile>
  <tile id="199">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="200">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="201">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="202">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
@@ -846,6 +898,24 @@
    <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
+ </tile>
+ <tile id="210">
+  <properties>
+   <property name="class" value="damage"/>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="8" y="38" width="47" height="26"/>
+  </objectgroup>
+ </tile>
+ <tile id="211">
+  <properties>
+   <property name="class" value="damage"/>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="2" x="10" y="34" width="44" height="30"/>
+  </objectgroup>
  </tile>
  <tile id="214">
   <properties>
@@ -936,11 +1006,13 @@
  </tile>
  <tile id="225">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="226">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
@@ -963,31 +1035,37 @@
  </tile>
  <tile id="243">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="244">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="245">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="246">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="247">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="248">
   <properties>
+   <property name="class" value="one_way"/>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
