@@ -899,6 +899,24 @@
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="210">
+  <properties>
+   <property name="class" value="damage"/>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="8" y="38" width="47" height="26"/>
+  </objectgroup>
+ </tile>
+ <tile id="211">
+  <properties>
+   <property name="class" value="damage"/>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="2" x="10" y="34" width="44" height="30"/>
+  </objectgroup>
+ </tile>
  <tile id="214">
   <properties>
    <property name="collidable" type="bool" value="true"/>
