@@ -127,7 +127,7 @@ function Player:checkDamage()
     if self.invincible then
         -- 無敵
     elseif self:enterCollider('damage') then
-        local vx, vy = state.player:getLinearVelocity()
+        local vx, vy = self:getLinearVelocity()
         self:damage(1, vx > 0 and 'right' or vx < 0 and 'left' or nil)
     end
 end
