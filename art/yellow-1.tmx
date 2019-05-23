@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="64" tileheight="64" infinite="1" nextlayerid="5" nextobjectid="19">
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="64" tileheight="64" infinite="1" nextlayerid="5" nextobjectid="45">
  <tileset firstgid="1" source="tilesheet.tsx"/>
- <layer id="1" name="ground" width="16" height="16">
+ <layer id="1" name="ground" width="16" height="16" locked="1">
   <properties>
    <property name="set" type="int" value="2"/>
   </properties>
@@ -72,8 +72,8 @@
 69,69,69,69,69,69,69,69,94,67,0,0,0,0,0,0,
 69,69,69,69,69,69,69,69,69,94,0,0,0,0,0,0,
 69,69,69,69,69,69,69,69,94,67,0,0,0,0,0,0,
-69,69,69,69,69,69,69,69,69,94,0,0,0,0,0,0,
-69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,
+69,69,69,69,69,69,69,69,69,94,90,69,91,0,0,0,
+69,69,69,69,69,69,69,69,69,69,112,111,113,69,69,69,
 67,111,111,67,67,67,67,67,67,67,67,67,67,67,67,67,
 89,67,89,67,67,67,67,67,89,67,89,67,67,67,67,67,
 67,67,67,67,67,67,67,67,111,67,67,89,67,67,67,67
@@ -98,7 +98,7 @@
 </chunk>
   </data>
  </layer>
- <layer id="4" name="other" width="16" height="16">
+ <layer id="4" name="other" width="16" height="16" locked="1">
   <data encoding="csv">
    <chunk x="0" y="0" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -165,8 +165,8 @@
 0,56,0,55,0,0,0,56,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,54,0,0,0,54,55,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-55,0,0,56,0,78,0,0,55,0,0,56,77,54,55,54,
+0,0,0,0,0,0,0,0,0,0,0,77,0,0,0,0,
+55,0,0,56,0,78,0,0,55,0,0,0,0,54,55,54,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -263,8 +263,106 @@
    </properties>
    <point/>
   </object>
+  <object id="31" name="jewel" type="collection" x="2821.33" y="744">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="yellow"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="32" name="jewel" type="collection" x="3260" y="686.667">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="yellow"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="33" name="jewel" type="collection" x="2916" y="620">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="yellow"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="34" name="jewel" type="collection" x="3268" y="553.333">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="yellow"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="35" name="jewel" type="collection" x="2944" y="488">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="yellow"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="36" name="jewel" type="collection" x="3265.33" y="422.667">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="yellow"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="37" name="jewel" type="collection" x="2968" y="357.333">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="yellow"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="38" name="jewel" type="collection" x="3222.67" y="294.667">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="yellow"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="39" name="jewel" type="collection" x="2937.33" y="233.333">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="yellow"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="40" name="jewel" type="collection" x="3178.67" y="172">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="yellow"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="41" name="jewel" type="collection" x="2946.67" y="106.667">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="yellow"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="42" name="jewel" type="collection" x="3204" y="44">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="yellow"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="43" name="jewel" type="collection" x="1406.06" y="545.455">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="yellow"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="44" name="jewel" type="collection" x="2000" y="542.424">
+   <properties>
+    <property name="item" value="jewel"/>
+    <property name="sprite" value="yellow"/>
+   </properties>
+   <point/>
+  </object>
  </objectgroup>
- <objectgroup id="2" name="character">
+ <objectgroup id="2" name="character" locked="1">
   <object id="1" name="player" type="player" x="360" y="672">
    <properties>
     <property name="sprite" value="playerGreen"/>
@@ -290,6 +388,90 @@
    <point/>
   </object>
   <object id="18" name="walker" type="enemy" x="930.667" y="746.667">
+   <point/>
+  </object>
+  <object id="19" name="spikey-long" type="enemy" x="3525.33" y="570.667">
+   <properties>
+    <property name="long" type="bool" value="true"/>
+    <property name="race" value="spikey"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="20" name="spikey-long" type="enemy" x="2558.67" y="754.667">
+   <properties>
+    <property name="long" type="bool" value="true"/>
+    <property name="race" value="spikey"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="21" name="spikey-long" type="enemy" x="3554.67" y="689.333">
+   <properties>
+    <property name="long" type="bool" value="true"/>
+    <property name="race" value="spikey"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="22" name="spikey-long" type="enemy" x="2665.33" y="622.667">
+   <properties>
+    <property name="long" type="bool" value="true"/>
+    <property name="race" value="spikey"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="23" name="spikey-long" type="enemy" x="2728" y="497.333">
+   <properties>
+    <property name="long" type="bool" value="true"/>
+    <property name="race" value="spikey"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="24" name="spikey-long" type="enemy" x="3484" y="438.667">
+   <properties>
+    <property name="long" type="bool" value="true"/>
+    <property name="race" value="spikey"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="25" name="spikey-long" type="enemy" x="2826.67" y="364">
+   <properties>
+    <property name="long" type="bool" value="true"/>
+    <property name="race" value="spikey"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="26" name="spikey-long" type="enemy" x="3348" y="294.667">
+   <properties>
+    <property name="long" type="bool" value="true"/>
+    <property name="race" value="spikey"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="27" name="spikey-long" type="enemy" x="2712" y="248">
+   <properties>
+    <property name="long" type="bool" value="true"/>
+    <property name="race" value="spikey"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="28" name="spikey-long" type="enemy" x="3410.67" y="180">
+   <properties>
+    <property name="long" type="bool" value="true"/>
+    <property name="race" value="spikey"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="29" name="spikey-long" type="enemy" x="2786.67" y="117.333">
+   <properties>
+    <property name="long" type="bool" value="true"/>
+    <property name="race" value="spikey"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="30" name="spikey-long" type="enemy" x="3354.67" y="26.6667">
+   <properties>
+    <property name="long" type="bool" value="true"/>
+    <property name="race" value="spikey"/>
+   </properties>
    <point/>
   </object>
  </objectgroup>
