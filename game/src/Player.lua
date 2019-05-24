@@ -311,7 +311,7 @@ end
 -- ハシゴ: 減速
 function Ladder:reduceSpeed()
     local vx, vy = self:getLinearVelocity()
-    self:setLinearVelocity(vx * 0.8, vy * 0.8)
+    self:setLinearVelocity(vx * 0.7, vy * 0.7)
 end
 
 -- ハシゴ: 地面に押し付ける

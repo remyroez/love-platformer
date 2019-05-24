@@ -11,7 +11,7 @@ local Spikey = class('Spikey', Enemy)
 function Spikey:initialize(args)
     -- デフォルト値
     args.state = args.state or 'walk'
-    args.speed = args.speed or 5
+    args.speed = args.speed or 10
     args.stateArgs = args.stateArgs or { args.object.properties.direction or 'left' }
 
     -- 長いタイプかどうか

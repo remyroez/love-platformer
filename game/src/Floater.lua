@@ -28,7 +28,7 @@ function Floater:initialize(args)
     self.collider:setRestitution(1)
 
     -- 加速
-    self.accelSpeed = args.object.properties.accelSpeed or 3
+    self.accelSpeed = args.object.properties.accelSpeed or 6
     self.currentSpeed = 0
     self.maxVelocity = args.object.properties.maxVelocity or 200
 
@@ -49,7 +49,7 @@ function Floater:reduceSpeed()
     if dist > self.maxVelocity then
         vx, vy = lume.vector(lume.angle(0, 0, vx, vy), self.maxVelocity)
     end
-    self:setLinearVelocity(vx * 0.99, vy * 0.99)
+    self:setLinearVelocity(vx * 0.9, vy * 0.9)
 end
 
 -- 地面に押し付ける

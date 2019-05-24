@@ -11,7 +11,7 @@ local Walker = class('Walker', Enemy)
 function Walker:initialize(args)
     -- デフォルト値
     args.state = args.state or 'walk'
-    args.speed = args.speed or 10
+    args.speed = args.speed or 20
     args.stateArgs = args.stateArgs or { args.object.properties.direction or 'left' }
     --args.life = args.life or 3
 
