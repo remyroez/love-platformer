@@ -5,6 +5,9 @@ local Base = require(folderOfThisFile .. 'Base')
 -- レベル選択
 local Select = Base:newState 'select'
 
+-- ライブラリ
+local tick = require 'tick'
+
 -- クラス
 local Background = require 'Background'
 local Timer = require 'Timer'
@@ -91,6 +94,9 @@ function Select:entered(state, from, background, bgX, ...)
 
     -- ＢＧＭ
     self:playMusic('outgame')
+
+    -- フレームレート
+    tick.framerate = -1
 end
 
 -- 終了

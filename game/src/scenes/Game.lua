@@ -8,6 +8,7 @@ local Game = Base:newState 'game'
 -- ライブラリ
 local wf = require 'windfield'
 local lume = require 'lume'
+local tick = require 'tick'
 
 -- クラス
 local Character = require 'Character'
@@ -132,6 +133,9 @@ function Game:entered(state, path, ...)
 
     -- ＢＧＭ
     self:playMusic('ingame')
+
+    -- フレームレート
+    tick.framerate = 60
 end
 
 -- ステート終了
