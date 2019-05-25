@@ -26,13 +26,15 @@ scene:gotoState 'boot'
 scene:setDebugMode(debugMode)
 
 -- ホットスワップ後の対応
-lurker.postswap = function (f)
-    if lume.find(Scenes.static.scenes, f:match('%/([^%/%.]+).lua$')) then
-        -- シーンステートなら main もホットスワップ
-        lurker.hotswapfile('main.lua')
-    elseif f:match('^assets%/') then
-        -- アセットならシーンをリセット
-        scene:resetState()
+if lurker then
+    lurker.postswap = function (f)
+        if lume.find(Scenes.static.scenes, f:match('%/([^%/%.]+).lua$')) then
+            -- シーンステートなら main もホットスワップ
+            lurker.hotswapfile('main.lua')
+        elseif f:match('^assets%/') then
+            -- アセットならシーンをリセット
+            scene:resetState()
+        end
     end
 end
 
@@ -78,10 +80,10 @@ function love.keypressed(key, scancode, isrepeat)
     elseif key == 'printscreen' then
         -- スクリーンショット
         love.graphics.captureScreenshot(os.time() .. ".png")
-    elseif key == 'f1' then
+    elseif key == 'f1' and lurker then
         -- スキャン
         lurker.scan()
-    elseif key == 'f2' then
+    elseif key == 'f2' and debugMode then
         -- ステートに入り直す
         scene:resetState()
     elseif key == 'f5' then
