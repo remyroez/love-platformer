@@ -239,7 +239,8 @@ function Game:update(state, dt)
 
     -- キャラクター追従
     if state.player.alive then
-        state.camera:follow(state.player:getPosition())
+        local x, y = state.player:getPosition()
+        state.camera:follow(x, y - state.player.radius * 2)
     end
 
     -- タイマー更新
