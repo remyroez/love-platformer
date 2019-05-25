@@ -53,12 +53,17 @@ function Player:initialize(args)
             elseif collider_2.collision_class == 'ladder' then
                 -- ハシゴは当たり判定なし
                 contact:setEnabled(false)
+            elseif collider_2.collision_class == 'damage' then
+                -- ダメージ床は当たり判定なし
+                contact:setEnabled(false)
             elseif collider_2.collision_class == 'goal' then
                 -- ゴールは当たり判定なし
                 contact:setEnabled(false)
             end
         end
     )
+
+    self.collider:setBullet(true)
 
     -- ハシゴ判定
     self.inLadderCount = 0
@@ -108,7 +113,7 @@ function Player:checkEnemy()
     elseif self:enterCollider('enemy') then
         local data = self:getEnterCollisionData('enemy')
         local enemy = data.collider:getObject()
-        if enemy and enemy.alive then
+        if enemy and enemy.alive and not enemy.leave then
             local vx, vy = lume.vector(lume.angle(self.x, self.y, enemy.x, enemy.y), 1)
             local dot = vx * 0 + vy * 1
             local dir = self.x > enemy.x and 'right' or self.x < enemy.x and 'left' or nil
@@ -311,7 +316,7 @@ end
 -- ハシゴ: 減速
 function Ladder:reduceSpeed()
     local vx, vy = self:getLinearVelocity()
-    self:setLinearVelocity(vx * 0.8, vy * 0.8)
+    self:setLinearVelocity(vx * 0.7, vy * 0.7)
 end
 
 -- ハシゴ: 地面に押し付ける

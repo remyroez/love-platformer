@@ -54,4 +54,9 @@ function Splash:mousepressed(state, x, y, button, istouch, presses)
     state.splash:skip()
 end
 
+-- ゲームパッド入力
+function Splash:gamepadpressed(state, joystick, button)
+    state.splash:skip()
+end
+
 return Splash

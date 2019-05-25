@@ -8,6 +8,7 @@ local Game = Base:newState 'game'
 -- ライブラリ
 local wf = require 'windfield'
 local lume = require 'lume'
+local tick = require 'tick'
 
 -- クラス
 local Character = require 'Character'
@@ -93,13 +94,14 @@ function Game:entered(state, path, ...)
 
     -- 操作設定
     local binds = {
-        left = { 'left', 'a' },
-        right = { 'right', 'd' },
-        up = { 'up', 'w' },
-        down = { 'down', 's' },
-        climb = { 'up', 'w' },
+        left = { 'left', 'a', 'dpleft' },
+        right = { 'right', 'd', 'dpright' },
+        up = { 'up', 'w', 'dpup' },
+        down = { 'down', 's', 'dpdown' },
+        climb = { 'up', 'w', 'dpup' },
         crouch = { 'lctrl' },
-        jump = { 'space' },
+        jump = { 'space', 'fdown' },
+        giveup = { 'return', 'start', 'back' },
     }
     for name, keys in pairs(binds) do
         for _, key in ipairs(keys) do
@@ -132,6 +134,9 @@ function Game:entered(state, path, ...)
 
     -- ＢＧＭ
     self:playMusic('ingame')
+
+    -- フレームレート
+    tick.framerate = 60
 end
 
 -- ステート終了
@@ -148,7 +153,7 @@ end
 -- 更新
 function Game:update(state, dt)
     -- プレイヤー操作
-    if state.player.alive then
+    if self:isControllable() then
         self:controlPlayer(state)
     end
 
@@ -195,7 +200,7 @@ function Game:update(state, dt)
             -- ＳＥ
             self:playSound('clear')
 
-        elseif not state.player.alive then
+        elseif not state.player.alive or state.input:pressed('giveup') then
             -- まだゲームオーバー画面じゃなくて、プレイヤーが死んだとき
             state.gameover = true
 
@@ -235,7 +240,8 @@ function Game:update(state, dt)
 
     -- キャラクター追従
     if state.player.alive then
-        state.camera:follow(state.player:getPosition())
+        local x, y = state.player:getPosition()
+        state.camera:follow(x, y - state.player.radius * 2)
     end
 
     -- タイマー更新
@@ -464,8 +470,21 @@ end
 function Game:mousepressed(state, x, y, button, istouch, presses)
     if state.busy then
         -- 操作不可
-    else
+    elseif button == 1 then
         self:keypressed(state, 'return')
+    elseif button == 2 then
+        self:keypressed(state, 'r')
+    end
+end
+
+-- ゲームパッド入力
+function Game:gamepadpressed(state, joystick, button)
+    if state.busy then
+        -- 操作不可
+    elseif button == 'a' then
+        self:keypressed(state, 'return')
+    elseif button == 'b' then
+        self:keypressed(state, 'r')
     end
 end
 
@@ -475,6 +494,11 @@ function Game:setDebugMode(mode)
 
     -- レベル
     self.state.level:setDebug(mode)
+end
+
+-- 操作できるかどうか
+function Game:isControllable()
+    return self.state.player.alive and not self.state.gameover and not self.state.cleared
 end
 
 -- プレイヤー操作

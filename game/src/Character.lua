@@ -39,8 +39,8 @@ function Character:initialize(args)
     self.offsetY = args.offsetY or 16
     self.radius = args.radius or 16
     self.world = args.world or {}
-    self.speed = args.speed or 50
-    self.jumpPower = args.jumpPower or 1000
+    self.speed = args.speed or 100
+    self.jumpPower = args.jumpPower or 700
     self.attack = args.attack or 1
     self.life = args.life or 1
     self.score = args.score or 0
@@ -199,12 +199,12 @@ end
 -- 減速
 function Character:reduceSpeed()
     local vx, vy = self:getLinearVelocity()
-    self:setLinearVelocity(vx * 0.9, vy)
+    self:setLinearVelocity(vx * 0.8, vy)
 end
 
 -- 地面に押し付ける
 function Character:applyAlternativeGravity()
-    self:applyLinearImpulse(0, 20)
+    self:applyLinearImpulse(0, 40)
 end
 
 -- 着地しているかどうか更新

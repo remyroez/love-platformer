@@ -11,7 +11,7 @@ local Walker = class('Walker', Enemy)
 function Walker:initialize(args)
     -- デフォルト値
     args.state = args.state or 'walk'
-    args.speed = args.speed or 10
+    args.speed = args.speed or 20
     args.stateArgs = args.stateArgs or { args.object.properties.direction or 'left' }
     --args.life = args.life or 3
 
@@ -67,39 +67,10 @@ function Walk:update(dt)
     end
 
     -- 向きを変えるか判定
-    local turn = false
-
-    -- 足元に足場がない
-    do
-        local radius = self._walk.direction == 'right' and self.radius or -self.radius
-        local colliders = self.world:queryLine(self.x + radius, self.y, self.x + radius, self.y + 10, { 'platform', 'one_way' })
-        if #colliders == 0 then
-            turn = true
-        end
-    end
-
-    -- 進行方向に障害がある
-    if not turn then
-        local radius = self._walk.direction == 'right' and self.radius or -self.radius
-        local offset = self._walk.direction == 'right' and 3 or -3
-        local colliders = self.world:queryLine(self.x + radius, self.y - self.radius * 0.5, self.x + radius + offset, self.y - self.radius * 0.5, { 'platform' })
-        if #colliders > 0 then
-            turn = true
-        end
-    end
-
-    -- 他の敵に接触した
-    if not turn and self:enterCollider('enemy') then
-        local data = self:getEnterCollisionData('enemy')
-        local enemy = data.collider:getObject()
-        if enemy == nil then
-            -- エネミー情報が取れなかった
-        elseif enemy.x > self.x and self._walk.direction == 'right' then
-            turn = true
-        elseif enemy.x < self.x and self._walk.direction == 'left' then
-            turn = true
-        end
-    end
+    local turn =
+        self:checkEntity(self._walk.direction)
+        or self:checkObstacle(self._walk.direction)
+        or self:checkPlatform(self._walk.direction)
 
     -- 向きを変える
     if turn then

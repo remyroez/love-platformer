@@ -3,12 +3,12 @@
 require 'autobatch'
 require 'sbss'
 
+-- デバッグモード
+local debugMode = false
+
 -- ライブラリ
 local lume = require 'lume'
-local lurker = require 'lurker'
-
--- デバッグモード
-local debugMode = true
+local lurker = debugMode and require 'lurker' or nil
 
 -- フォーカス
 local focused = true
@@ -26,13 +26,15 @@ scene:gotoState 'boot'
 scene:setDebugMode(debugMode)
 
 -- ホットスワップ後の対応
-lurker.postswap = function (f)
-    if lume.find(Scenes.static.scenes, f:match('%/([^%/%.]+).lua$')) then
-        -- シーンステートなら main もホットスワップ
-        lurker.hotswapfile('main.lua')
-    elseif f:match('^assets%/') then
-        -- アセットならシーンをリセット
-        scene:resetState()
+if lurker then
+    lurker.postswap = function (f)
+        if lume.find(Scenes.static.scenes, f:match('%/([^%/%.]+).lua$')) then
+            -- シーンステートなら main もホットスワップ
+            lurker.hotswapfile('main.lua')
+        elseif f:match('^assets%/') then
+            -- アセットならシーンをリセット
+            scene:resetState()
+        end
     end
 end
 
@@ -78,10 +80,10 @@ function love.keypressed(key, scancode, isrepeat)
     elseif key == 'printscreen' then
         -- スクリーンショット
         love.graphics.captureScreenshot(os.time() .. ".png")
-    elseif key == 'f1' then
+    elseif key == 'f1' and lurker then
         -- スキャン
         lurker.scan()
-    elseif key == 'f2' then
+    elseif key == 'f2' and debugMode then
         -- ステートに入り直す
         scene:resetState()
     elseif key == 'f5' then
@@ -103,6 +105,12 @@ end
 function love.mousepressed(...)
     -- シーンに処理を渡す
     scene:mousepressedState(...)
+end
+
+-- ゲームパッド入力
+function love.gamepadpressed(...)
+    -- シーンに処理を渡す
+    scene:gamepadpressedState(...)
 end
 
 -- フォーカス

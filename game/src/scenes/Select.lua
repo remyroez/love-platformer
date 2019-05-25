@@ -5,6 +5,9 @@ local Base = require(folderOfThisFile .. 'Base')
 -- レベル選択
 local Select = Base:newState 'select'
 
+-- ライブラリ
+local tick = require 'tick'
+
 -- クラス
 local Background = require 'Background'
 local Timer = require 'Timer'
@@ -91,6 +94,9 @@ function Select:entered(state, from, background, bgX, ...)
 
     -- ＢＧＭ
     self:playMusic('outgame')
+
+    -- フレームレート
+    tick.framerate = -1
 end
 
 -- 終了
@@ -230,6 +236,19 @@ function Select:mousepressed(state, x, y, button, istouch, presses)
     if state.busy then
         -- 操作不可
     else
+        self:keypressed(state, 'return')
+    end
+end
+
+-- ゲームパッド入力
+function Select:gamepadpressed(state, joystick, button)
+    if state.busy then
+        -- 操作不可
+    elseif button == 'dpleft' then
+        self:keypressed(state, 'left')
+    elseif button == 'dpright' then
+        self:keypressed(state, 'right')
+    elseif button == 'a' then
         self:keypressed(state, 'return')
     end
 end
