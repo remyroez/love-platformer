@@ -3,12 +3,12 @@
 require 'autobatch'
 require 'sbss'
 
+-- デバッグモード
+local debugMode = false
+
 -- ライブラリ
 local lume = require 'lume'
-local lurker = require 'lurker'
-
--- デバッグモード
-local debugMode = true
+local lurker = debugMode and require 'lurker' or nil
 
 -- フォーカス
 local focused = true
