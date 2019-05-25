@@ -2,7 +2,7 @@
 
 :runner: Platformer with LÖVE
 
-![Screenshot](https://user-images.githubusercontent.com/1193542/57196067-31089600-6f94-11e9-9073-fc0d19f560b2.png)
+![Screenshot](https://user-images.githubusercontent.com/1193542/58362964-6ee44480-7ed8-11e9-9895-05b97cd3d7ba.png)
 
 ## Controls
 
