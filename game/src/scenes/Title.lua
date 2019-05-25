@@ -135,4 +135,11 @@ function Title:mousepressed(state, x, y, button, istouch, presses)
     end
 end
 
+-- ゲームパッド入力
+function Title:gamepadpressed(state, joystick, button)
+    if not state.busy then
+        self:keypressed(state, button)
+    end
+end
+
 return Title

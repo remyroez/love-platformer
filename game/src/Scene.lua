@@ -93,6 +93,11 @@ function Scene:mousepressedState(...)
     self:mousepressed(self.state, ...)
 end
 
+-- ステートゲームパッド入力
+function Scene:gamepadpressedState(...)
+    self:gamepadpressed(self.state, ...)
+end
+
 -- デバッグモードの設定
 function Scene:setDebugMode(mode)
     self.debugMode = mode or false
@@ -183,6 +188,10 @@ end
 
 -- マウス入力
 function Scene:mousepressed(state, x, y, button, istouch, presses)
+end
+
+-- ゲームパッド入力
+function Scene:gamepadpressed(state, joystick, button)
 end
 
 return Scene

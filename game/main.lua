@@ -107,6 +107,12 @@ function love.mousepressed(...)
     scene:mousepressedState(...)
 end
 
+-- ゲームパッド入力
+function love.gamepadpressed(...)
+    -- シーンに処理を渡す
+    scene:gamepadpressedState(...)
+end
+
 -- フォーカス
 function love.focus(f)
     focused = f

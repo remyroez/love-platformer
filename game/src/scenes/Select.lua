@@ -240,4 +240,17 @@ function Select:mousepressed(state, x, y, button, istouch, presses)
     end
 end
 
+-- ゲームパッド入力
+function Select:gamepadpressed(state, joystick, button)
+    if state.busy then
+        -- 操作不可
+    elseif button == 'dpleft' then
+        self:keypressed(state, 'left')
+    elseif button == 'dpright' then
+        self:keypressed(state, 'right')
+    elseif button == 'a' then
+        self:keypressed(state, 'return')
+    end
+end
+
 return Select
