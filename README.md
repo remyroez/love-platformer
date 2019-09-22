@@ -48,7 +48,7 @@ love .
 ## Libraries
 
 - [tick](https://github.com/bjornbytes/tick/tree/040f3c1db1cc545336c507ef0bf91754e4705370)
-- [autobatch](https://github.com/rxi/autobatch) 0.1.1 (customized)
+- [autobatch](https://github.com/rxi/autobatch) 0.1.1 ([customized](https://github.com/remyroez/autobatch))
 - [lume](https://github.com/rxi/lume/tree/d8c2eddc10af994ad4956cf0b7ae7188e86db47e) 2.3.0
 - [lurker](https://github.com/rxi/lurker/tree/4e34f47f9ed95477407425c5b25a779fac3eb9a7) 1.0.1
 - [middleclass](https://github.com/kikito/middleclass) v4.1.1
@@ -56,14 +56,14 @@ love .
 - [boipushy](https://github.com/adnzzzzZ/boipushy/tree/863af7f87beaac67cba40001be9a36ae76bad76b)
 - [chrono](https://github.com/adnzzzzZ/chrono/tree/d31b96355b59320b6f8f0a1f5dcb0833c8bb5c2c)
 - [STALKER-X](https://github.com/adnzzzzZ/STALKER-X/tree/243e67b5d30ec7762c579b027dadaa3d3696b1cd)
-- [sbss](https://github.com/mikufuworks/sbss/tree/905950ef0e2e64f30d4a5b2540b382134d62b6c5) (customized)
+- [sbss](https://github.com/mikufuworks/sbss) ([customized](https://github.com/remyroez/sbss))
 - [Simple Tiled Implementation](https://github.com/karai17/Simple-Tiled-Implementation/tree/2ba879d2509163822c353f8aba748085a8014389) 1.2.3.0 (customized + implement windfield plugin)
 
 ## Assets
 
 - [Kenney Game Assets](https://itch.io/s/6789/kenney-bundle)
     - It is purchased assets. Please do not use except for private.
-- [splashes](https://github.com/love2d-community/splashes/tree/04a26445795bdf5185d996225045a44193f1d881) (customized)
+- [splashes](https://github.com/love2d-community/splashes) ([customized](https://github.com/remyroez/splashes))
 
 ## License
 
