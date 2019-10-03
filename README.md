@@ -57,7 +57,7 @@ love .
 - [chrono](https://github.com/adnzzzzZ/chrono/tree/d31b96355b59320b6f8f0a1f5dcb0833c8bb5c2c)
 - [STALKER-X](https://github.com/adnzzzzZ/STALKER-X/tree/243e67b5d30ec7762c579b027dadaa3d3696b1cd)
 - [sbss](https://github.com/mikufuworks/sbss) ([customized](https://github.com/remyroez/sbss))
-- [Simple Tiled Implementation](https://github.com/karai17/Simple-Tiled-Implementation/tree/2ba879d2509163822c353f8aba748085a8014389) 1.2.3.0 (customized + implement windfield plugin)
+- [Simple Tiled Implementation](https://github.com/karai17/Simple-Tiled-Implementation/) 1.2.3.0 ([customized](https://github.com/remyroez/Simple-Tiled-Implementation) + [windfield plugin](https://github.com/remyroez/sti-windfield))
 
 ## Assets
 
